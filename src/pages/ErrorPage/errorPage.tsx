@@ -1,6 +1,8 @@
+import { FC } from "react";
+
 import { Section, Title } from "./errorPage.styled";
 
-const ErrorPage = () => (
+const ErrorPage: FC = () => (
     <Section>
         <Title>Something went wrong...</Title>
     </Section>

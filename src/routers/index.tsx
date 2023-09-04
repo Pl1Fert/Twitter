@@ -4,6 +4,7 @@ import { createBrowserRouter, createRoutesFromElements, Route } from "react-rout
 import { AppRoutes } from "@/constants";
 
 const HomePage = lazy(() => import("@/pages/HomePage/homePage"));
+const FeedPage = lazy(() => import("@/pages/FeedPage/feedPage"));
 const ProfilePage = lazy(() => import("@/pages/ProfilePage/profilePage"));
 const ErrorPage = lazy(() => import("@/pages/ErrorPage/errorPage"));
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage/notFoundPage"));
@@ -15,6 +16,7 @@ export const MainRouter = createBrowserRouter(
         <Route path={AppRoutes.HOME} errorElement={<ErrorPage />}>
             <Route index element={<HomePage />} />
             <Route path={AppRoutes.PROFILE} element={<ProfilePage />} />
+            <Route path={AppRoutes.FEED} element={<FeedPage />} />
             <Route path={AppRoutes.SIGN_IN} element={<SignInPage />} />
             <Route path={AppRoutes.SIGN_UP} element={<SignUpPage />} />
             <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />

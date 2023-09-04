@@ -1,10 +1,11 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
 import { AppRoutes } from "@/constants";
 
 import { Button, Container, SectionInner, SubTitle, Text, Title } from "./notFoundPage.styled";
 
-const NotFoundPage = () => (
+const NotFoundPage: FC = () => (
     <section>
         <Container>
             <SectionInner>

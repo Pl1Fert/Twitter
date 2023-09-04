@@ -1,3 +1,5 @@
-const SignInPage = () => <div>SignInPage</div>;
+import { FC } from "react";
+
+const SignInPage: FC = () => <div>SignInPage</div>;
 
 export default SignInPage;
