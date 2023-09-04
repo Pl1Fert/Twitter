@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 
 import { AppRoutes } from "@/constants";
@@ -14,11 +14,32 @@ const SignUpPage = lazy(() => import("@/pages/SignUpPage/signUpPage"));
 export const MainRouter = createBrowserRouter(
     createRoutesFromElements(
         <Route path={AppRoutes.HOME} errorElement={<ErrorPage />}>
-            <Route index element={<HomePage />} />
+            <Route
+                index
+                element={
+                    <Suspense>
+                        <HomePage />
+                    </Suspense>
+                }
+            />
             <Route path={AppRoutes.PROFILE} element={<ProfilePage />} />
             <Route path={AppRoutes.FEED} element={<FeedPage />} />
-            <Route path={AppRoutes.SIGN_IN} element={<SignInPage />} />
-            <Route path={AppRoutes.SIGN_UP} element={<SignUpPage />} />
+            <Route
+                path={AppRoutes.SIGN_IN}
+                element={
+                    <Suspense>
+                        <SignInPage />
+                    </Suspense>
+                }
+            />
+            <Route
+                path={AppRoutes.SIGN_UP}
+                element={
+                    <Suspense>
+                        <SignUpPage />
+                    </Suspense>
+                }
+            />
             <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
         </Route>
     )
