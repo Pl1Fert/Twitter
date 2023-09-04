@@ -2,5 +2,7 @@ export interface ITransparentButtonProps {
     width?: string;
     icon?: string;
     content: string;
-    borderColor?: string;
+    primary?: boolean;
+    outline?: boolean;
+    onClick?: () => void;
 }

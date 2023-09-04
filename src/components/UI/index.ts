@@ -1,1 +1,1 @@
-export * from "./TransparentButton";
+export * from "./Button";

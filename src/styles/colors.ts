@@ -1,15 +1,19 @@
 const blueBackground = "#1D9BF0";
-const lightBlueBackground = "#1DA1F2";
+const hoverBlueBackground = "#187cba";
 const greyBackground = "#B3B8BB";
-
-const blueFont = "#1DA1F2";
 
 const greyBorder = "#E4EAED";
 
+const blueFont = "#1DA1F2";
+const blackFont = "#000";
+const whiteFont = "#fff";
+
 export const DEFAULT_COLORS = {
     blueBackground,
-    lightBlueBackground,
+    hoverBlueBackground,
     blueFont,
     greyBackground,
     greyBorder,
+    blackFont,
+    whiteFont,
 };
