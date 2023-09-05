@@ -69,5 +69,6 @@ module.exports = {
             },
         ],
         "react/prop-types": "off",
+        "jsx-a11y/control-has-associated-label": "off",
     },
 };

@@ -7,7 +7,7 @@ const OutlineButton = css`
     background: transparent;
 
     &:hover {
-        border-color: black;
+        border-color: ${DEFAULT_COLORS.blackFont};
     }
 `;
 

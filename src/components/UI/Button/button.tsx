@@ -1,12 +1,12 @@
 import { memo } from "react";
 
-import { ITransparentButtonProps } from "./button.interfaces";
+import { IButtonProps } from "./button.interfaces";
 import { StyledButton } from "./button.styled";
 
-export const Button = memo<ITransparentButtonProps>(
-    ({ width, icon, content, outline, primary, onClick }) => (
+export const Button = memo<IButtonProps>(
+    ({ width, icon, content, outline, primary, onClick, type }) => (
         <StyledButton
-            type="button"
+            type={type}
             onClick={onClick}
             $width={width}
             $icon={icon}

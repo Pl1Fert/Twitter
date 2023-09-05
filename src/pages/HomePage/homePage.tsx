@@ -35,12 +35,14 @@ const HomePage: FC = () => {
                     <Subtitle>Join Twitter today</Subtitle>
                     <ButtonsColumn>
                         <Button
+                            type="button"
                             width="70%"
                             icon={googleIcon}
                             content="Sign up with Google"
                             outline
                         />
                         <Button
+                            type="button"
                             width="70%"
                             content="Sign up with Email"
                             outline
