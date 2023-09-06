@@ -66,3 +66,12 @@ export const Selects = styled.div`
     align-items: center;
     justify-content: space-between;
 `;
+
+export const ErorrsWrapper = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+
+    color: ${DEFAULT_COLORS.red};
+    font-size: 12px;
+`;

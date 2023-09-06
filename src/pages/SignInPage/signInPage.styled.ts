@@ -32,8 +32,6 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Inputs = styled.div`
-    margin-bottom: 25px;
-
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -43,4 +41,15 @@ export const Logo = styled.img`
     width: 50px;
     height: 40px;
     margin-bottom: 40px;
+`;
+
+export const ErorrsWrapper = styled.div`
+    margin-bottom: 25px;
+
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+
+    color: ${DEFAULT_COLORS.red};
+    font-size: 12px;
 `;

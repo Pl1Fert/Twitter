@@ -6,4 +6,5 @@ export interface IButtonProps {
     outline?: boolean;
     onClick?: () => void;
     type: "button" | "submit";
+    disabled?: boolean;
 }

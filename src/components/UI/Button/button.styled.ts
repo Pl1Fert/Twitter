@@ -47,4 +47,9 @@ export const StyledButton = styled.button<{
     ${({ $outline }) => $outline && OutlineButton}
 
     cursor: pointer;
+
+    &:disabled {
+        background-color: ${DEFAULT_COLORS.disabledBackground};
+        cursor: default;
+    }
 `;
