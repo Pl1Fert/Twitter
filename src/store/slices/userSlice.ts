@@ -1,13 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface IUser {
-    id?: string;
-    name?: string;
-    email?: string;
-    phone?: string;
-    token?: string;
-    birthDate?: string;
-}
+import { IUser } from "@/interfaces";
 
 const initialState: IUser = {};
 

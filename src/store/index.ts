@@ -11,15 +11,21 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import { notificationReducer } from "./slices/notificationSlice";
 import { themeReducer } from "./slices/themeSlice";
 import { userReducer } from "./slices/userSlice";
 
 const persistConfig = {
     key: "root",
     storage,
+    blacklist: ["notification"],
 };
 
-const rootReducer = combineReducers({ theme: themeReducer, user: userReducer });
+const rootReducer = combineReducers({
+    theme: themeReducer,
+    user: userReducer,
+    notification: notificationReducer,
+});
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
