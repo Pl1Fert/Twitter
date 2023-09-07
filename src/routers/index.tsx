@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 
 import { AppRoutes } from "@/constants";
+import { RequireAuth } from "@/hocs";
 
 const HomePage = lazy(() => import("@/pages/HomePage/homePage"));
 const FeedPage = lazy(() => import("@/pages/FeedPage/feedPage"));
@@ -22,8 +23,10 @@ export const MainRouter = createBrowserRouter(
                     </Suspense>
                 }
             />
-            <Route path={AppRoutes.PROFILE} element={<ProfilePage />} />
-            <Route path={AppRoutes.FEED} element={<FeedPage />} />
+            <Route element={<RequireAuth />}>
+                <Route path={AppRoutes.PROFILE} element={<ProfilePage />} />
+                <Route path={AppRoutes.FEED} element={<FeedPage />} />
+            </Route>
             <Route
                 path={AppRoutes.SIGN_IN}
                 element={

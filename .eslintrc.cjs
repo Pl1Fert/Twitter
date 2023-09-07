@@ -74,5 +74,6 @@ module.exports = {
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": "off",
         "react/jsx-props-no-spreading": "off",
+        "react/require-default-props": "off",
     },
 };
