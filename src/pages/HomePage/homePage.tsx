@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+import { FirebaseError } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 import googleIcon from "@/assets/icons/google-icon.svg";
 import picture from "@/assets/images/big-picture.png";
@@ -24,6 +26,24 @@ import {
 const HomePage: FC = () => {
     const navigate = useNavigate();
     const onClick = (): void => navigate(AppRoutes.SIGN_UP, { replace: true });
+    const onGoogleClick = (): void => {
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const credentials = GoogleAuthProvider.credentialFromResult(result);
+                const token = credentials?.accessToken;
+                const { user } = result;
+                console.log(result, token, user);
+            })
+            .catch((error: FirebaseError) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+                console.log(errorCode, errorMessage);
+            });
+    };
 
     return (
         <main>
@@ -40,6 +60,7 @@ const HomePage: FC = () => {
                             icon={googleIcon}
                             content="Sign up with Google"
                             outline
+                            onClick={onGoogleClick}
                         />
                         <Button
                             type="button"
