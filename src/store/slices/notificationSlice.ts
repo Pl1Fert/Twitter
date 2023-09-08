@@ -1,28 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { INotification } from "@/interfaces";
 
-interface ISetMessageAction {
-    payload: string;
-    type: string;
-}
-
-interface ISetVisibleAction {
-    payload: boolean;
-    type: string;
-}
-
-const initialState: INotification = {
-    isVisible: false,
-    message: "",
-};
+const initialState: INotification[] = [];
 
 const notificationSlice = createSlice({
     name: "notification",
     initialState,
     reducers: {
-        setMessage: (state, action: ISetMessageAction) => ({ ...state, message: action.payload }),
-        setVisible: (state, action: ISetVisibleAction) => ({ ...state, isVisible: action.payload }),
+        addNotification: (state, { payload }: PayloadAction<Omit<INotification, "id">>) => {
+            const notification = { id: Date.now(), ...payload };
+            state.push(notification);
+        },
+        dismissNotification: (state, { payload }: PayloadAction<INotification["id"]>) => {
+            const index = state.findIndex((notification) => notification.id === payload);
+
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
+        },
     },
 });
 
