@@ -17,15 +17,16 @@ export interface ITheme {
 }
 
 export interface INotification {
-    isVisible: boolean;
+    id: number;
+    type: "success" | "warning" | "error";
     message: string;
 }
 
 export interface IUser {
-    id?: string;
-    name?: string;
-    email?: string;
-    phone?: string;
-    token?: string;
-    birthDate?: string;
+    id: string | null;
+    name: string | null;
+    email: string | null;
+    phone: string | null;
+    token: string | null;
+    birthDate: string | null;
 }

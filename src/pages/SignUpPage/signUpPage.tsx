@@ -77,12 +77,12 @@ const SignUpPage: FC = () => {
                         options={getYearNumbers()}
                         {...register("year")}
                     />
-                    <ErorrsWrapper>
-                        {errors?.month && <p>{errors?.month?.message || "Error!"}</p>}
-                        {errors?.day && <p>{errors?.day?.message || "Error!"}</p>}
-                        {errors?.year && <p>{errors?.year?.message || "Error!"}</p>}
-                    </ErorrsWrapper>
                 </Selects>
+                <ErorrsWrapper>
+                    {errors?.month && <p>{errors?.month?.message || "Error!"}</p>}
+                    {errors?.day && <p>{errors?.day?.message || "Error!"}</p>}
+                    {errors?.year && <p>{errors?.year?.message || "Error!"}</p>}
+                </ErorrsWrapper>
                 <Button type="submit" primary content="Next" disabled={!isValid || !isDirty} />
             </form>
         </Section>

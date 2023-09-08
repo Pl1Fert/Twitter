@@ -60,14 +60,14 @@ export const Text = styled.p`
 `;
 
 export const Selects = styled.div`
-    margin-bottom: 30px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
 `;
 
 export const ErorrsWrapper = styled.div`
+    margin-bottom: 30px;
+
     display: flex;
     justify-content: flex-start;
     gap: 10px;

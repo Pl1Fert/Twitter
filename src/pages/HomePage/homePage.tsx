@@ -9,6 +9,9 @@ import logo from "@/assets/images/twitter.svg";
 import { HomeFooter } from "@/components";
 import { Button } from "@/components/UI";
 import { AppRoutes } from "@/constants";
+import { useAppDispatch } from "@/hooks";
+import { notificationActions } from "@/store/slices/notificationSlice";
+import { userActions } from "@/store/slices/userSlice";
 
 import {
     ButtonsColumn,
@@ -26,6 +29,7 @@ import {
 const HomePage: FC = () => {
     const navigate = useNavigate();
     const onClick = (): void => navigate(AppRoutes.SIGN_UP, { replace: true });
+    const dispatch = useAppDispatch();
     const onGoogleClick = (): void => {
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
@@ -35,13 +39,30 @@ const HomePage: FC = () => {
                 const credentials = GoogleAuthProvider.credentialFromResult(result);
                 const token = credentials?.accessToken;
                 const { user } = result;
-                console.log(result, token, user);
+                const { displayName, phoneNumber, email, uid } = user;
+                dispatch(
+                    userActions.setUser({
+                        name: displayName,
+                        phone: phoneNumber,
+                        email,
+                        id: uid,
+                        token: token || null,
+                        birthDate: null,
+                    })
+                );
+                dispatch(
+                    notificationActions.addNotification({
+                        type: "success",
+                        message: "You successfully logged in",
+                    })
+                );
             })
             .catch((error: FirebaseError) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
 
-                console.log(errorCode, errorMessage);
+                dispatch(
+                    notificationActions.addNotification({ type: "error", message: errorMessage })
+                );
             });
     };
 
