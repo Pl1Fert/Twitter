@@ -66,8 +66,6 @@ export const Selects = styled.div`
 `;
 
 export const ErorrsWrapper = styled.div`
-    margin-bottom: 30px;
-
     display: flex;
     justify-content: flex-start;
     gap: 10px;

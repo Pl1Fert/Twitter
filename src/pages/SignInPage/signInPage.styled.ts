@@ -5,7 +5,8 @@ import { DEFAULT_COLORS } from "@/styles/colors";
 
 export const Section = styled.section`
     max-width: 450px;
-    margin: calc(350px - 25vh) auto 0;
+    margin: 0 auto;
+    padding-top: 200px;
 
     display: flex;
     flex-direction: column;
