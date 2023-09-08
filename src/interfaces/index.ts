@@ -1,3 +1,5 @@
+import { NotificationTypes } from "@/constants";
+
 export interface ISignUpFormFields {
     name: string;
     phone: string;
@@ -18,7 +20,7 @@ export interface ITheme {
 
 export interface INotification {
     id: number;
-    type: "success" | "warning" | "error";
+    type: NotificationTypes;
     message: string;
 }
 

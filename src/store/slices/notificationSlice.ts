@@ -9,8 +9,7 @@ const notificationSlice = createSlice({
     initialState,
     reducers: {
         addNotification: (state, { payload }: PayloadAction<Omit<INotification, "id">>) => {
-            const notification = { id: Date.now(), ...payload };
-            state.push(notification);
+            state.push({ id: Date.now(), ...payload });
         },
         dismissNotification: (state, { payload }: PayloadAction<INotification["id"]>) => {
             const index = state.findIndex((notification) => notification.id === payload);

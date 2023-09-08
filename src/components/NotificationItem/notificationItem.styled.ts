@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
+import { NotificationTypes } from "@/constants";
 import { DEFAULT_COLORS } from "@/styles/colors";
 
-export const ListItem = styled.li<{ $type: "error" | "success" | "warning" }>`
+export const ListItem = styled.li<{ $type: NotificationTypes }>`
     min-width: 200px;
     width: fit-content;
     padding: 20px;

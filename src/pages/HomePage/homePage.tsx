@@ -8,7 +8,7 @@ import picture from "@/assets/images/big-picture.png";
 import logo from "@/assets/images/twitter.svg";
 import { HomeFooter } from "@/components";
 import { Button } from "@/components/UI";
-import { AppRoutes } from "@/constants";
+import { AppRoutes, ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
 import { useAppDispatch } from "@/hooks";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
@@ -28,8 +28,10 @@ import {
 
 const HomePage: FC = () => {
     const navigate = useNavigate();
-    const onClick = (): void => navigate(AppRoutes.SIGN_UP, { replace: true });
     const dispatch = useAppDispatch();
+
+    const onClick = (): void => navigate(AppRoutes.SIGN_UP, { replace: true });
+
     const onGoogleClick = (): void => {
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
@@ -52,16 +54,21 @@ const HomePage: FC = () => {
                 );
                 dispatch(
                     notificationActions.addNotification({
-                        type: "success",
-                        message: "You successfully logged in",
+                        type: NotificationTypes.success,
+                        message: NotificationMessages.loggedIn,
                     })
                 );
+
+                navigate(AppRoutes.PROFILE, { replace: true });
             })
             .catch((error: FirebaseError) => {
                 const errorMessage = error.message;
 
                 dispatch(
-                    notificationActions.addNotification({ type: "error", message: errorMessage })
+                    notificationActions.addNotification({
+                        type: NotificationTypes.error,
+                        message: errorMessage,
+                    })
                 );
             });
     };
@@ -76,7 +83,7 @@ const HomePage: FC = () => {
                     <Subtitle>Join Twitter today</Subtitle>
                     <ButtonsColumn>
                         <Button
-                            type="button"
+                            type={ButtonType.button}
                             width="70%"
                             icon={googleIcon}
                             content="Sign up with Google"
@@ -84,7 +91,7 @@ const HomePage: FC = () => {
                             onClick={onGoogleClick}
                         />
                         <Button
-                            type="button"
+                            type={ButtonType.button}
                             width="70%"
                             content="Sign up with Email"
                             outline

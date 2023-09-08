@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import logo from "@/assets/images/twitter.svg";
 import { Button, Input } from "@/components/UI";
-import { AppRoutes } from "@/constants";
+import { AppRoutes, ButtonType } from "@/constants";
 import { ISignInFormFields } from "@/interfaces";
 import { SignInScheme } from "@/validators";
 
@@ -40,7 +40,7 @@ const SignInPage: FC = () => {
                     {errors?.phoneOrEmail && <p>{errors?.phoneOrEmail?.message || "Error!"}</p>}
                     {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
                 </ErorrsWrapper>
-                <Button type="submit" primary content="Log In" disabled={!isValid} />
+                <Button type={ButtonType.submit} primary content="Log In" disabled={!isValid} />
             </form>
             <StyledLink to={AppRoutes.SIGN_UP}>Sign up to Twitter</StyledLink>
         </Section>

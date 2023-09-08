@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { memo, ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 import { AppRoutes } from "@/constants";
@@ -9,7 +9,7 @@ interface IProps {
     children?: ReactNode;
 }
 
-export const RequireAuth: FC<IProps> = ({ children }) => {
+export const RequireAuth = memo<IProps>(({ children }) => {
     const { token } = useAppSelector(userSelector);
 
     if (!token) {
@@ -17,4 +17,4 @@ export const RequireAuth: FC<IProps> = ({ children }) => {
     }
 
     return children || <Outlet />;
-};
+});

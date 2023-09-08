@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import logo from "@/assets/images/twitter.svg";
 import { Button, Input, Select } from "@/components/UI";
-import { AppRoutes, MONTH_NAMES } from "@/constants";
+import { AppRoutes, ButtonType, MONTH_NAMES } from "@/constants";
 import { getDaysNumbers, getYearNumbers } from "@/helpers";
 import { ISignUpFormFields } from "@/interfaces";
 import { SignUpScheme } from "@/validators";
@@ -83,7 +83,12 @@ const SignUpPage: FC = () => {
                     {errors?.day && <p>{errors?.day?.message || "Error!"}</p>}
                     {errors?.year && <p>{errors?.year?.message || "Error!"}</p>}
                 </ErorrsWrapper>
-                <Button type="submit" primary content="Next" disabled={!isValid || !isDirty} />
+                <Button
+                    type={ButtonType.submit}
+                    primary
+                    content="Next"
+                    disabled={!isValid || !isDirty}
+                />
             </form>
         </Section>
     );
