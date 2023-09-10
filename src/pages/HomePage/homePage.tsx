@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { FirebaseError } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 import googleIcon from "@/assets/icons/google-icon.svg";
@@ -9,6 +8,7 @@ import logo from "@/assets/images/twitter.svg";
 import { HomeFooter } from "@/components";
 import { Button } from "@/components/UI";
 import { AppRoutes, ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
+import { isFirebaseError } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
@@ -32,36 +32,39 @@ const HomePage: FC = () => {
 
     const onClick = (): void => navigate(AppRoutes.SIGN_UP, { replace: true });
 
-    const onGoogleClick = (): void => {
+    const onGoogleClick = async (): Promise<void> => {
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
 
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                const credentials = GoogleAuthProvider.credentialFromResult(result);
-                const token = credentials?.accessToken;
-                const { user } = result;
-                const { displayName, phoneNumber, email, uid } = user;
-                dispatch(
-                    userActions.setUser({
-                        name: displayName,
-                        phone: phoneNumber,
-                        email,
-                        id: uid,
-                        token: token || null,
-                        birthDate: null,
-                    })
-                );
-                dispatch(
-                    notificationActions.addNotification({
-                        type: NotificationTypes.success,
-                        message: NotificationMessages.loggedIn,
-                    })
-                );
+        try {
+            const result = await signInWithPopup(auth, provider);
 
-                navigate(AppRoutes.PROFILE, { replace: true });
-            })
-            .catch((error: FirebaseError) => {
+            const credentials = GoogleAuthProvider.credentialFromResult(result);
+            const token = credentials?.accessToken;
+            const { user } = result;
+            const { displayName, phoneNumber, email, uid } = user;
+
+            dispatch(
+                userActions.setUser({
+                    name: displayName,
+                    phone: phoneNumber,
+                    email,
+                    id: uid,
+                    token: token || null,
+                    birthDate: null,
+                })
+            );
+
+            dispatch(
+                notificationActions.addNotification({
+                    type: NotificationTypes.success,
+                    message: NotificationMessages.loggedIn,
+                })
+            );
+
+            navigate(AppRoutes.PROFILE, { replace: true });
+        } catch (error) {
+            if (isFirebaseError(error)) {
                 const errorMessage = error.message;
 
                 dispatch(
@@ -70,7 +73,8 @@ const HomePage: FC = () => {
                         message: errorMessage,
                     })
                 );
-            });
+            }
+        }
     };
 
     return (

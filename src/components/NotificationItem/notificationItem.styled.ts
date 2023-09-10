@@ -33,6 +33,7 @@ export const ListItem = styled.li<{ $type: NotificationTypes }>`
 `;
 
 export const CloseButton = styled.img`
+    padding-left: 10px;
     width: 20px;
     height: 20px;
 
