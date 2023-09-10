@@ -1,13 +1,24 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { FC } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 
 import logo from "@/assets/images/twitter.svg";
 import { Button, Input, Select } from "@/components/UI";
-import { AppRoutes, ButtonType, MONTH_NAMES } from "@/constants";
-import { getDaysNumbers, getYearNumbers } from "@/helpers";
+import {
+    AppRoutes,
+    ButtonType,
+    InputType,
+    MONTH_NAMES,
+    NotificationMessages,
+    NotificationTypes,
+} from "@/constants";
+import { formatDate, getDaysNumbers, getYearNumbers, isFirebaseError } from "@/helpers";
+import { useAppDispatch } from "@/hooks";
 import { ISignUpFormFields } from "@/interfaces";
+import { notificationActions } from "@/store/slices/notificationSlice";
+import { userActions } from "@/store/slices/userSlice";
 import { SignUpScheme } from "@/validators";
 
 import {
@@ -27,11 +38,58 @@ const SignUpPage: FC = () => {
         register,
         handleSubmit,
         reset,
-        formState: { errors, isValid, isDirty },
+        formState: { errors, isValid, isDirty, isSubmitting },
     } = useForm<ISignUpFormFields>({ mode: "onBlur", resolver: yupResolver(SignUpScheme) });
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
-    const onFormSubmit = (data: ISignUpFormFields): void => {
-        alert(JSON.stringify(data));
+    const onFormSubmit = async (data: ISignUpFormFields): Promise<void> => {
+        const auth = getAuth();
+        const { email, password, name, phone, month, year, day } = data;
+        const birthDate = formatDate(year, month, day);
+
+        try {
+            const { user } = await createUserWithEmailAndPassword(auth, email, password);
+
+            await updateProfile(user, {
+                displayName: name,
+            });
+
+            const { uid } = user;
+            const token = await user.getIdToken();
+
+            dispatch(
+                userActions.setUser({
+                    name,
+                    phone,
+                    email,
+                    id: uid,
+                    token: token || null,
+                    birthDate,
+                })
+            );
+
+            dispatch(
+                notificationActions.addNotification({
+                    type: NotificationTypes.success,
+                    message: NotificationMessages.loggedIn,
+                })
+            );
+
+            navigate(AppRoutes.PROFILE, { replace: true });
+        } catch (error) {
+            if (isFirebaseError(error)) {
+                const errorMessage = error.message;
+
+                dispatch(
+                    notificationActions.addNotification({
+                        type: NotificationTypes.error,
+                        message: errorMessage,
+                    })
+                );
+            }
+        }
+
         reset();
     };
 
@@ -44,11 +102,17 @@ const SignUpPage: FC = () => {
                     <Input placeholder="Name" {...register("name")} />
                     <Input placeholder="Phone number" {...register("phone")} />
                     <Input placeholder="Email" {...register("email")} />
+                    <Input
+                        type={InputType.password}
+                        placeholder="Password"
+                        {...register("password")}
+                    />
                 </Inputs>
                 <ErorrsWrapper>
                     {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
                     {errors?.phone && <p>{errors?.phone?.message || "Error!"}</p>}
                     {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
+                    {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
                 </ErorrsWrapper>
                 <StyledLink to={AppRoutes.HOME}>Use Email</StyledLink>
                 <SubTitle>Date of birth</SubTitle>
@@ -87,7 +151,7 @@ const SignUpPage: FC = () => {
                     type={ButtonType.submit}
                     primary
                     content="Next"
-                    disabled={!isValid || !isDirty}
+                    disabled={!isValid || !isDirty || !isSubmitting}
                 />
             </form>
         </Section>

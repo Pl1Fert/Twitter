@@ -19,6 +19,11 @@ export const SignUpScheme: yup.ObjectSchema<ISignUpFormFields> = yup.object().sh
         .string()
         .required("Email is required")
         .test("phone", "Email is invalid", (value) => validateEmail(value)),
+    password: yup
+        .string()
+        .min(1, "Password must contain at least 1 character")
+        .max(128, "Password must contain maximum 128 characters")
+        .required("Password is required!"),
     month: yup.string().required("Month is required"),
     year: yup.string().required("Year is required"),
     day: yup.string().required("Day is required"),

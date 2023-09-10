@@ -4,6 +4,7 @@ export interface ISignUpFormFields {
     name: string;
     phone: string;
     email: string;
+    password: string;
     month: string;
     year: string;
     day: string;

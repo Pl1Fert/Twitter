@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const validatePhone = (phone: number | undefined) =>
+export const validatePhone = (phone: number | string | undefined): boolean =>
     yup
         .number()
         .integer()
