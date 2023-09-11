@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface ITheme {
-    darkTheme: boolean;
-}
+import { ITheme } from "@/interfaces";
 
 const initialState: ITheme = {
     darkTheme: true,

@@ -1,9 +1,14 @@
-interface ITheme {
-    darkTheme: boolean;
-}
+import { EmptyObject } from "@reduxjs/toolkit";
+import { PersistPartial } from "redux-persist/es/persistReducer";
 
-interface IState {
+import { INotification, ITheme, IUser } from "@/interfaces";
+
+type State = EmptyObject & {
     theme: ITheme;
-}
+    user: IUser;
+    notification: INotification[];
+} & PersistPartial;
 
-export const themeSelector = (state: IState) => state.theme.darkTheme;
+export const themeSelector = (state: State) => state.theme.darkTheme;
+export const notificationSelector = (state: State) => state.notification;
+export const userSelector = (state: State) => state.user;

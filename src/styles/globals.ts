@@ -27,4 +27,8 @@ export const GlobalStyles = createGlobalStyle`
     ul {
         list-style: none;
     }
+
+    #root {
+        height: 100%;
+    }
 `;

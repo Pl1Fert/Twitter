@@ -68,6 +68,12 @@ module.exports = {
                 unnamedComponents: "arrow-function",
             },
         ],
+        "@typescript-eslint/no-misused-promises": ["error", { checksVoidReturn: false }],
         "react/prop-types": "off",
+        "jsx-a11y/control-has-associated-label": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/require-default-props": "off",
     },
 };

@@ -7,7 +7,7 @@ const OutlineButton = css`
     background: transparent;
 
     &:hover {
-        border-color: black;
+        border-color: ${DEFAULT_COLORS.blackFont};
     }
 `;
 
@@ -47,4 +47,17 @@ export const StyledButton = styled.button<{
     ${({ $outline }) => $outline && OutlineButton}
 
     cursor: pointer;
+
+    &:disabled {
+        background-color: ${DEFAULT_COLORS.disabledBackground};
+        cursor: default;
+    }
+
+    @media (max-width: 1150px) {
+        font-size: 18px;
+    }
+
+    @media (max-width: 380px) {
+        font-size: 14px;
+    }
 `;

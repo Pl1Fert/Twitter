@@ -1,5 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
+import { DEFAULT_COLORS } from "@/styles/colors";
+
 export const Ring = styled.div`
     position: absolute;
     top: 50%;
@@ -16,10 +18,10 @@ export const Ring = styled.div`
     line-height: 190px;
 
     background: transparent;
-    border: 3px solid $green;
+    border: 3px solid ${DEFAULT_COLORS.blueBackground};
     border-radius: 50%;
 
-    color: black;
+    color: ${DEFAULT_COLORS.blueFont};
 `;
 
 const circleAnimation = keyframes`
@@ -56,8 +58,8 @@ export const Span = styled.span`
         height: 16px;
 
         border-radius: 50%;
-        background: $green;
+        background: ${DEFAULT_COLORS.blueBackground};
 
-        box-shadow: 0 0 20px $green;
+        box-shadow: 0 0 20px ${DEFAULT_COLORS.blueBackground};
     }
 `;

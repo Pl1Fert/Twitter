@@ -1,12 +1,17 @@
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
-import { store } from "@/store";
+import { persistor, store } from "@/store";
+
+import "./firebase";
 
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <Provider store={store}>
-        <App />
+        <PersistGate persistor={persistor} loading={null}>
+            <App />
+        </PersistGate>
     </Provider>
 );
