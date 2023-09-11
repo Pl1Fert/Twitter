@@ -2,6 +2,7 @@ const blueBackground = "#1D9BF0";
 const hoverBlueBackground = "#187cba";
 const disabledBackground = "#67B4E3";
 const greyBackground = "#B3B8BB";
+const lightHoverBlueBackground = "#B0E0E630";
 
 const greyBorder = "#E4EAED";
 const greyShadow = "#808080";
@@ -29,4 +30,5 @@ export const DEFAULT_COLORS = {
     yellow,
     green,
     greyShadow,
+    lightHoverBlueBackground,
 };

@@ -102,7 +102,7 @@ const SignInPage: FC = () => {
                     type={ButtonType.submit}
                     primary
                     content="Log In"
-                    disabled={!isValid || !isDirty || !isSubmitting}
+                    disabled={!isValid || !isDirty || isSubmitting}
                 />
             </form>
             <StyledLink to={AppRoutes.SIGN_UP}>Sign up to Twitter</StyledLink>

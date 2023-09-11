@@ -33,3 +33,11 @@ export interface IUser {
     token: string | null;
     birthDate: string | null;
 }
+
+export interface INavBarLink {
+    id: number;
+    title: string;
+    to: string;
+    icon: string;
+    activeIcon: string;
+}

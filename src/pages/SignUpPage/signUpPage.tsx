@@ -151,7 +151,7 @@ const SignUpPage: FC = () => {
                     type={ButtonType.submit}
                     primary
                     content="Next"
-                    disabled={!isValid || !isDirty || !isSubmitting}
+                    disabled={!isValid || !isDirty || isSubmitting}
                 />
             </form>
         </Section>

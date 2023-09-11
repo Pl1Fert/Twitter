@@ -12,6 +12,7 @@ export const ListItem = styled.li<{ $type: NotificationTypes }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 15px;
 
     border-color: ${({ $type }) => {
         switch ($type) {
@@ -33,7 +34,6 @@ export const ListItem = styled.li<{ $type: NotificationTypes }>`
 `;
 
 export const CloseButton = styled.img`
-    padding-left: 10px;
     width: 20px;
     height: 20px;
 

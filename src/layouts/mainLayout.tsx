@@ -5,7 +5,11 @@ import styled from "styled-components";
 import { LeftAside, LoadingSpinner, RightAside } from "@/components";
 
 const Section = styled.section`
+    height: 100%;
+
     display: flex;
+    justify-content: center;
+    gap: 35px;
 `;
 
 export const MainLayout: FC = () => (

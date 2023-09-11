@@ -28,6 +28,9 @@ const userSlice = createSlice({
             ...state,
             birthDate: payload,
         }),
+        deleteUser: () => ({
+            ...initialState,
+        }),
     },
 });
 
