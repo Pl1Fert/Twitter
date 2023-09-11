@@ -5,5 +5,6 @@ export * from "./NavBar";
 export * from "./NavBarItem";
 export * from "./NotificationItem";
 export * from "./NotificationList";
+export * from "./ProfileEditModal";
 export * from "./RightAside";
 export * from "./TweetModal";
