@@ -7,4 +7,5 @@ export enum NotificationTypes {
 export enum NotificationMessages {
     loggedIn = "You succesfully logged in!",
     loggedOut = "You succesfully logged out!",
+    signedUp = "You successfully signed up!",
 }

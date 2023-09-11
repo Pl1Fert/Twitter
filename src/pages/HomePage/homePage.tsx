@@ -78,7 +78,7 @@ const HomePage: FC = () => {
     };
 
     return (
-        <main>
+        <section>
             <Row>
                 <Image src={picture} alt="art" />
                 <Column>
@@ -103,7 +103,7 @@ const HomePage: FC = () => {
                         />
                     </ButtonsColumn>
                     <Text>
-                        By singing up you agree to the <Span>Terms of Service</Span> and
+                        By singing up you agree to the <Span>Terms of Service</Span> and{" "}
                         <Span>Privacy Policy</Span>, including <Span>Cookie Use</Span>.
                     </Text>
                     <Text>
@@ -113,7 +113,7 @@ const HomePage: FC = () => {
                 </Column>
             </Row>
             <HomeFooter />
-        </main>
+        </section>
     );
 };
 

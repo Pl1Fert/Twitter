@@ -5,7 +5,7 @@ import { DEFAULT_COLORS } from "@/styles/colors";
 export const StyledInput = styled.input<{ $width?: string }>`
     width: ${({ $width }) => $width || "100%"};
     border: 1px solid ${DEFAULT_COLORS.greyBorder};
-    padding: 20px;
+    padding: 15px;
 
     outline: none;
     font: inherit;

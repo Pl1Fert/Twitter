@@ -52,4 +52,12 @@ export const StyledButton = styled.button<{
         background-color: ${DEFAULT_COLORS.disabledBackground};
         cursor: default;
     }
+
+    @media (max-width: 1150px) {
+        font-size: 18px;
+    }
+
+    @media (max-width: 380px) {
+        font-size: 14px;
+    }
 `;

@@ -72,7 +72,7 @@ const SignUpPage: FC = () => {
             dispatch(
                 notificationActions.addNotification({
                     type: NotificationTypes.success,
-                    message: NotificationMessages.loggedIn,
+                    message: NotificationMessages.signedUp,
                 })
             );
 
