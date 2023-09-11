@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { getAuth } from "firebase/auth";
 
 import profilePhoto from "@/assets/images/profile-photo.jpg";
-import { NavBar } from "@/components";
+import { NavBar, TweetModal } from "@/components";
 import { Button } from "@/components/UI";
 import { ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
 import { isFirebaseError } from "@/helpers";
@@ -16,6 +16,7 @@ import { Row, SubTitle, Title } from "./leftAside.styled";
 export const LeftAside: FC = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector(userSelector);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const logOutHandler = async (): Promise<void> => {
         const auth = getAuth();
@@ -41,18 +42,35 @@ export const LeftAside: FC = () => {
         }
     };
 
+    const modalClickHandler = (): void => {
+        setIsModalOpen((prev) => !prev);
+    };
+
     return (
-        <aside>
-            <NavBar />
-            <Button type={ButtonType.button} primary content="Tweet" />
-            <Row>
-                <img src={profilePhoto} alt="profile" />
-                <div>
-                    <Title>{user.name}</Title>
-                    <SubTitle>{user.email}</SubTitle>
-                </div>
-            </Row>
-            <Button type={ButtonType.button} primary content="Log out" onClick={logOutHandler} />
-        </aside>
+        <>
+            <aside>
+                <NavBar />
+                <Button
+                    type={ButtonType.button}
+                    primary
+                    content="Tweet"
+                    onClick={modalClickHandler}
+                />
+                <Row>
+                    <img src={profilePhoto} alt="profile" />
+                    <div>
+                        <Title>{user.name}</Title>
+                        <SubTitle>{user.email}</SubTitle>
+                    </div>
+                </Row>
+                <Button
+                    type={ButtonType.button}
+                    primary
+                    content="Log out"
+                    onClick={logOutHandler}
+                />
+            </aside>
+            {isModalOpen && <TweetModal closeModal={modalClickHandler} />}
+        </>
     );
 };

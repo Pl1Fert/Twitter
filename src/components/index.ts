@@ -6,3 +6,4 @@ export * from "./NavBarItem";
 export * from "./NotificationItem";
 export * from "./NotificationList";
 export * from "./RightAside";
+export * from "./TweetModal";
