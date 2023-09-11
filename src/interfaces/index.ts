@@ -16,7 +16,7 @@ export interface ISignInFormFields {
 }
 
 export interface ITheme {
-    darkTheme: boolean;
+    isDarkTheme: boolean;
 }
 
 export interface INotification {

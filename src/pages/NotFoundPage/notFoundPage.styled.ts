@@ -1,9 +1,19 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.section`
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.textColor};
+`;
+
 export const Container = styled.div`
     width: 500px;
     height: 500px;
-    margin: calc(50vh - 250px) auto 0;
 
     display: flex;
     flex-direction: column;

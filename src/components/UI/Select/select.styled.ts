@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 import arrow from "@/assets/icons/arrow-down.svg";
-import { DEFAULT_COLORS } from "@/styles/colors";
 
 export const StyledSelect = styled.select<{ $width?: string }>`
     width: ${({ $width }) => $width || "100%"};
-    border: 1px solid ${DEFAULT_COLORS.greyBorder};
+    border: 1px solid ${({ theme }) => theme.select.border.primary};
     padding: 20px;
 
     font: inherit;
@@ -20,15 +19,21 @@ export const StyledSelect = styled.select<{ $width?: string }>`
 
     transition: all 0.3s linear;
 
+    cursor: pointer;
+
     &:focus {
-        border: 1px solid ${DEFAULT_COLORS.blackFont};
+        border-color: ${({ theme }) => theme.select.border.focused};
+    }
+
+    &:hover {
+        border-color: ${({ theme }) => theme.select.border.hover};
     }
 `;
 
 export const StyledOption = styled.option`
-    color: ${DEFAULT_COLORS.blackFont};
+    color: ${({ theme }) => theme.select.textColor.primary};
 
     &:disabled {
-        color: ${DEFAULT_COLORS.greyFont};
+        color: ${({ theme }) => theme.select.textColor.disabled};
     }
 `;

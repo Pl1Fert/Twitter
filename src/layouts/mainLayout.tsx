@@ -5,12 +5,14 @@ import styled from "styled-components";
 import { LeftAside, LoadingSpinner, RightAside } from "@/components";
 
 const Section = styled.section`
-    height: 100%;
     padding-top: 30px;
 
     display: flex;
     justify-content: center;
     gap: 35px;
+
+    background-color: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.textColor};
 `;
 
 export const MainLayout: FC = () => (

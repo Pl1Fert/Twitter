@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { DEFAULT_COLORS } from "@/styles/colors";
-
 export const Row = styled.div`
     display: flex;
     justify-content: flex-start;
@@ -11,6 +9,13 @@ export const Row = styled.div`
     @media (max-width: 1050px) {
         align-items: center;
     }
+`;
+
+export const Wrapper = styled.section`
+    height: 100%;
+
+    background-color: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.textColor};
 `;
 
 export const Column = styled.div`
@@ -109,7 +114,7 @@ export const Text = styled.p`
 `;
 
 export const Span = styled.span`
-    color: ${DEFAULT_COLORS.blueFont};
+    color: ${({ theme }) => theme.fontColors.blue};
 
     cursor: default;
 `;
@@ -117,11 +122,11 @@ export const Span = styled.span`
 export const StyledLink = styled(Link)`
     border-bottom: 1px solid transparent;
 
-    color: ${DEFAULT_COLORS.blueFont};
+    color: ${({ theme }) => theme.fontColors.blue};
 
     transition: all 0.3s linear;
 
     &:hover {
-        border-color: ${DEFAULT_COLORS.blueFont};
+        border-color: ${({ theme }) => theme.fontColors.blue};
     }
 `;

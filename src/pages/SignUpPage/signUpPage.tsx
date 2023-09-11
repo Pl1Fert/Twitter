@@ -31,6 +31,7 @@ import {
     SubTitle,
     Text,
     Title,
+    Wrapper,
 } from "./signUpPage.styled";
 
 const SignUpPage: FC = () => {
@@ -94,67 +95,69 @@ const SignUpPage: FC = () => {
     };
 
     return (
-        <Section>
-            <Logo src={logo} alt="logo" />
-            <Title>Create an account</Title>
-            <form onSubmit={handleSubmit(onFormSubmit)}>
-                <Inputs>
-                    <Input placeholder="Name" {...register("name")} />
-                    <Input placeholder="Phone number" {...register("phone")} />
-                    <Input placeholder="Email" {...register("email")} />
-                    <Input
-                        type={InputType.password}
-                        placeholder="Password"
-                        {...register("password")}
+        <Wrapper>
+            <Section>
+                <Logo src={logo} alt="logo" />
+                <Title>Create an account</Title>
+                <form onSubmit={handleSubmit(onFormSubmit)}>
+                    <Inputs>
+                        <Input placeholder="Name" {...register("name")} />
+                        <Input placeholder="Phone number" {...register("phone")} />
+                        <Input placeholder="Email" {...register("email")} />
+                        <Input
+                            type={InputType.password}
+                            placeholder="Password"
+                            {...register("password")}
+                        />
+                    </Inputs>
+                    <ErorrsWrapper>
+                        {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
+                        {errors?.phone && <p>{errors?.phone?.message || "Error!"}</p>}
+                        {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
+                        {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
+                    </ErorrsWrapper>
+                    <StyledLink to={AppRoutes.HOME}>Use Email</StyledLink>
+                    <SubTitle>Date of birth</SubTitle>
+                    <Text>
+                        Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit. Quis
+                        bibendum ante phasellus metus, magna lacinia sed augue. Odio enim nascetur
+                        leo mauris vel eget. Pretium id ullamcorper blandit viverra dignissim eget
+                        tellus. Nibh mi massa in molestie a sit. Elit congue.
+                    </Text>
+                    <Selects>
+                        <Select
+                            placeholder="Month"
+                            width="30%"
+                            options={MONTH_NAMES}
+                            {...register("month")}
+                        />
+                        <Select
+                            placeholder="Day"
+                            width="30%"
+                            options={getDaysNumbers()}
+                            {...register("day")}
+                        />
+                        <Select
+                            placeholder="Year"
+                            width="30%"
+                            options={getYearNumbers()}
+                            {...register("year")}
+                        />
+                    </Selects>
+                    <ErorrsWrapper>
+                        {errors?.month && <p>{errors?.month?.message || "Error!"}</p>}
+                        {errors?.day && <p>{errors?.day?.message || "Error!"}</p>}
+                        {errors?.year && <p>{errors?.year?.message || "Error!"}</p>}
+                    </ErorrsWrapper>
+                    <Button
+                        type={ButtonType.submit}
+                        primary
+                        content="Next"
+                        disabled={!isValid || !isDirty || isSubmitting}
                     />
-                </Inputs>
-                <ErorrsWrapper>
-                    {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
-                    {errors?.phone && <p>{errors?.phone?.message || "Error!"}</p>}
-                    {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
-                    {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
-                </ErorrsWrapper>
-                <StyledLink to={AppRoutes.HOME}>Use Email</StyledLink>
-                <SubTitle>Date of birth</SubTitle>
-                <Text>
-                    Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit. Quis
-                    bibendum ante phasellus metus, magna lacinia sed augue. Odio enim nascetur leo
-                    mauris vel eget. Pretium id ullamcorper blandit viverra dignissim eget tellus.
-                    Nibh mi massa in molestie a sit. Elit congue.
-                </Text>
-                <Selects>
-                    <Select
-                        placeholder="Month"
-                        width="30%"
-                        options={MONTH_NAMES}
-                        {...register("month")}
-                    />
-                    <Select
-                        placeholder="Day"
-                        width="30%"
-                        options={getDaysNumbers()}
-                        {...register("day")}
-                    />
-                    <Select
-                        placeholder="Year"
-                        width="30%"
-                        options={getYearNumbers()}
-                        {...register("year")}
-                    />
-                </Selects>
-                <ErorrsWrapper>
-                    {errors?.month && <p>{errors?.month?.message || "Error!"}</p>}
-                    {errors?.day && <p>{errors?.day?.message || "Error!"}</p>}
-                    {errors?.year && <p>{errors?.year?.message || "Error!"}</p>}
-                </ErorrsWrapper>
-                <Button
-                    type={ButtonType.submit}
-                    primary
-                    content="Next"
-                    disabled={!isValid || !isDirty || isSubmitting}
-                />
-            </form>
-        </Section>
+                </form>
+            </Section>
+        </Wrapper>
     );
 };
 

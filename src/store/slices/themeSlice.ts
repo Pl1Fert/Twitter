@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ITheme } from "@/interfaces";
 
 const initialState: ITheme = {
-    darkTheme: true,
+    isDarkTheme: false,
 };
 
 const themeSlice = createSlice({
     name: "theme",
     initialState,
     reducers: {
-        toggleTheme: (state) => ({ darkTheme: !state.darkTheme }),
+        toggleTheme: (state) => ({ isDarkTheme: !state.isDarkTheme }),
     },
 });
 

@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { DEFAULT_COLORS } from "@/styles/colors";
-
 export const StyledLink = styled(Link)<{ $active: boolean }>`
     padding: 5px 10px;
 
@@ -18,6 +16,6 @@ export const StyledLink = styled(Link)<{ $active: boolean }>`
     transition: background-color 0.3s linear;
 
     &:hover {
-        background-color: ${DEFAULT_COLORS.lightHoverBlueBackground};
+        background-color: ${({ theme }) => theme.links.backgroundColor.hover};
     }
 `;

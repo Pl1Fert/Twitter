@@ -17,8 +17,12 @@ export const Row = styled.div`
 export const Title = styled.p`
     font-weight: 600;
     font-size: 15px;
+
+    color: ${({ theme }) => theme.textColor};
 `;
 
 export const SubTitle = styled.p`
     font-size: 14px;
+
+    color: ${({ theme }) => theme.textColor};
 `;

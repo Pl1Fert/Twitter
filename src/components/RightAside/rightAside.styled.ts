@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { DEFAULT_COLORS } from "@/styles/colors";
-
 export const Container = styled.div`
     position: relative;
 `;
@@ -15,8 +13,8 @@ export const SearchBar = styled.input`
     border: none;
 
     border-radius: 22px;
-    background-color: #eff3f4;
-    color: ${DEFAULT_COLORS.blackFont};
+    background-color: ${({ theme }) => theme.input.backgroundColor.search};
+    color: ${({ theme }) => theme.input.textColor.primary};
 
     font: inherit;
     font-size: 18px;
@@ -25,7 +23,7 @@ export const SearchBar = styled.input`
         font: inherit;
         font-size: 18px;
 
-        color: ${DEFAULT_COLORS.greyFont};
+        color: ${({ theme }) => theme.input.placeholder.primary};
     }
 `;
 

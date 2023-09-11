@@ -24,6 +24,7 @@ import {
     Subtitle,
     Text,
     Title,
+    Wrapper,
 } from "./homePage.styled";
 
 const HomePage: FC = () => {
@@ -78,7 +79,7 @@ const HomePage: FC = () => {
     };
 
     return (
-        <section>
+        <Wrapper>
             <Row>
                 <Image src={picture} alt="art" />
                 <Column>
@@ -113,7 +114,7 @@ const HomePage: FC = () => {
                 </Column>
             </Row>
             <HomeFooter />
-        </section>
+        </Wrapper>
     );
 };
 

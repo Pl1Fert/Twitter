@@ -12,14 +12,16 @@ export const List = styled.ul`
     justify-content: center;
 
     @media (max-width: 1100px) {
-        flex-wrap: wrap;
-
         padding: 20px;
+
+        flex-wrap: wrap;
     }
 `;
 
 export const ListItem = styled.li`
     font-size: 13px;
+
+    color: ${({ theme }) => theme.textColor};
 
     cursor: default;
 

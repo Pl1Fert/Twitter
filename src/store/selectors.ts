@@ -9,6 +9,6 @@ type State = EmptyObject & {
     notification: INotification[];
 } & PersistPartial;
 
-export const themeSelector = (state: State) => state.theme.darkTheme;
+export const themeSelector = (state: State) => state.theme;
 export const notificationSelector = (state: State) => state.notification;
 export const userSelector = (state: State) => state.user;

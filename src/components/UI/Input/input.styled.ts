@@ -1,30 +1,28 @@
 import styled from "styled-components";
 
-import { DEFAULT_COLORS } from "@/styles/colors";
-
 export const StyledInput = styled.input<{ $width?: string }>`
     width: ${({ $width }) => $width || "100%"};
-    border: 1px solid ${DEFAULT_COLORS.greyBorder};
+    border: 1px solid ${({ theme }) => theme.input.border.primary};
     padding: 15px;
 
     outline: none;
     font: inherit;
     font-size: 18px;
 
-    color: ${DEFAULT_COLORS.blackFont};
+    color: ${({ theme }) => theme.input.textColor.primary};
 
     border-radius: 6px;
 
     transition: all 0.3s linear;
 
     &:focus {
-        border-color: ${DEFAULT_COLORS.blackFont};
+        border-color: ${({ theme }) => theme.input.border.focused};
     }
 
     &::placeholder {
         font: inherit;
         font-size: 18px;
 
-        color: ${DEFAULT_COLORS.greyFont};
+        color: ${({ theme }) => theme.input.placeholder.primary};
     }
 `;

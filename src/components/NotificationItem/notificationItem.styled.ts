@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import { NotificationTypes } from "@/constants";
-import { DEFAULT_COLORS } from "@/styles/colors";
 
 export const ListItem = styled.li<{ $type: NotificationTypes }>`
     min-width: 200px;
@@ -14,20 +13,21 @@ export const ListItem = styled.li<{ $type: NotificationTypes }>`
     justify-content: space-between;
     gap: 15px;
 
-    border-color: ${({ $type }) => {
+    border-color: ${({ $type, theme }) => {
         switch ($type) {
             case "error":
-                return DEFAULT_COLORS.red;
+                return theme.notification.border.error;
             case "success":
-                return DEFAULT_COLORS.green;
+                return theme.notification.border.success;
             case "warning":
-                return DEFAULT_COLORS.yellow;
+                return theme.notification.border.warning;
             default:
                 return "transparent";
         }
     }};
-    background-color: ${DEFAULT_COLORS.whiteFont};
-    box-shadow: 0 0 5px ${DEFAULT_COLORS.greyShadow};
+    background-color: ${({ theme }) => theme.notification.backgroundColor.primary};
+    color: ${({ theme }) => theme.notification.color.primary};
+    box-shadow: 0 0 5px ${({ theme }) => theme.notification.shadow.primary};
     border-radius: 8px;
 
     font-size: 16px;

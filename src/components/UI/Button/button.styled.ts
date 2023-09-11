@@ -1,24 +1,22 @@
 import styled, { css } from "styled-components";
 
-import { DEFAULT_COLORS } from "@/styles/colors";
-
 const OutlineButton = css`
-    border: 1px solid ${DEFAULT_COLORS.greyBorder};
+    border: 1px solid ${({ theme }) => theme.button.border.primary};
     background: transparent;
 
     &:hover {
-        border-color: ${DEFAULT_COLORS.blackFont};
+        border-color: ${({ theme }) => theme.button.border.hover};
     }
 `;
 
 const PrimaryButton = css`
     border: none;
 
-    background-color: ${DEFAULT_COLORS.blueBackground};
-    color: ${DEFAULT_COLORS.whiteFont};
+    background-color: ${({ theme }) => theme.button.backgroundColor.primary};
+    color: ${({ theme }) => theme.button.textColor.primary};
 
     &:hover {
-        background-color: ${DEFAULT_COLORS.hoverBlueBackground};
+        background-color: ${({ theme }) => theme.button.backgroundColor.hover};
     }
 `;
 
@@ -40,6 +38,7 @@ export const StyledButton = styled.button<{
 
     outline: none;
     border-radius: 40px;
+    color: ${({ theme }) => theme.button.textColor.primary};
 
     transition: all 0.3s linear;
 
@@ -49,7 +48,7 @@ export const StyledButton = styled.button<{
     cursor: pointer;
 
     &:disabled {
-        background-color: ${DEFAULT_COLORS.disabledBackground};
+        background-color: ${({ theme }) => theme.button.backgroundColor.disabled};
         cursor: default;
     }
 

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { DEFAULT_COLORS } from "@/styles/colors";
-
 export const Modal = styled.div`
     position: fixed;
     left: 50%;
@@ -17,9 +15,9 @@ export const Modal = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    box-shadow: 0 0 5px ${DEFAULT_COLORS.greyShadow};
+    box-shadow: 0 0 5px ${({ theme }) => theme.shadowColor};
     border-radius: 6px;
-    background-color: ${DEFAULT_COLORS.whiteFont};
+    background-color: ${({ theme }) => theme.backgroundColor};
 
     transform: translate(-50%, -50%);
 `;
@@ -45,20 +43,21 @@ export const Textarea = styled.textarea`
     font: inherit;
     font-size: 18px;
 
-    color: ${DEFAULT_COLORS.blackFont};
+    color: ${({ theme }) => theme.input.textColor.primary};
     border-radius: 6px;
+    border: 1px solid ${({ theme }) => theme.input.border.primary};
 
     transition: all 0.3s linear;
     resize: none;
 
     &:focus {
-        border-color: ${DEFAULT_COLORS.blackFont};
+        border-color: ${({ theme }) => theme.input.border.focused};
     }
 
     &::placeholder {
         font: inherit;
         font-size: 18px;
 
-        color: ${DEFAULT_COLORS.greyFont};
+        color: ${({ theme }) => theme.input.placeholder.primary};
     }
 `;

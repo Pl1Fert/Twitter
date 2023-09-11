@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { DEFAULT_COLORS } from "@/styles/colors";
-
 export const Section = styled.section`
     max-width: 600px;
     margin: 0 auto;
@@ -26,18 +24,25 @@ export const Title = styled.h1`
     }
 `;
 
+export const Wrapper = styled.div`
+    height: 100%;
+
+    background-color: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.textColor};
+`;
+
 export const StyledLink = styled(Link)`
     max-width: fit-content;
     border-bottom: 1px solid transparent;
 
     font-size: 15px;
 
-    color: ${DEFAULT_COLORS.blueFont};
+    color: ${({ theme }) => theme.fontColors.blue};
 
     transition: all 0.3s linear;
 
     &:hover {
-        border-color: ${DEFAULT_COLORS.blueFont};
+        border-color: ${({ theme }) => theme.fontColors.blue};
     }
 `;
 
@@ -90,5 +95,5 @@ export const ErorrsWrapper = styled.div`
 
     font-size: 12px;
 
-    color: ${DEFAULT_COLORS.red};
+    color: ${({ theme }) => theme.fontColors.red};
 `;

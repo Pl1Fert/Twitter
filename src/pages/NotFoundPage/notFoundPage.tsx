@@ -5,7 +5,7 @@ import logo from "@/assets/images/twitter.svg";
 import { Button } from "@/components/UI";
 import { AppRoutes, ButtonType } from "@/constants";
 
-import { Container, SubTitle, Text, Title } from "./notFoundPage.styled";
+import { Container, SubTitle, Text, Title, Wrapper } from "./notFoundPage.styled";
 
 const NotFoundPage: FC = () => {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ const NotFoundPage: FC = () => {
     const onClick = (): void => navigate(AppRoutes.HOME, { replace: true });
 
     return (
-        <section>
+        <Wrapper>
             <Container>
                 <img src={logo} alt="logo" />
                 <Title>404</Title>
@@ -30,7 +30,7 @@ const NotFoundPage: FC = () => {
                     onClick={onClick}
                 />
             </Container>
-        </section>
+        </Wrapper>
     );
 };
 

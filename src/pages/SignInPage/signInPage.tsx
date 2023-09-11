@@ -20,7 +20,15 @@ import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
 import { SignInScheme } from "@/validators";
 
-import { ErorrsWrapper, Inputs, Logo, Section, StyledLink, Title } from "./signInPage.styled";
+import {
+    ErorrsWrapper,
+    Inputs,
+    Logo,
+    Section,
+    StyledLink,
+    Title,
+    Wrapper,
+} from "./signInPage.styled";
 
 const SignInPage: FC = () => {
     const {
@@ -79,34 +87,36 @@ const SignInPage: FC = () => {
     };
 
     return (
-        <Section>
-            <Logo src={logo} alt="logo" />
-            <Title>Log in to Twitter</Title>
-            <form onSubmit={handleSubmit(onFormSubmit)}>
-                <Inputs>
-                    <Input
-                        placeholder="Phone number, email address"
-                        {...register("phoneOrEmail")}
+        <Wrapper>
+            <Section>
+                <Logo src={logo} alt="logo" />
+                <Title>Log in to Twitter</Title>
+                <form onSubmit={handleSubmit(onFormSubmit)}>
+                    <Inputs>
+                        <Input
+                            placeholder="Phone number, email address"
+                            {...register("phoneOrEmail")}
+                        />
+                        <Input
+                            type={InputType.password}
+                            placeholder="Password"
+                            {...register("password")}
+                        />
+                    </Inputs>
+                    <ErorrsWrapper>
+                        {errors?.phoneOrEmail && <p>{errors?.phoneOrEmail?.message || "Error!"}</p>}
+                        {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
+                    </ErorrsWrapper>
+                    <Button
+                        type={ButtonType.submit}
+                        primary
+                        content="Log In"
+                        disabled={!isValid || !isDirty || isSubmitting}
                     />
-                    <Input
-                        type={InputType.password}
-                        placeholder="Password"
-                        {...register("password")}
-                    />
-                </Inputs>
-                <ErorrsWrapper>
-                    {errors?.phoneOrEmail && <p>{errors?.phoneOrEmail?.message || "Error!"}</p>}
-                    {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
-                </ErorrsWrapper>
-                <Button
-                    type={ButtonType.submit}
-                    primary
-                    content="Log In"
-                    disabled={!isValid || !isDirty || isSubmitting}
-                />
-            </form>
-            <StyledLink to={AppRoutes.SIGN_UP}>Sign up to Twitter</StyledLink>
-        </Section>
+                </form>
+                <StyledLink to={AppRoutes.SIGN_UP}>Sign up to Twitter</StyledLink>
+            </Section>
+        </Wrapper>
     );
 };
 
