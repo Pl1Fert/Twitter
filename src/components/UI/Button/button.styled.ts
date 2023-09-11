@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 const OutlineButton = css`
     border: 1px solid ${({ theme }) => theme.button.border.primary};
     background: transparent;
+    color: ${({ theme }) => theme.button.textColor.outline};
 
     &:hover {
         border-color: ${({ theme }) => theme.button.border.hover};
@@ -38,7 +39,6 @@ export const StyledButton = styled.button<{
 
     outline: none;
     border-radius: 40px;
-    color: ${({ theme }) => theme.button.textColor.primary};
 
     transition: all 0.3s linear;
 
