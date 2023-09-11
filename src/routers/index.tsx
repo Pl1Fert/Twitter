@@ -3,7 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route } from "react-rout
 
 import { AppRoutes } from "@/constants";
 import { CheckAuth, RequireAuth } from "@/hocs";
-import { SuspenseLayout } from "@/layouts";
+import { MainLayout, SuspenseLayout } from "@/layouts";
 
 const HomePage = lazy(() => import("@/pages/HomePage/homePage"));
 const FeedPage = lazy(() => import("@/pages/FeedPage/feedPage"));
@@ -24,8 +24,10 @@ export const MainRouter = createBrowserRouter(
                 </Route>
             </Route>
             <Route element={<RequireAuth />}>
-                <Route path={AppRoutes.PROFILE} element={<ProfilePage />} />
-                <Route path={AppRoutes.FEED} element={<FeedPage />} />
+                <Route element={<MainLayout />}>
+                    <Route path={AppRoutes.PROFILE} element={<ProfilePage />} />
+                    <Route path={AppRoutes.FEED} element={<FeedPage />} />
+                </Route>
             </Route>
             <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
         </Route>
