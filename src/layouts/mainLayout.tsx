@@ -6,6 +6,7 @@ import { LeftAside, LoadingSpinner, RightAside } from "@/components";
 
 const Section = styled.section`
     height: 100%;
+    padding-top: 30px;
 
     display: flex;
     justify-content: center;

@@ -24,6 +24,7 @@ export const StyledInput = styled.input<{ $width?: string }>`
     &::placeholder {
         font: inherit;
         font-size: 18px;
+
         color: ${DEFAULT_COLORS.greyFont};
     }
 `;

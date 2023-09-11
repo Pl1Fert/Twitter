@@ -58,6 +58,7 @@ export const Textarea = styled.textarea`
     &::placeholder {
         font: inherit;
         font-size: 18px;
+
         color: ${DEFAULT_COLORS.greyFont};
     }
 `;
