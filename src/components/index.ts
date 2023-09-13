@@ -1,4 +1,3 @@
-export * from "./HomeFooter";
 export * from "./LeftAside";
 export * from "./LoadingSpinner";
 export * from "./NavBar";

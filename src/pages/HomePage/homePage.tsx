@@ -5,9 +5,14 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import googleIcon from "@/assets/icons/google-icon.svg";
 import picture from "@/assets/images/big-picture.png";
 import logo from "@/assets/images/twitter.svg";
-import { HomeFooter } from "@/components";
 import { Button } from "@/components/UI";
-import { AppRoutes, ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
+import {
+    AppRoutes,
+    ButtonType,
+    FOOTER_LINKS,
+    NotificationMessages,
+    NotificationTypes,
+} from "@/constants";
 import { isFirebaseError } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { notificationActions } from "@/store/slices/notificationSlice";
@@ -17,6 +22,8 @@ import {
     ButtonsColumn,
     Column,
     Image,
+    List,
+    ListItem,
     Logo,
     Row,
     Span,
@@ -113,7 +120,11 @@ const HomePage: FC = () => {
                     </Text>
                 </Column>
             </Row>
-            <HomeFooter />
+            <List>
+                {FOOTER_LINKS.map(({ id, content }) => (
+                    <ListItem key={id}>{content}</ListItem>
+                ))}
+            </List>
         </Wrapper>
     );
 };
