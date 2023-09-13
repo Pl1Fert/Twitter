@@ -14,7 +14,13 @@ import {
     NotificationMessages,
     NotificationTypes,
 } from "@/constants";
-import { formatDate, getDaysNumbers, getYearNumbers, isFirebaseError } from "@/helpers";
+import {
+    formatDate,
+    getDaysNumbers,
+    getYearNumbers,
+    isFirebaseError,
+    isValidDate,
+} from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { ISignUpFormFields } from "@/interfaces";
 import { notificationActions } from "@/store/slices/notificationSlice";
@@ -47,6 +53,18 @@ const SignUpPage: FC = () => {
     const onFormSubmit = async (data: ISignUpFormFields): Promise<void> => {
         const auth = getAuth();
         const { email, password, name, phone, month, year, day } = data;
+        if (!isValidDate(year, month, day)) {
+            dispatch(
+                notificationActions.addNotification({
+                    type: NotificationTypes.error,
+                    message: NotificationMessages.notValidDate,
+                })
+            );
+            reset();
+
+            return;
+        }
+
         const birthDate = formatDate(year, month, day);
 
         try {
