@@ -3,17 +3,20 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 
 import logo from "@/assets/images/twitter.svg";
 import { Button, Input, Select } from "@/components/UI";
 import {
     AppRoutes,
     ButtonType,
+    DbCollections,
     InputType,
     MONTH_NAMES,
     NotificationMessages,
     NotificationTypes,
 } from "@/constants";
+import { db } from "@/firebase";
 import {
     formatDate,
     getDaysNumbers,
@@ -77,6 +80,16 @@ const SignUpPage: FC = () => {
             const { uid } = user;
             const token = await user.getIdToken();
 
+            const usersCollectionRef = collection(db, DbCollections.users);
+
+            const response = await addDoc(usersCollectionRef, {
+                name,
+                phone,
+                email,
+                id: uid,
+                birthDate,
+            });
+
             dispatch(
                 userActions.setUser({
                     name,
@@ -85,6 +98,7 @@ const SignUpPage: FC = () => {
                     id: uid,
                     token: token || null,
                     birthDate,
+                    idInDb: response.id,
                 })
             );
 

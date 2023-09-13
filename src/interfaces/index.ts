@@ -32,6 +32,7 @@ export interface IUser {
     phone: string | null;
     token: string | null;
     birthDate: string | null;
+    idInDb: string | null;
 }
 
 export interface INavBarLink {
