@@ -33,6 +33,7 @@ export interface IUser {
     token: string | null;
     birthDate: string | null;
     idInDb: string | null;
+    description: string | null;
 }
 
 export interface INavBarLink {
@@ -41,4 +42,14 @@ export interface INavBarLink {
     to: string;
     icon: string;
     activeIcon: string;
+}
+
+export interface IProfileFields {
+    name: string;
+    email: string;
+    phone: string;
+    newPassword?: string;
+    confirmPassword?: string;
+    birthDate: string;
+    description?: string;
 }

@@ -73,6 +73,7 @@ const HomePage: FC = () => {
                     token: token || null,
                     birthDate: null,
                     idInDb: response.id,
+                    description: null,
                 })
             );
 

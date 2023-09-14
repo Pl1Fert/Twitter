@@ -11,7 +11,7 @@ export const SignUpScheme: yup.ObjectSchema<ISignUpFormFields> = yup.object().sh
         .max(20, "Name must contain maximum 20 characters"),
     phone: yup
         .string()
-        .required("Email / Phone is required")
+        .required("Phone is required")
         .test("phone", "Email / Phone is invalid", (value) =>
             validatePhone(parseInt(value ?? "0", 10))
         ),

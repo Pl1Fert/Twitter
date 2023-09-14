@@ -10,6 +10,7 @@ const initialState: IUser = {
     phone: null,
     birthDate: null,
     idInDb: null,
+    description: null,
 };
 
 const userSlice = createSlice({
@@ -28,6 +29,10 @@ const userSlice = createSlice({
         setBirthdate: (state, { payload }: PayloadAction<IUser["birthDate"]>) => ({
             ...state,
             birthDate: payload,
+        }),
+        setDescription: (state, { payload }: PayloadAction<IUser["description"]>) => ({
+            ...state,
+            description: payload,
         }),
         deleteUser: () => ({
             ...initialState,

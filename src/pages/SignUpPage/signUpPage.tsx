@@ -99,6 +99,7 @@ const SignUpPage: FC = () => {
                     token: token || null,
                     birthDate,
                     idInDb: response.id,
+                    description: null,
                 })
             );
 
