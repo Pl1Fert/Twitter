@@ -14,10 +14,10 @@ import { userActions } from "@/store/slices/userSlice";
 import { ProfileEditScheme } from "@/validators/profileEditScheme";
 
 import { ProfileEditModalProps } from "./profileEditModal.interfaces";
-import { Center, ErorrsWrapper, Image, Modal, Row, TextArea } from "./profileEditModal.styled";
+import { Center, ErorrsWrapper, Image, Modal, Row } from "./profileEditModal.styled";
 
 export const ProfileEditModal: FC<ProfileEditModalProps> = ({ closeModal }) => {
-    const { name, phone, email, birthDate } = useAppSelector(userSelector);
+    const { name, phone, email, birthDate, description } = useAppSelector(userSelector);
     const {
         register,
         handleSubmit,
@@ -31,7 +31,8 @@ export const ProfileEditModal: FC<ProfileEditModalProps> = ({ closeModal }) => {
             email === data.email &&
             phone === data.phone &&
             birthDate === data.birthDate &&
-            !data.newPassword
+            !data.newPassword &&
+            !data.description
         ) {
             closeModal();
 
@@ -94,6 +95,7 @@ export const ProfileEditModal: FC<ProfileEditModalProps> = ({ closeModal }) => {
                         <Input
                             placeholder="Password"
                             type={InputType.password}
+                            autoComplete="new-password"
                             {...register("newPassword")}
                         />
                     </label>
@@ -102,6 +104,7 @@ export const ProfileEditModal: FC<ProfileEditModalProps> = ({ closeModal }) => {
                         <Input
                             placeholder="Password"
                             type={InputType.password}
+                            autoComplete="new-password"
                             {...register("confirmPassword")}
                         />
                     </label>
@@ -113,7 +116,14 @@ export const ProfileEditModal: FC<ProfileEditModalProps> = ({ closeModal }) => {
                     )}
                 </ErorrsWrapper>
                 <Center>
-                    <TextArea placeholder="Description" {...register("description")} />
+                    <label>
+                        Description:
+                        <Input
+                            placeholder="Description"
+                            {...register("description")}
+                            defaultValue={description ?? ""}
+                        />
+                    </label>
                 </Center>
                 <Center>
                     <Button

@@ -56,33 +56,6 @@ export const Form = styled.form`
     width: 100%;
 `;
 
-export const TextArea = styled.textarea`
-    padding: 15px;
-    width: 90%;
-
-    outline: none;
-    font: inherit;
-    font-size: 18px;
-
-    color: ${({ theme }) => theme.input.textColor.primary};
-    border-radius: 6px;
-    border: 1px solid ${({ theme }) => theme.input.border.primary};
-
-    transition: all 0.3s linear;
-    resize: none;
-
-    &:focus {
-        border-color: ${({ theme }) => theme.input.border.focused};
-    }
-
-    &::placeholder {
-        font: inherit;
-        font-size: 18px;
-
-        color: ${({ theme }) => theme.input.placeholder.primary};
-    }
-`;
-
 export const Center = styled.div`
     margin-bottom: 30px;
 

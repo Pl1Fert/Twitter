@@ -12,6 +12,7 @@ import { userSelector } from "@/store/selectors";
 import {
     BackgroundImage,
     Content,
+    Description,
     Email,
     Main,
     Name,
@@ -26,7 +27,7 @@ import {
 } from "./profilePage.styled";
 
 const ProfilePage: FC = () => {
-    const { name, email } = useAppSelector(userSelector);
+    const { name, email, description } = useAppSelector(userSelector);
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
     const toggleModal = () => {
@@ -54,6 +55,7 @@ const ProfilePage: FC = () => {
                         <ProfileImage src={person} alt="person" />
                         <Name>{name}</Name>
                         <Email>{email}</Email>
+                        <Description>{description}</Description>
                     </Content>
                     <Button
                         type={ButtonType.button}

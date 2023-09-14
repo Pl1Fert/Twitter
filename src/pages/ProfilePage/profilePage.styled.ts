@@ -47,6 +47,8 @@ export const Name = styled.p`
 `;
 
 export const Email = styled.p`
+    margin-bottom: 15px;
+
     font-size: 16px;
 `;
 
@@ -89,4 +91,8 @@ export const TextArea = styled.textarea`
 
         color: ${({ theme }) => theme.input.placeholder.primary};
     }
+`;
+
+export const Description = styled.p`
+    font-size: 20px;
 `;
