@@ -9,4 +9,6 @@ export enum NotificationMessages {
     loggedOut = "You succesfully logged out!",
     signedUp = "You successfully signed up!",
     notValidDate = "Date is invalid!",
+    profileUpdated = "Profile successfully updated!",
+    notSignedIn = "You are not signed in!",
 }
