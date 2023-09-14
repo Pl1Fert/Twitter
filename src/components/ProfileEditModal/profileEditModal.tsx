@@ -42,8 +42,8 @@ export const ProfileEditModal: FC<ProfileEditModalProps> = ({ closeModal }) => {
             email === data.email &&
             phone === data.phone &&
             birthDate === data.birthDate &&
-            !data.newPassword &&
-            !data.description
+            description === data.description &&
+            !data.newPassword
         ) {
             closeModal();
 

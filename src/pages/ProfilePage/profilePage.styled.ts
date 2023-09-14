@@ -12,13 +12,8 @@ export const BackgroundImage = styled.img`
 `;
 
 export const ProfileImage = styled.img`
-    width: 150px;
-    height: 150px;
-`;
-
-export const SmallProfileImage = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 120px;
+    height: 120px;
 `;
 
 export const Row = styled.div`
@@ -59,38 +54,6 @@ export const Tweets = styled.p`
 export const Top = styled.div`
     padding-left: 20px;
     margin-bottom: 20px;
-`;
-
-export const WithTextArea = styled.div`
-    border-top: 1px solid ${({ theme }) => theme.border};
-    border-bottom: 1px solid ${({ theme }) => theme.border};
-    padding: 0 15px;
-
-    display: flex;
-    align-items: center;
-`;
-
-export const TextArea = styled.textarea`
-    padding: 15px;
-    width: 100%;
-    height: 120px;
-
-    outline: none;
-    font: inherit;
-    font-size: 18px;
-
-    color: ${({ theme }) => theme.input.textColor.primary};
-    border: none;
-
-    transition: all 0.3s linear;
-    resize: none;
-
-    &::placeholder {
-        font: inherit;
-        font-size: 18px;
-
-        color: ${({ theme }) => theme.input.placeholder.primary};
-    }
 `;
 
 export const Description = styled.p`

@@ -1,3 +1,4 @@
+export * from "./Feed";
 export * from "./LeftAside";
 export * from "./LoadingSpinner";
 export * from "./NavBar";
@@ -6,4 +7,6 @@ export * from "./NotificationItem";
 export * from "./NotificationList";
 export * from "./ProfileEditModal";
 export * from "./RightAside";
+export * from "./Tweet";
+export * from "./TweetBox";
 export * from "./TweetModal";

@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 import { NotificationTypes } from "@/constants";
 
 export interface ISignUpFormFields {
@@ -52,4 +54,12 @@ export interface IProfileFields {
     confirmPassword?: string;
     birthDate: string;
     description?: string;
+}
+
+export interface ITweet {
+    name: string;
+    email: string;
+    text: string;
+    likes: number;
+    createdAt: Timestamp;
 }
