@@ -1,8 +1,7 @@
 import { FC, SyntheticEvent, useState } from "react";
-import { createPortal } from "react-dom";
 import { addDoc, collection } from "firebase/firestore";
 
-import closeIcon from "@/assets/icons/cross.svg";
+import person from "@/assets/images/profile-photo.jpg";
 import { Button } from "@/components/UI";
 import { ButtonType, DbCollections, NotificationMessages, NotificationTypes } from "@/constants";
 import { db } from "@/firebase";
@@ -11,10 +10,9 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
 
-import { TweetModalProps } from "./tweetModal.interfaces";
-import { Image, Modal, Textarea } from "./tweetModal.styled";
+import { Container, SmallProfileImage, TextArea } from "./tweetBox.styled";
 
-export const TweetModal: FC<TweetModalProps> = ({ closeModal }) => {
+export const TweetBox: FC = () => {
     const [value, setValue] = useState<string>("");
     const { name, email } = useAppSelector(userSelector);
     const dispatch = useAppDispatch();
@@ -44,7 +42,7 @@ export const TweetModal: FC<TweetModalProps> = ({ closeModal }) => {
                 })
             );
 
-            closeModal();
+            setValue("");
         } catch (error) {
             if (isFirebaseError(error)) {
                 dispatch(
@@ -53,24 +51,23 @@ export const TweetModal: FC<TweetModalProps> = ({ closeModal }) => {
                         message: error.message,
                     })
                 );
-                closeModal();
+                setValue("");
             }
         }
     };
 
-    return createPortal(
-        <Modal id="tweetModal">
-            <Textarea placeholder="What's happening" value={value} onChange={onChangeHandler} />
+    return (
+        <Container>
+            <SmallProfileImage src={person} alt="person" />
+            <TextArea placeholder="What's happening" value={value} onChange={onChangeHandler} />
             <Button
                 type={ButtonType.button}
                 primary
                 content="Tweet"
-                width="50%"
+                width="25%"
                 disabled={isEmptyString(value)}
                 onClick={sendTweet}
             />
-            <Image src={closeIcon} alt="closeIcon" onClick={closeModal} />
-        </Modal>,
-        document.body
+        </Container>
     );
 };

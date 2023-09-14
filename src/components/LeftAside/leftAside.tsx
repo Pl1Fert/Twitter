@@ -9,7 +9,6 @@ import { isFirebaseError } from "@/helpers";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
-import { themeActions } from "@/store/slices/themeSlice";
 import { userActions } from "@/store/slices/userSlice";
 
 import { Row, SubTitle, Title } from "./leftAside.styled";
@@ -69,12 +68,6 @@ export const LeftAside: FC = () => {
                     primary
                     content="Log out"
                     onClick={logOutHandler}
-                />
-                <Button
-                    type={ButtonType.button}
-                    primary
-                    content="Theme"
-                    onClick={() => dispatch(themeActions.toggleTheme())}
                 />
             </aside>
             {isModalOpen && <TweetModal closeModal={modalClickHandler} />}

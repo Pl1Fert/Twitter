@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 import { ENV_VARS } from "./constants";
 
@@ -11,4 +12,6 @@ const firebaseConfig = {
     appId: ENV_VARS.VITE_FIREBASE_APP_ID,
 };
 
-export const firebase = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app);
