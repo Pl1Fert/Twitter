@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { memo, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 
@@ -25,7 +25,7 @@ import {
     Text,
 } from "./tweet.styled";
 
-export const Tweet: FC<TweetProps> = ({ tweet: { name, email, text, likes, createdAt }, id }) => {
+export const Tweet = memo<TweetProps>(({ tweet: { name, email, text, likes, createdAt }, id }) => {
     const [liked, setLiked] = useState<boolean>(false);
     const dispatch = useAppDispatch();
 
@@ -86,4 +86,4 @@ export const Tweet: FC<TweetProps> = ({ tweet: { name, email, text, likes, creat
             </Content>
         </Container>
     );
-};
+});

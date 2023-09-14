@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, PathMatch } from "react-router-dom";
 import styled from "styled-components";
 
-export const StyledLink = styled(Link)<{ $active: boolean }>`
+export const StyledLink = styled(Link)<{ $active: PathMatch<string> | null }>`
     padding: 5px 10px;
 
     display: flex;

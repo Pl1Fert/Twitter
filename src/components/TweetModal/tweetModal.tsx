@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent, useState } from "react";
+import { memo, SyntheticEvent, useState } from "react";
 import { createPortal } from "react-dom";
 import { addDoc, collection } from "firebase/firestore";
 
@@ -14,7 +14,7 @@ import { notificationActions } from "@/store/slices/notificationSlice";
 import { TweetModalProps } from "./tweetModal.interfaces";
 import { Image, Modal, Textarea } from "./tweetModal.styled";
 
-export const TweetModal: FC<TweetModalProps> = ({ closeModal }) => {
+export const TweetModal = memo<TweetModalProps>(({ closeModal }) => {
     const [value, setValue] = useState<string>("");
     const { name, email } = useAppSelector(userSelector);
     const dispatch = useAppDispatch();
@@ -73,4 +73,4 @@ export const TweetModal: FC<TweetModalProps> = ({ closeModal }) => {
         </Modal>,
         document.body
     );
-};
+});

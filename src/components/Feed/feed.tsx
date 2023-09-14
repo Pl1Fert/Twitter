@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
 import { Tweet } from "@/components";
@@ -10,7 +10,7 @@ import { userSelector } from "@/store/selectors";
 import { FeedProps, State } from "./feed.interfaces";
 import { Title, TweetsFeed } from "./feed.styled";
 
-export const Feed: FC<FeedProps> = ({ fromUser = false, setTweetsCount }) => {
+export const Feed = memo<FeedProps>(({ fromUser = false, setTweetsCount }) => {
     const [tweets, setTweets] = useState<State[]>([]);
     const { name } = useAppSelector(userSelector);
 
@@ -60,4 +60,4 @@ export const Feed: FC<FeedProps> = ({ fromUser = false, setTweetsCount }) => {
             )}
         </TweetsFeed>
     );
-};
+});

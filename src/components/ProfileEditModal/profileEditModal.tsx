@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { memo } from "react";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { Form } from "react-router-dom";
@@ -27,7 +27,7 @@ import { ProfileEditScheme } from "@/validators/profileEditScheme";
 import { ProfileEditModalProps } from "./profileEditModal.interfaces";
 import { Center, ErorrsWrapper, Image, Modal, Row } from "./profileEditModal.styled";
 
-export const ProfileEditModal: FC<ProfileEditModalProps> = ({ closeModal }) => {
+export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => {
     const { name, phone, email, birthDate, description, idInDb } = useAppSelector(userSelector);
     const {
         register,
@@ -191,4 +191,4 @@ export const ProfileEditModal: FC<ProfileEditModalProps> = ({ closeModal }) => {
         </Modal>,
         document.body
     );
-};
+});
