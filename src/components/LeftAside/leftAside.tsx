@@ -11,11 +11,11 @@ import { userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
 
-import { Row, SubTitle, Title } from "./leftAside.styled";
+import { Aside, Row, SubTitle, Title } from "./leftAside.styled";
 
 export const LeftAside: FC = () => {
     const dispatch = useAppDispatch();
-    const user = useAppSelector(userSelector);
+    const { name, email } = useAppSelector(userSelector);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const logOutHandler = async (): Promise<void> => {
@@ -48,7 +48,7 @@ export const LeftAside: FC = () => {
 
     return (
         <>
-            <aside>
+            <Aside>
                 <NavBar />
                 <Button
                     type={ButtonType.button}
@@ -59,8 +59,8 @@ export const LeftAside: FC = () => {
                 <Row>
                     <img src={profilePhoto} alt="profile" />
                     <div>
-                        <Title>{user.name}</Title>
-                        <SubTitle>{user.email}</SubTitle>
+                        <Title>{name}</Title>
+                        <SubTitle>{email}</SubTitle>
                     </div>
                 </Row>
                 <Button
@@ -69,7 +69,7 @@ export const LeftAside: FC = () => {
                     content="Log out"
                     onClick={logOutHandler}
                 />
-            </aside>
+            </Aside>
             {isModalOpen && <TweetModal closeModal={modalClickHandler} />}
         </>
     );

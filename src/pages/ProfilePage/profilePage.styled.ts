@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
+    padding-top: 30px;
     width: 50%;
 
     border-right: 1px solid ${({ theme }) => theme.border};

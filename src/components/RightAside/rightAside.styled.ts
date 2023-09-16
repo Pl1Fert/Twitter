@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const Aside = styled.aside`
+    padding-top: 30px;
+`;
+
 export const Container = styled.div`
     position: relative;
 `;
