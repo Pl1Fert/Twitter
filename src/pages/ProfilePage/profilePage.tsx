@@ -13,7 +13,6 @@ import {
     Content,
     Description,
     Email,
-    Main,
     Name,
     ProfileImage,
     Row,
@@ -33,30 +32,29 @@ const ProfilePage: FC = () => {
 
     return (
         <>
-            <Main>
-                <Top>
-                    <Title>{name}</Title>
-                    <Tweets>{tweetsCount} Tweets</Tweets>
-                </Top>
-                <BackgroundImage src={background} alt="background" />
-                <Row>
-                    <Content>
-                        <ProfileImage src={person} alt="person" />
-                        <Name>{name}</Name>
-                        <Email>{email}</Email>
-                        <Description>{description}</Description>
-                    </Content>
-                    <Button
-                        type={ButtonType.button}
-                        outline
-                        content="Edit Profile"
-                        width="20%"
-                        onClick={toggleModal}
-                    />
-                </Row>
-                <TweetBox />
-                <Feed fromUser setTweetsCount={setTweetsCount} />
-            </Main>
+            <Top>
+                <Title>{name}</Title>
+                <Tweets>{tweetsCount} Tweets</Tweets>
+            </Top>
+            <BackgroundImage src={background} alt="background" />
+            <Row>
+                <Content>
+                    <ProfileImage src={person} alt="person" />
+                    <Name>{name}</Name>
+                    <Email>{email}</Email>
+                    <Description>{description}</Description>
+                </Content>
+                <Button
+                    type={ButtonType.button}
+                    outline
+                    content="Edit Profile"
+                    width="20%"
+                    onClick={toggleModal}
+                />
+            </Row>
+            <TweetBox />
+            <Feed fromUser setTweetsCount={setTweetsCount} />
+
             {isOpenModal && <ProfileEditModal closeModal={toggleModal} />}
         </>
     );
