@@ -45,13 +45,19 @@ export const Email = styled.p``;
 
 export const Date = styled.p``;
 
-export const Image = styled.img`
+export const Avatar = styled.img`
     width: 45px;
     height: 50px;
 `;
 
 export const LikeImage = styled.img`
     cursor: pointer;
+`;
+
+export const Image = styled.img`
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
 `;
 
 export const DeleteIcon = styled.img`

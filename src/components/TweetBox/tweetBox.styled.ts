@@ -36,3 +36,24 @@ export const SmallProfileImage = styled.img`
     width: 50px;
     height: 50px;
 `;
+
+export const FileInput = styled.input`
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+`;
+
+export const Label = styled.label`
+    cursor: pointer;
+`;
+
+export const UploadIcon = styled.img`
+    padding: 0 0 10px 15px;
+`;
+
+export const Column = styled.div`
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+`;
