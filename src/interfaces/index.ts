@@ -62,4 +62,5 @@ export interface ITweet {
     text: string;
     likes: number;
     createdAt: Timestamp;
+    selfLiked: boolean;
 }

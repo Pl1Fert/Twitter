@@ -54,7 +54,7 @@ export const Feed = memo<FeedProps>(({ fromUser = false, setTweetsCount }) => {
     return (
         <TweetsFeed>
             {tweets.length > 0 ? (
-                tweets.map(({ id, tweet }) => <Tweet key={id} tweet={tweet} id={id} />)
+                tweets.map(({ id, tweet }) => <Tweet key={id} tweet={tweet} id={id} fromUser />)
             ) : (
                 <Title>No Tweets</Title>
             )}
