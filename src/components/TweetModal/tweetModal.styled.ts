@@ -33,11 +33,11 @@ export const Image = styled.img`
     cursor: pointer;
 `;
 
-export const Textarea = styled.textarea`
+export const TextArea = styled.textarea`
     margin-top: 50px;
     padding: 15px;
     width: 100%;
-    height: 60%;
+    height: 300px;
 
     outline: none;
     font: inherit;
@@ -60,4 +60,25 @@ export const Textarea = styled.textarea`
 
         color: ${({ theme }) => theme.input.placeholder.primary};
     }
+`;
+
+export const FileInput = styled.input`
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+`;
+
+export const Label = styled.label`
+    cursor: pointer;
+`;
+
+export const UploadIcon = styled.img`
+    padding: 15px 0 10px 15px;
+`;
+
+export const Column = styled.div`
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
 `;

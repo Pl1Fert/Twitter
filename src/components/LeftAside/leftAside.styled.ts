@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 export const Aside = styled.aside`
+    padding-top: 30px;
+
     display: flex;
     flex-direction: column;
 `;
 
 export const Row = styled.div`
-    margin-top: 70px;
+    margin-top: 50px;
     margin-bottom: 15px;
 
     display: flex;

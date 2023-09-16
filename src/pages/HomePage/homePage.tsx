@@ -1,13 +1,21 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 
 import googleIcon from "@/assets/icons/google-icon.svg";
 import picture from "@/assets/images/big-picture.png";
 import logo from "@/assets/images/twitter.svg";
-import { HomeFooter } from "@/components";
 import { Button } from "@/components/UI";
-import { AppRoutes, ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
+import {
+    AppRoutes,
+    ButtonType,
+    DbCollections,
+    FOOTER_LINKS,
+    NotificationMessages,
+    NotificationTypes,
+} from "@/constants";
+import { db } from "@/firebase";
 import { isFirebaseError } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { notificationActions } from "@/store/slices/notificationSlice";
@@ -17,6 +25,8 @@ import {
     ButtonsColumn,
     Column,
     Image,
+    List,
+    ListItem,
     Logo,
     Row,
     Span,
@@ -45,6 +55,15 @@ const HomePage: FC = () => {
             const { user } = result;
             const { displayName, phoneNumber, email, uid } = user;
 
+            const usersCollectionRef = collection(db, DbCollections.users);
+
+            const response = await addDoc(usersCollectionRef, {
+                name: displayName,
+                phone: phoneNumber,
+                email,
+                id: uid,
+            });
+
             dispatch(
                 userActions.setUser({
                     name: displayName,
@@ -53,6 +72,8 @@ const HomePage: FC = () => {
                     id: uid,
                     token: token || null,
                     birthDate: null,
+                    idInDb: response.id,
+                    description: null,
                 })
             );
 
@@ -113,7 +134,11 @@ const HomePage: FC = () => {
                     </Text>
                 </Column>
             </Row>
-            <HomeFooter />
+            <List>
+                {FOOTER_LINKS.map(({ id, content }) => (
+                    <ListItem key={id}>{content}</ListItem>
+                ))}
+            </List>
         </Wrapper>
     );
 };

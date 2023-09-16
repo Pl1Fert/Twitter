@@ -3,18 +3,27 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 
 import logo from "@/assets/images/twitter.svg";
 import { Button, Input, Select } from "@/components/UI";
 import {
     AppRoutes,
     ButtonType,
+    DbCollections,
     InputType,
     MONTH_NAMES,
     NotificationMessages,
     NotificationTypes,
 } from "@/constants";
-import { formatDate, getDaysNumbers, getYearNumbers, isFirebaseError } from "@/helpers";
+import { db } from "@/firebase";
+import {
+    formatDate,
+    getDaysNumbers,
+    getYearNumbers,
+    isFirebaseError,
+    isValidDate,
+} from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { ISignUpFormFields } from "@/interfaces";
 import { notificationActions } from "@/store/slices/notificationSlice";
@@ -47,6 +56,18 @@ const SignUpPage: FC = () => {
     const onFormSubmit = async (data: ISignUpFormFields): Promise<void> => {
         const auth = getAuth();
         const { email, password, name, phone, month, year, day } = data;
+        if (!isValidDate(year, month, day)) {
+            dispatch(
+                notificationActions.addNotification({
+                    type: NotificationTypes.error,
+                    message: NotificationMessages.notValidDate,
+                })
+            );
+            reset();
+
+            return;
+        }
+
         const birthDate = formatDate(year, month, day);
 
         try {
@@ -59,6 +80,16 @@ const SignUpPage: FC = () => {
             const { uid } = user;
             const token = await user.getIdToken();
 
+            const usersCollectionRef = collection(db, DbCollections.users);
+
+            const response = await addDoc(usersCollectionRef, {
+                name,
+                phone,
+                email,
+                id: uid,
+                birthDate,
+            });
+
             dispatch(
                 userActions.setUser({
                     name,
@@ -67,6 +98,8 @@ const SignUpPage: FC = () => {
                     id: uid,
                     token: token || null,
                     birthDate,
+                    idInDb: response.id,
+                    description: null,
                 })
             );
 

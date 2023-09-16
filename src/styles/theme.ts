@@ -4,6 +4,7 @@ export const LightTheme: DefaultTheme = {
     backgroundColor: "#ffffff",
     textColor: "#000000",
     shadowColor: "#808080",
+    border: "#E4EAED",
     button: {
         backgroundColor: {
             primary: "#1D9BF0",
@@ -13,6 +14,7 @@ export const LightTheme: DefaultTheme = {
         },
         textColor: {
             primary: "#ffffff",
+            outline: "#000000",
         },
         border: {
             primary: "#E4EAED",
@@ -80,6 +82,7 @@ export const DarkTheme: DefaultTheme = {
     backgroundColor: "#092441",
     textColor: "#ffffff",
     shadowColor: "#808080",
+    border: "#E4EAED",
     button: {
         backgroundColor: {
             primary: "#1D9BF0",
@@ -89,6 +92,7 @@ export const DarkTheme: DefaultTheme = {
         },
         textColor: {
             primary: "#ffffff",
+            outline: "#ffffff",
         },
         border: {
             primary: "#E4EAED",

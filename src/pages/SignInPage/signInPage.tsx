@@ -3,16 +3,19 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
 
 import logo from "@/assets/images/twitter.svg";
 import { Button, Input } from "@/components/UI";
 import {
     AppRoutes,
     ButtonType,
+    DbCollections,
     InputType,
     NotificationMessages,
     NotificationTypes,
 } from "@/constants";
+import { db } from "@/firebase";
 import { isFirebaseError, validateEmail } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { ISignInFormFields } from "@/interfaces";
@@ -48,17 +51,26 @@ const SignInPage: FC = () => {
         try {
             const { user } = await signInWithEmailAndPassword(auth, email, password);
 
-            const { uid, displayName, phoneNumber } = user;
+            const { uid } = user;
             const token = await user.getIdToken();
+
+            const usersCollectionRef = collection(db, DbCollections.users);
+
+            const response = await getDocs(usersCollectionRef);
+
+            const data = response.docs.map((doc) => ({ id: doc.id, data: doc.data() }));
+            const userData = data.find((item) => item.data.id === uid);
 
             dispatch(
                 userActions.setUser({
-                    name: displayName,
-                    phone: phoneNumber,
-                    email,
+                    name: (userData?.data.name as string) || null,
+                    phone: (userData?.data.phone as string) || null,
+                    email: (userData?.data.email as string) || null,
                     id: uid,
                     token: token || null,
-                    birthDate: null,
+                    birthDate: (userData?.data.birthDate as string) || null,
+                    idInDb: userData?.id || null,
+                    description: (userData?.data.description as string) || null,
                 })
             );
 

@@ -1,3 +1,5 @@
+import { ButtonType } from "@/constants";
+
 export interface IButtonProps {
     width?: string;
     icon?: string;
@@ -5,6 +7,6 @@ export interface IButtonProps {
     primary?: boolean;
     outline?: boolean;
     onClick?: () => void;
-    type: "button" | "submit";
+    type: ButtonType;
     disabled?: boolean;
 }

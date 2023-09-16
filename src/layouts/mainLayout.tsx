@@ -5,8 +5,6 @@ import styled from "styled-components";
 import { LeftAside, LoadingSpinner, RightAside } from "@/components";
 
 const Section = styled.section`
-    padding-top: 30px;
-
     display: flex;
     justify-content: center;
     gap: 35px;

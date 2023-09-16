@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { memo } from "react";
 import { useMatch } from "react-router-dom";
 
 import { NavBarItemProps } from "./navBarItem.interfaces";
 import { StyledLink } from "./navBarItem.styled";
 
-export const NavBarItem: FC<NavBarItemProps> = ({ link: { title, to, icon, activeIcon } }) => {
+export const NavBarItem = memo<NavBarItemProps>(({ link: { title, to, icon, activeIcon } }) => {
     const match = useMatch({
         path: to,
         end: to.length === 1,
@@ -18,4 +18,4 @@ export const NavBarItem: FC<NavBarItemProps> = ({ link: { title, to, icon, activ
             </StyledLink>
         </li>
     );
-};
+});

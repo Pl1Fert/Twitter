@@ -1,10 +1,9 @@
-import { memo, SyntheticEvent, useState } from "react";
-import { createPortal } from "react-dom";
+import { FC, SyntheticEvent, useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 
-import closeIcon from "@/assets/icons/cross.svg";
 import uploadIcon from "@/assets/icons/upload-image.svg";
+import person from "@/assets/images/profile-photo.jpg";
 import { Button } from "@/components/UI";
 import { ButtonType, DbCollections, NotificationMessages, NotificationTypes } from "@/constants";
 import { db, storage } from "@/firebase";
@@ -13,14 +12,20 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
 
-import { TweetModalProps } from "./tweetModal.interfaces";
-import { Column, FileInput, Image, Label, Modal, TextArea, UploadIcon } from "./tweetModal.styled";
+import {
+    Column,
+    Container,
+    FileInput,
+    Label,
+    SmallProfileImage,
+    TextArea,
+    UploadIcon,
+} from "./tweetBox.styled";
 
-export const TweetModal = memo<TweetModalProps>(({ closeModal }) => {
+export const TweetBox: FC = () => {
     const [value, setValue] = useState<string>("");
     const [uploadedImage, setUploadedImage] = useState<File | null>(null);
     const { name, email } = useAppSelector(userSelector);
-
     const dispatch = useAppDispatch();
 
     const onChangeHandler = (e: SyntheticEvent): void => {
@@ -71,7 +76,7 @@ export const TweetModal = memo<TweetModalProps>(({ closeModal }) => {
                 })
             );
 
-            closeModal();
+            setValue("");
         } catch (error) {
             if (isFirebaseError(error)) {
                 dispatch(
@@ -80,34 +85,29 @@ export const TweetModal = memo<TweetModalProps>(({ closeModal }) => {
                         message: error.message,
                     })
                 );
-                closeModal();
+                setValue("");
             }
         }
     };
 
-    return createPortal(
-        <Modal id="tweetModal">
+    return (
+        <Container>
+            <SmallProfileImage src={person} alt="person" />
             <Column>
                 <TextArea placeholder="What's happening" value={value} onChange={onChangeHandler} />
-                <Label htmlFor="upload-photo-modal">
+                <Label htmlFor="upload-photo">
                     <UploadIcon src={uploadIcon} alt="upload" />
-                    <FileInput
-                        type="file"
-                        id="upload-photo-modal"
-                        onChange={inputFileChangeHandler}
-                    />
+                    <FileInput type="file" id="upload-photo" onChange={inputFileChangeHandler} />
                 </Label>
             </Column>
             <Button
                 type={ButtonType.button}
                 primary
                 content="Tweet"
-                width="50%"
+                width="25%"
                 disabled={isEmptyString(value)}
                 onClick={sendTweet}
             />
-            <Image src={closeIcon} alt="closeIcon" onClick={closeModal} />
-        </Modal>,
-        document.body
+        </Container>
     );
-});
+};
