@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    position: relative;
+
     padding: 10px 15px;
+    border-bottom: 1px solid ${({ theme }) => theme.border};
 
     display: flex;
     align-items: flex-start;
@@ -48,5 +51,16 @@ export const Image = styled.img`
 `;
 
 export const LikeImage = styled.img`
+    cursor: pointer;
+`;
+
+export const DeleteIcon = styled.img`
+    position: absolute;
+    top: 10%;
+    right: 5%;
+
+    width: 20px;
+    height: 20px;
+
     cursor: pointer;
 `;

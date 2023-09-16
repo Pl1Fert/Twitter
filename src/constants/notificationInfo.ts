@@ -12,4 +12,5 @@ export enum NotificationMessages {
     profileUpdated = "Profile successfully updated!",
     notSignedIn = "You are not signed in!",
     tweetPublished = "Tweet has been published!",
+    tweetDeleted = "Tweet has been deleted!",
 }
