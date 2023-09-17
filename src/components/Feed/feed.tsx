@@ -12,7 +12,7 @@ import { Title, TweetsFeed } from "./feed.styled";
 
 export const Feed = memo<FeedProps>(({ fromUser = false, setTweetsCount }) => {
     const [tweets, setTweets] = useState<State[]>([]);
-    const { name } = useAppSelector(userSelector);
+    const { email } = useAppSelector(userSelector);
 
     useEffect(() => {
         onSnapshot(
@@ -28,7 +28,7 @@ export const Feed = memo<FeedProps>(({ fromUser = false, setTweetsCount }) => {
                                         tweet: doc.data(),
                                     }) as State
                             )
-                            .filter((item) => item.tweet.name === name)
+                            .filter((item) => item.tweet.email === email)
                     );
                 } else {
                     setTweets(

@@ -52,3 +52,14 @@ export const Top = styled.div`
 export const Description = styled.p`
     font-size: 20px;
 `;
+
+export const TabName = styled.p`
+    width: fit-content;
+    padding: 15px 35px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid ${({ theme }) => theme.border};
+
+    font-size: 20px;
+
+    cursor: pointer;
+`;

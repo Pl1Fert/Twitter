@@ -65,7 +65,7 @@ export const TweetBox: FC = () => {
                 text: value,
                 likes: 0,
                 createdAt: new Date(),
-                selfLiked: false,
+
                 image: imageName,
             });
 

@@ -16,6 +16,7 @@ import {
     Name,
     ProfileImage,
     Row,
+    TabName,
     Title,
     Top,
     Tweets,
@@ -53,8 +54,8 @@ const ProfilePage: FC = () => {
                 />
             </Row>
             <TweetBox />
+            <TabName>Tweets</TabName>
             <Feed fromUser setTweetsCount={setTweetsCount} />
-
             {isOpenModal && <ProfileEditModal closeModal={toggleModal} />}
         </>
     );
