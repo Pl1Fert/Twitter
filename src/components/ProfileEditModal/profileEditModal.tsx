@@ -25,7 +25,7 @@ import { userActions } from "@/store/slices/userSlice";
 import { ProfileEditScheme } from "@/validators/profileEditScheme";
 
 import { ProfileEditModalProps } from "./profileEditModal.interfaces";
-import { Center, ErorrsWrapper, Image, Modal, Row } from "./profileEditModal.styled";
+import { Center, ErorrsWrapper, Image, Label, Modal, Row } from "./profileEditModal.styled";
 
 export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => {
     const { name, phone, email, birthDate, description, idInDb } = useAppSelector(userSelector);
@@ -103,46 +103,46 @@ export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => 
         <Modal id="profileEditModal">
             <Form onSubmit={handleSubmit(submitHandler)}>
                 <Row>
-                    <label>
+                    <Label>
                         Name:{" "}
                         <Input placeholder="Name" {...register("name")} defaultValue={name ?? ""} />
-                    </label>
-                    <label>
+                    </Label>
+                    <Label>
                         Email:{" "}
                         <Input
                             placeholder="Email"
                             {...register("email")}
                             defaultValue={email ?? ""}
                         />
-                    </label>
-                    <label>
+                    </Label>
+                    <Label>
                         Phone:{" "}
                         <Input
                             placeholder="Phone"
                             {...register("phone")}
                             defaultValue={phone ?? ""}
                         />
-                    </label>
+                    </Label>
                 </Row>
                 <ErorrsWrapper>
                     {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
                     {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
                 </ErorrsWrapper>
                 <Row>
-                    <label>
+                    <Label>
                         BirthDate:{" "}
                         <Input
                             placeholder="dd/monthName/yyyy"
                             {...register("birthDate")}
                             defaultValue={birthDate ?? ""}
                         />
-                    </label>
+                    </Label>
                 </Row>
                 <ErorrsWrapper>
                     {errors?.birthDate && <p>{errors?.birthDate?.message || "Error!"}</p>}
                 </ErorrsWrapper>
                 <Row>
-                    <label>
+                    <Label>
                         New Password:{" "}
                         <Input
                             placeholder="Password"
@@ -150,8 +150,8 @@ export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => 
                             autoComplete="new-password"
                             {...register("newPassword")}
                         />
-                    </label>
-                    <label>
+                    </Label>
+                    <Label>
                         Confirm Password:{" "}
                         <Input
                             placeholder="Password"
@@ -159,7 +159,7 @@ export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => 
                             autoComplete="new-password"
                             {...register("confirmPassword")}
                         />
-                    </label>
+                    </Label>
                 </Row>
                 <ErorrsWrapper>
                     {errors?.newPassword && <p>{errors?.newPassword?.message || "Error!"}</p>}
@@ -168,14 +168,14 @@ export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => 
                     )}
                 </ErorrsWrapper>
                 <Center>
-                    <label>
+                    <Label>
                         Description:
                         <Input
                             placeholder="Description"
                             {...register("description")}
                             defaultValue={description ?? ""}
                         />
-                    </label>
+                    </Label>
                 </Center>
                 <Center>
                     <Button

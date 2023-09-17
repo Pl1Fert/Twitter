@@ -38,14 +38,15 @@ export const TextArea = styled.textarea`
     padding: 15px;
     width: 100%;
     height: 300px;
+    border: 1px solid ${({ theme }) => theme.input.border.primary};
 
     outline: none;
     font: inherit;
     font-size: 18px;
 
     color: ${({ theme }) => theme.input.textColor.primary};
+    background-color: transparent;
     border-radius: 6px;
-    border: 1px solid ${({ theme }) => theme.input.border.primary};
 
     transition: all 0.3s linear;
     resize: none;

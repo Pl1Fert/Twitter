@@ -63,3 +63,7 @@ export const Center = styled.div`
     justify-content: center;
     align-items: center;
 `;
+
+export const Label = styled.label`
+    color: ${({ theme }) => theme.textColor};
+`;

@@ -16,6 +16,7 @@ export const StyledSelect = styled.select<{ $width?: string }>`
 
     background: url(${arrow}) no-repeat right;
     background-position-x: calc(100% - 8px);
+    color: ${({ theme }) => theme.select.textColor.primary};
 
     transition: all 0.3s linear;
 
