@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 import googleIcon from "@/assets/icons/google-icon.svg";
 import picture from "@/assets/images/big-picture.png";
@@ -55,9 +55,7 @@ const HomePage: FC = () => {
             const { user } = result;
             const { displayName, phoneNumber, email, uid } = user;
 
-            const usersCollectionRef = collection(db, DbCollections.users);
-
-            const response = await addDoc(usersCollectionRef, {
+            await setDoc(doc(db, DbCollections.users, uid), {
                 name: displayName,
                 phone: phoneNumber,
                 email,
@@ -72,7 +70,6 @@ const HomePage: FC = () => {
                     id: uid,
                     token: token || null,
                     birthDate: null,
-                    idInDb: response.id,
                     description: null,
                 })
             );

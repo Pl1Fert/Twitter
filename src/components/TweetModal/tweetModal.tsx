@@ -60,7 +60,7 @@ export const TweetModal = memo<TweetModalProps>(({ closeModal }) => {
                 text: value,
                 likes: 0,
                 createdAt: new Date(),
-                selfLiked: false,
+
                 image: imageName,
             });
 

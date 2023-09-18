@@ -7,3 +7,4 @@ export * from "./inputInfo";
 export * from "./monthNames";
 export * from "./navLinks";
 export * from "./notificationInfo";
+export * from "./searchProperties";

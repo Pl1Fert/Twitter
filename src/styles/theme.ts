@@ -23,6 +23,7 @@ export const LightTheme: DefaultTheme = {
     },
     input: {
         backgroundColor: {
+            primary: "transparent",
             search: "#eff3f4",
         },
         textColor: {
@@ -101,10 +102,11 @@ export const DarkTheme: DefaultTheme = {
     },
     input: {
         backgroundColor: {
-            search: "#eff3f4",
+            primary: "#4D90D9",
+            search: "#4D90D9",
         },
         textColor: {
-            primary: "#000000",
+            primary: "#ffffff",
         },
         border: {
             primary: "#E4EAED",

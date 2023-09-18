@@ -9,7 +9,6 @@ const initialState: IUser = {
     token: null,
     phone: null,
     birthDate: null,
-    idInDb: null,
     description: null,
 };
 

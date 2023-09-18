@@ -19,6 +19,7 @@ export const TextArea = styled.textarea`
     font-size: 18px;
 
     color: ${({ theme }) => theme.input.textColor.primary};
+    background-color: transparent;
     border: none;
 
     transition: all 0.3s linear;

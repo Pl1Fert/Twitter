@@ -10,6 +10,7 @@ export const StyledInput = styled.input<{ $width?: string }>`
     font-size: 18px;
 
     color: ${({ theme }) => theme.input.textColor.primary};
+    background-color: ${({ theme }) => theme.input.backgroundColor.primary};
 
     border-radius: 6px;
 

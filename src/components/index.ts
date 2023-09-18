@@ -7,6 +7,8 @@ export * from "./NotificationItem";
 export * from "./NotificationList";
 export * from "./ProfileEditModal";
 export * from "./RightAside";
+export * from "./SearchItem";
+export * from "./SearchList";
 export * from "./Tweet";
 export * from "./TweetBox";
 export * from "./TweetModal";

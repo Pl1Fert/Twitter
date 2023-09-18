@@ -34,7 +34,6 @@ export interface IUser {
     phone: string | null;
     token: string | null;
     birthDate: string | null;
-    idInDb: string | null;
     description: string | null;
 }
 
@@ -62,6 +61,5 @@ export interface ITweet {
     text: string;
     likes: number;
     createdAt: Timestamp;
-    selfLiked: boolean;
     image: string | null;
 }

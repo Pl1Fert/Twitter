@@ -30,8 +30,8 @@ import {
 } from "./tweet.styled";
 
 export const Tweet = memo<TweetProps>(
-    ({ tweet: { name, email, text, likes, createdAt, selfLiked, image }, id, fromUser }) => {
-        const [liked, setLiked] = useState<boolean>(selfLiked);
+    ({ tweet: { name, email, text, likes, createdAt, image }, id, fromUser }) => {
+        const [liked, setLiked] = useState<boolean>(false);
         const [imageUrl, setImageUrl] = useState<string>("");
         const dispatch = useAppDispatch();
 
@@ -49,14 +49,12 @@ export const Tweet = memo<TweetProps>(
                 if (liked) {
                     await updateDoc(tweetRef, {
                         likes: likes - 1,
-                        selfLiked: false,
                     });
 
                     setLiked(false);
                 } else {
                     await updateDoc(tweetRef, {
                         likes: likes + 1,
-                        selfLiked: true,
                     });
 
                     setLiked(true);
@@ -132,7 +130,7 @@ export const Tweet = memo<TweetProps>(
                         {likes || 0}
                     </Footer>
                 </Content>
-                {fromUser && (
+                {!!fromUser && (
                     <DeleteIcon src={deleteIcon} alt="delete" onClick={deleteTweetHandler} />
                 )}
             </Container>

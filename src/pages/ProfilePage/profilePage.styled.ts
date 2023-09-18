@@ -47,8 +47,27 @@ export const Tweets = styled.p`
 export const Top = styled.div`
     padding-left: 20px;
     margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
 `;
 
 export const Description = styled.p`
     font-size: 20px;
+`;
+
+export const TabName = styled.p`
+    width: fit-content;
+    padding: 15px 35px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid ${({ theme }) => theme.border};
+
+    font-size: 20px;
+
+    cursor: pointer;
+`;
+
+export const BackIcon = styled.img`
+    cursor: pointer;
 `;

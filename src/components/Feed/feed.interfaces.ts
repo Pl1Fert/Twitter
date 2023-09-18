@@ -8,6 +8,6 @@ export interface State {
 }
 
 export interface FeedProps {
-    fromUser?: boolean;
+    fromUser?: string;
     setTweetsCount?: Dispatch<SetStateAction<number>>;
 }

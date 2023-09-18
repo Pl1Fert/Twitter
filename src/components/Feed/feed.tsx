@@ -4,15 +4,12 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { Tweet } from "@/components";
 import { DbCollections } from "@/constants";
 import { db } from "@/firebase";
-import { useAppSelector } from "@/hooks";
-import { userSelector } from "@/store/selectors";
 
 import { FeedProps, State } from "./feed.interfaces";
 import { Title, TweetsFeed } from "./feed.styled";
 
-export const Feed = memo<FeedProps>(({ fromUser = false, setTweetsCount }) => {
+export const Feed = memo<FeedProps>(({ fromUser = "", setTweetsCount }) => {
     const [tweets, setTweets] = useState<State[]>([]);
-    const { name } = useAppSelector(userSelector);
 
     useEffect(() => {
         onSnapshot(
@@ -28,7 +25,7 @@ export const Feed = memo<FeedProps>(({ fromUser = false, setTweetsCount }) => {
                                         tweet: doc.data(),
                                     }) as State
                             )
-                            .filter((item) => item.tweet.name === name)
+                            .filter((item) => item.tweet.email === fromUser)
                     );
                 } else {
                     setTweets(
@@ -43,7 +40,7 @@ export const Feed = memo<FeedProps>(({ fromUser = false, setTweetsCount }) => {
                 }
             }
         );
-    }, []);
+    }, [fromUser]);
 
     useEffect(() => {
         if (setTweetsCount) {
@@ -54,7 +51,9 @@ export const Feed = memo<FeedProps>(({ fromUser = false, setTweetsCount }) => {
     return (
         <TweetsFeed>
             {tweets.length > 0 ? (
-                tweets.map(({ id, tweet }) => <Tweet key={id} tweet={tweet} id={id} fromUser />)
+                tweets.map(({ id, tweet }) => (
+                    <Tweet key={id} tweet={tweet} id={id} fromUser={fromUser} />
+                ))
             ) : (
                 <Title>No Tweets</Title>
             )}

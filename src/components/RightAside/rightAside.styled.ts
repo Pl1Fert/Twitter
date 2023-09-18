@@ -38,3 +38,10 @@ export const Icon = styled.img`
 
     transform: translateY(-50%);
 `;
+
+export const Title = styled.p`
+    padding: 20px 0;
+    color: ${({ theme }) => theme.textColor};
+
+    font-size: 20px;
+`;
