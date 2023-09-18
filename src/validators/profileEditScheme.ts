@@ -31,7 +31,7 @@ export const ProfileEditScheme: yup.ObjectSchema<IProfileEditFields> = yup.objec
         .test("birthDate", "Date is invalid", (value) => {
             if (value) {
                 const date = value.split("/");
-                return !isValidDate(date[0], date[1], date[2]);
+                return isValidDate(date[2], date[1], date[0]);
             }
 
             return false;
