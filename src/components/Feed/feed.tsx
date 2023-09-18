@@ -15,32 +15,18 @@ export const Feed = memo<FeedProps>(({ fromUser = "", setTweetsCount }) => {
         onSnapshot(
             query(collection(db, DbCollections.tweets), orderBy("createdAt", "desc")),
             ({ docs }) => {
-                if (fromUser) {
-                    setTweets(
-                        docs
-                            .map(
-                                (doc) =>
-                                    ({
-                                        id: doc.id,
-                                        tweet: doc.data(),
-                                    }) as State
-                            )
-                            .filter((item) => item.tweet.email === fromUser)
-                    );
-                } else {
-                    setTweets(
-                        docs.map(
-                            (doc) =>
-                                ({
-                                    id: doc.id,
-                                    tweet: doc.data(),
-                                }) as State
-                        )
-                    );
-                }
+                setTweets(
+                    docs.map(
+                        (doc) =>
+                            ({
+                                id: doc.id,
+                                tweet: doc.data(),
+                            }) as State
+                    )
+                );
             }
         );
-    }, [fromUser]);
+    }, []);
 
     useEffect(() => {
         if (setTweetsCount) {
@@ -48,15 +34,19 @@ export const Feed = memo<FeedProps>(({ fromUser = "", setTweetsCount }) => {
         }
     }, [tweets, setTweetsCount]);
 
-    return (
-        <TweetsFeed>
-            {tweets.length > 0 ? (
-                tweets.map(({ id, tweet }) => (
+    const renderTweets = (): JSX.Element[] => {
+        if (fromUser) {
+            return tweets
+                .filter((item) => item.tweet.email === fromUser)
+                .map(({ id, tweet }) => (
                     <Tweet key={id} tweet={tweet} id={id} fromUser={fromUser} />
-                ))
-            ) : (
-                <Title>No Tweets</Title>
-            )}
-        </TweetsFeed>
-    );
+                ));
+        }
+
+        return tweets.map(({ id, tweet }) => (
+            <Tweet key={id} tweet={tweet} id={id} fromUser={fromUser} />
+        ));
+    };
+
+    return <TweetsFeed>{tweets.length > 0 ? renderTweets() : <Title>No Tweets</Title>}</TweetsFeed>;
 });

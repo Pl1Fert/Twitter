@@ -45,7 +45,7 @@ export interface INavBarLink {
     activeIcon: string;
 }
 
-export interface IProfileFields {
+export interface IProfileEditFields {
     name: string;
     email: string;
     phone: string;

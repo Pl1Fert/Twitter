@@ -1,7 +1,5 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
 
 import googleIcon from "@/assets/icons/google-icon.svg";
 import picture from "@/assets/images/big-picture.png";
@@ -10,14 +8,13 @@ import { Button } from "@/components/UI";
 import {
     AppRoutes,
     ButtonType,
-    DbCollections,
     FOOTER_LINKS,
     NotificationMessages,
     NotificationTypes,
 } from "@/constants";
-import { db } from "@/firebase";
 import { isFirebaseError } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
+import { UserService } from "@/services";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
 
@@ -44,23 +41,9 @@ const HomePage: FC = () => {
     const onClick = (): void => navigate(AppRoutes.SIGN_UP, { replace: true });
 
     const onGoogleClick = async (): Promise<void> => {
-        const auth = getAuth();
-        const provider = new GoogleAuthProvider();
-
         try {
-            const result = await signInWithPopup(auth, provider);
-
-            const credentials = GoogleAuthProvider.credentialFromResult(result);
-            const token = credentials?.accessToken;
-            const { user } = result;
-            const { displayName, phoneNumber, email, uid } = user;
-
-            await setDoc(doc(db, DbCollections.users, uid), {
-                name: displayName,
-                phone: phoneNumber,
-                email,
-                id: uid,
-            });
+            const { displayName, phoneNumber, email, uid, token } =
+                await UserService.signUpWithGoogle();
 
             dispatch(
                 userActions.setUser({
@@ -80,8 +63,6 @@ const HomePage: FC = () => {
                     message: NotificationMessages.loggedIn,
                 })
             );
-
-            navigate(AppRoutes.PROFILE, { replace: true });
         } catch (error) {
             if (isFirebaseError(error)) {
                 const errorMessage = error.message;

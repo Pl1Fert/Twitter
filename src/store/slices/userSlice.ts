@@ -17,22 +17,6 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (_, { payload }: PayloadAction<IUser>) => ({ ...payload }),
-        setName: (state, { payload }: PayloadAction<IUser["name"]>) => ({
-            ...state,
-            name: payload,
-        }),
-        setPhone: (state, { payload }: PayloadAction<IUser["phone"]>) => ({
-            ...state,
-            phone: payload,
-        }),
-        setBirthdate: (state, { payload }: PayloadAction<IUser["birthDate"]>) => ({
-            ...state,
-            birthDate: payload,
-        }),
-        setDescription: (state, { payload }: PayloadAction<IUser["description"]>) => ({
-            ...state,
-            description: payload,
-        }),
         deleteUser: () => ({
             ...initialState,
         }),

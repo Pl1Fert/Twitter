@@ -1,11 +1,20 @@
 import styled, { keyframes } from "styled-components";
 
-export const Ring = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+export const Container = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: ${({ theme }) => theme.backgroundColor};
+`;
+
+export const Ring = styled.div`
     width: 200px;
     height: 200px;
 

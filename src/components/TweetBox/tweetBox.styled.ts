@@ -33,7 +33,7 @@ export const TextArea = styled.textarea`
     }
 `;
 
-export const SmallProfileImage = styled.img`
+export const Avatar = styled.img`
     width: 50px;
     height: 50px;
 `;

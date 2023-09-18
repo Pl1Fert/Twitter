@@ -1,15 +1,13 @@
 import { memo, SyntheticEvent, useState } from "react";
 import { createPortal } from "react-dom";
-import { addDoc, collection } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
 
 import closeIcon from "@/assets/icons/cross.svg";
 import uploadIcon from "@/assets/icons/upload-image.svg";
 import { Button } from "@/components/UI";
-import { ButtonType, DbCollections, NotificationMessages, NotificationTypes } from "@/constants";
-import { db, storage } from "@/firebase";
+import { ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
 import { isEmptyString, isFirebaseError } from "@/helpers";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { TweetService } from "@/services";
 import { userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
 
@@ -19,6 +17,7 @@ import { Column, FileInput, Image, Label, Modal, TextArea, UploadIcon } from "./
 export const TweetModal = memo<TweetModalProps>(({ closeModal }) => {
     const [value, setValue] = useState<string>("");
     const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+
     const { name, email } = useAppSelector(userSelector);
 
     const dispatch = useAppDispatch();
@@ -36,33 +35,9 @@ export const TweetModal = memo<TweetModalProps>(({ closeModal }) => {
         }
     };
 
-    const uploadImage = async (): Promise<string | null> => {
-        if (!uploadedImage) {
-            return null;
-        }
-
-        const imageName = `images/${uploadedImage.name + Date.now()}`;
-
-        const imageRef = ref(storage, imageName);
-        await uploadBytes(imageRef, uploadedImage);
-
-        return imageName;
-    };
-
-    const sendTweet = async () => {
+    const sendTweet = async (): Promise<void> => {
         try {
-            const tweetsCollectionRef = collection(db, DbCollections.tweets);
-            const imageName = await uploadImage();
-
-            await addDoc(tweetsCollectionRef, {
-                name,
-                email,
-                text: value,
-                likes: 0,
-                createdAt: new Date(),
-
-                image: imageName,
-            });
+            await TweetService.sendTweet(value, name, email, uploadedImage);
 
             dispatch(
                 notificationActions.addNotification({
@@ -70,8 +45,6 @@ export const TweetModal = memo<TweetModalProps>(({ closeModal }) => {
                     message: NotificationMessages.tweetPublished,
                 })
             );
-
-            closeModal();
         } catch (error) {
             if (isFirebaseError(error)) {
                 dispatch(
@@ -80,8 +53,9 @@ export const TweetModal = memo<TweetModalProps>(({ closeModal }) => {
                         message: error.message,
                     })
                 );
-                closeModal();
             }
+        } finally {
+            closeModal();
         }
     };
 

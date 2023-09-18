@@ -1,5 +1,4 @@
 import { memo, useEffect, useState } from "react";
-import { getAuth } from "firebase/auth";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { deleteObject, getDownloadURL, ref } from "firebase/storage";
 
@@ -37,13 +36,6 @@ export const Tweet = memo<TweetProps>(
 
         const clickLikeHandler = async (): Promise<void> => {
             try {
-                const auth = getAuth();
-                const user = auth.currentUser;
-
-                if (!user) {
-                    throw new Error(NotificationMessages.notSignedIn);
-                }
-
                 const tweetRef = doc(db, DbCollections.tweets, id);
 
                 if (liked) {

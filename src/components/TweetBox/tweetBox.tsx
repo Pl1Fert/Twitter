@@ -1,23 +1,21 @@
 import { FC, SyntheticEvent, useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
 
 import uploadIcon from "@/assets/icons/upload-image.svg";
 import person from "@/assets/images/profile-photo.jpg";
 import { Button } from "@/components/UI";
-import { ButtonType, DbCollections, NotificationMessages, NotificationTypes } from "@/constants";
-import { db, storage } from "@/firebase";
+import { ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
 import { isEmptyString, isFirebaseError } from "@/helpers";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { TweetService } from "@/services";
 import { userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
 
 import {
+    Avatar,
     Column,
     Container,
     FileInput,
     Label,
-    SmallProfileImage,
     TextArea,
     UploadIcon,
 } from "./tweetBox.styled";
@@ -25,6 +23,7 @@ import {
 export const TweetBox: FC = () => {
     const [value, setValue] = useState<string>("");
     const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+
     const { name, email } = useAppSelector(userSelector);
     const dispatch = useAppDispatch();
 
@@ -41,32 +40,9 @@ export const TweetBox: FC = () => {
         }
     };
 
-    const uploadImage = async (): Promise<string | null> => {
-        if (!uploadedImage) {
-            return null;
-        }
-
-        const imageName = `images/${uploadedImage.name + Date.now()}`;
-
-        const imageRef = ref(storage, imageName);
-        await uploadBytes(imageRef, uploadedImage);
-
-        return imageName;
-    };
-
-    const sendTweet = async () => {
+    const sendTweet = async (): Promise<void> => {
         try {
-            const tweetsCollectionRef = collection(db, DbCollections.tweets);
-            const imageName = await uploadImage();
-
-            await addDoc(tweetsCollectionRef, {
-                name,
-                email,
-                text: value,
-                likes: 0,
-                createdAt: new Date(),
-                image: imageName,
-            });
+            await TweetService.sendTweet(value, name, email, uploadedImage);
 
             dispatch(
                 notificationActions.addNotification({
@@ -91,7 +67,7 @@ export const TweetBox: FC = () => {
 
     return (
         <Container>
-            <SmallProfileImage src={person} alt="person" />
+            <Avatar src={person} alt="person" />
             <Column>
                 <TextArea placeholder="What's happening" value={value} onChange={onChangeHandler} />
                 <Label htmlFor="upload-photo">

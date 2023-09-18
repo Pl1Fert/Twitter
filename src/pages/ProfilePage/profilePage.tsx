@@ -34,18 +34,19 @@ interface State {
 }
 
 const ProfilePage: FC = () => {
+    const [tweetsCount, setTweetsCount] = useState<number>(0);
+    const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+    const [user, setUser] = useState<State>({ name: "", email: "", description: "" });
+
     const { id: myId } = useAppSelector(userSelector);
     const { id } = useParams();
-    const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-    const [tweetsCount, setTweetsCount] = useState<number>(0);
-    const [user, setUser] = useState<State>({ name: "", email: "", description: "" });
     const navigate = useNavigate();
 
-    const toggleModal = () => {
+    const modalClickHandler = (): void => {
         setIsOpenModal((prev) => !prev);
     };
 
-    const backClickHandler = () => {
+    const backClickHandler = (): void => {
         navigate(-1);
     };
 
@@ -88,13 +89,13 @@ const ProfilePage: FC = () => {
                     outline
                     content="Edit Profile"
                     width="20%"
-                    onClick={toggleModal}
+                    onClick={modalClickHandler}
                 />
             </Row>
             <TweetBox />
             <TabName>Tweets</TabName>
             <Feed fromUser={user.email} setTweetsCount={setTweetsCount} />
-            {isOpenModal && <ProfileEditModal closeModal={toggleModal} />}
+            {isOpenModal && <ProfileEditModal closeModal={modalClickHandler} />}
         </>
     );
 };

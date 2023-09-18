@@ -28,3 +28,8 @@ export const SubTitle = styled.p`
 
     color: ${({ theme }) => theme.textColor};
 `;
+
+export const Avatar = styled.img`
+    width: 50px;
+    height: 50px;
+`;

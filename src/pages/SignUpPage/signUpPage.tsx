@@ -1,21 +1,17 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
 
 import logo from "@/assets/images/twitter.svg";
 import { Button, Input, Select } from "@/components/UI";
 import {
     AppRoutes,
     ButtonType,
-    DbCollections,
     InputType,
     MONTH_NAMES,
     NotificationMessages,
     NotificationTypes,
 } from "@/constants";
-import { db } from "@/firebase";
 import {
     formatDate,
     getDaysNumbers,
@@ -25,6 +21,7 @@ import {
 } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { ISignUpFormFields } from "@/interfaces";
+import { UserService } from "@/services";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
 import { SignUpScheme } from "@/validators";
@@ -52,7 +49,6 @@ const SignUpPage: FC = () => {
     const dispatch = useAppDispatch();
 
     const onFormSubmit = async (data: ISignUpFormFields): Promise<void> => {
-        const auth = getAuth();
         const { email, password, name, phone, month, year, day } = data;
         if (!isValidDate(year, month, day)) {
             dispatch(
@@ -69,17 +65,13 @@ const SignUpPage: FC = () => {
         const birthDate = formatDate(year, month, day);
 
         try {
-            const { user } = await createUserWithEmailAndPassword(auth, email, password);
-            const { uid } = user;
-            const token = await user.getIdToken();
-
-            await setDoc(doc(db, DbCollections.users, uid), {
+            const { uid, token } = await UserService.signUp(
                 name,
-                phone,
                 email,
-                id: uid,
-                birthDate,
-            });
+                password,
+                phone,
+                birthDate
+            );
 
             dispatch(
                 userActions.setUser({
@@ -110,9 +102,9 @@ const SignUpPage: FC = () => {
                     })
                 );
             }
+        } finally {
+            reset();
         }
-
-        reset();
     };
 
     return (

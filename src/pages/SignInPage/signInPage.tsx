@@ -1,23 +1,20 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { collection, getDocs } from "firebase/firestore";
 
 import logo from "@/assets/images/twitter.svg";
 import { Button, Input } from "@/components/UI";
 import {
     AppRoutes,
     ButtonType,
-    DbCollections,
     InputType,
     NotificationMessages,
     NotificationTypes,
 } from "@/constants";
-import { db } from "@/firebase";
-import { isFirebaseError, validateEmail } from "@/helpers";
+import { isFirebaseError } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { ISignInFormFields } from "@/interfaces";
+import { UserService } from "@/services";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
 import { SignInScheme } from "@/validators";
@@ -42,22 +39,8 @@ const SignInPage: FC = () => {
     const dispatch = useAppDispatch();
 
     const onFormSubmit = async (data: ISignInFormFields): Promise<void> => {
-        const auth = getAuth();
-        const { phoneOrEmail, password } = data;
-        const email = validateEmail(phoneOrEmail) ? phoneOrEmail : "";
-
         try {
-            const { user } = await signInWithEmailAndPassword(auth, email, password);
-
-            const { uid } = user;
-            const token = await user.getIdToken();
-
-            const usersCollectionRef = collection(db, DbCollections.users);
-
-            const response = await getDocs(usersCollectionRef);
-
-            const data = response.docs.map((doc) => ({ id: doc.id, data: doc.data() }));
-            const userData = data.find((item) => item.data.id === uid);
+            const { userData, token, uid } = await UserService.signIn(data);
 
             dispatch(
                 userActions.setUser({

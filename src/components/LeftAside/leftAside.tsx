@@ -11,12 +11,12 @@ import { userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
 
-import { Aside, Row, SubTitle, Title } from "./leftAside.styled";
+import { Aside, Avatar, Row, SubTitle, Title } from "./leftAside.styled";
 
 export const LeftAside: FC = () => {
-    const dispatch = useAppDispatch();
-    const { name, email } = useAppSelector(userSelector);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const { name, email } = useAppSelector(userSelector);
+    const dispatch = useAppDispatch();
 
     const logOutHandler = async (): Promise<void> => {
         const auth = getAuth();
@@ -57,7 +57,7 @@ export const LeftAside: FC = () => {
                     onClick={modalClickHandler}
                 />
                 <Row>
-                    <img src={profilePhoto} alt="profile" />
+                    <Avatar src={profilePhoto} alt="profile" />
                     <div>
                         <Title>{name}</Title>
                         <SubTitle>{email}</SubTitle>

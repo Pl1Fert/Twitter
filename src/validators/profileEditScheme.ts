@@ -1,9 +1,9 @@
 import * as yup from "yup";
 
 import { isValidDate, validateEmail, validatePhone } from "@/helpers";
-import { IProfileFields } from "@/interfaces";
+import { IProfileEditFields } from "@/interfaces";
 
-export const ProfileEditScheme: yup.ObjectSchema<IProfileFields> = yup.object().shape({
+export const ProfileEditScheme: yup.ObjectSchema<IProfileEditFields> = yup.object().shape({
     name: yup
         .string()
         .required("Name is required")

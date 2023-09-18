@@ -11,12 +11,12 @@ import { ITweet } from "@/interfaces";
 import { BackIcon } from "./tweetpage.styled";
 
 const TweetPage: FC = () => {
-    const { id } = useParams();
     const [tweet, setTweet] = useState<ITweet | null>(null);
 
+    const { id } = useParams();
     const navigate = useNavigate();
 
-    const backClickHandler = () => {
+    const backClickHandler = (): void => {
         navigate(-1);
     };
 

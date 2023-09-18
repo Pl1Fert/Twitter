@@ -24,7 +24,7 @@ export const Content = styled.div`
     gap: 3px;
 `;
 
-export const Image = styled.img`
+export const Avatar = styled.img`
     width: 40px;
     height: 40px;
 `;

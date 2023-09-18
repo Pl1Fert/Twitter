@@ -12,7 +12,6 @@ import { List } from "./searchList.styled";
 export const SearchList = memo<SearchListProps>(({ searchValue, clearSearch }) => {
     const location = useLocation();
     const searchPath = location.pathname === "/feed" ? "users" : "tweets";
-    // const searchPath = SearchPaths[location.pathname as keyof typeof SearchPaths];
     const searchField = SearchFields[searchPath];
 
     const [userItems, setUserItems] = useState<UserState[]>([]);
