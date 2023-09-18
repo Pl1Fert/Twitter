@@ -62,6 +62,5 @@ export interface ITweet {
     text: string;
     likes: number;
     createdAt: Timestamp;
-
     image: string | null;
 }

@@ -13,6 +13,10 @@ export const RightAside: FC = () => {
         setSearchValue(target.value);
     };
 
+    const clearSearch = (): void => {
+        setSearchValue("");
+    };
+
     return (
         <Aside>
             <Container>
@@ -26,7 +30,7 @@ export const RightAside: FC = () => {
             {!!searchValue && (
                 <>
                     <Title>Search Results</Title>
-                    <SearchList searchValue={searchValue} />
+                    <SearchList searchValue={searchValue} clearSearch={clearSearch} />
                 </>
             )}
         </Aside>

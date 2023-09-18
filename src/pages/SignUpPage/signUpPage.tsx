@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
@@ -51,7 +50,6 @@ const SignUpPage: FC = () => {
         formState: { errors, isValid, isDirty, isSubmitting },
     } = useForm<ISignUpFormFields>({ mode: "onBlur", resolver: yupResolver(SignUpScheme) });
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const onFormSubmit = async (data: ISignUpFormFields): Promise<void> => {
         const auth = getAuth();
@@ -109,8 +107,6 @@ const SignUpPage: FC = () => {
                     message: NotificationMessages.signedUp,
                 })
             );
-
-            navigate(AppRoutes.PROFILE, { replace: true });
         } catch (error) {
             if (isFirebaseError(error)) {
                 const errorMessage = error.message;

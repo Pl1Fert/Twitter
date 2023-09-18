@@ -12,6 +12,7 @@ const ErrorPage = lazy(() => import("@/pages/ErrorPage/errorPage"));
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage/notFoundPage"));
 const SignInPage = lazy(() => import("@/pages/SignInPage/signInPage"));
 const SignUpPage = lazy(() => import("@/pages/SignUpPage/signUpPage"));
+const Tweetpage = lazy(() => import("@/pages/TweetPage/tweetPage"));
 
 export const MainRouter = createBrowserRouter(
     createRoutesFromElements(
@@ -25,8 +26,9 @@ export const MainRouter = createBrowserRouter(
             </Route>
             <Route element={<RequireAuth />}>
                 <Route element={<MainLayout />}>
-                    <Route path={AppRoutes.PROFILE} element={<ProfilePage />} />
+                    <Route path={AppRoutes.PROFILE + AppRoutes.ID} element={<ProfilePage />} />
                     <Route path={AppRoutes.FEED} element={<FeedPage />} />
+                    <Route path={AppRoutes.TWEET + AppRoutes.ID} element={<Tweetpage />} />
                 </Route>
             </Route>
             <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />

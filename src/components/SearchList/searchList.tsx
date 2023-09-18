@@ -3,16 +3,17 @@ import { useLocation } from "react-router-dom";
 import { collection, onSnapshot, orderBy, query, startAt } from "firebase/firestore";
 
 import { SearchItem } from "@/components";
-import { SearchFields, SearchPaths } from "@/constants";
+import { SearchFields } from "@/constants";
 import { db } from "@/firebase";
 
 import { SearchListProps, TweetState, UserState } from "./searchList.interfaces";
 import { List } from "./searchList.styled";
 
-export const SearchList = memo<SearchListProps>(({ searchValue }) => {
+export const SearchList = memo<SearchListProps>(({ searchValue, clearSearch }) => {
     const location = useLocation();
-    const searchPath = SearchPaths[location.pathname as keyof typeof SearchPaths];
-    const searchField = SearchFields[searchPath as keyof typeof SearchFields];
+    const searchPath = location.pathname === "/feed" ? "users" : "tweets";
+    // const searchPath = SearchPaths[location.pathname as keyof typeof SearchPaths];
+    const searchField = SearchFields[searchPath];
 
     const [userItems, setUserItems] = useState<UserState[]>([]);
     const [tweetItems, setTweetItems] = useState<TweetState[]>([]);
@@ -51,8 +52,12 @@ export const SearchList = memo<SearchListProps>(({ searchValue }) => {
     return (
         <List>
             {userItems.length > 0
-                ? userItems.map(({ id, data }) => <SearchItem id={id} data={data} key={id} />)
-                : tweetItems.map(({ id, data }) => <SearchItem id={id} data={data} key={id} />)}
+                ? userItems.map(({ id, data }) => (
+                      <SearchItem id={id} data={data} key={id} clearSearch={clearSearch} />
+                  ))
+                : tweetItems.map(({ id, data }) => (
+                      <SearchItem id={id} data={data} key={id} clearSearch={clearSearch} />
+                  ))}
         </List>
     );
 });

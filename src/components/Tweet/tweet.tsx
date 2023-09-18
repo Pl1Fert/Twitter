@@ -130,7 +130,7 @@ export const Tweet = memo<TweetProps>(
                         {likes || 0}
                     </Footer>
                 </Content>
-                {fromUser && (
+                {!!fromUser && (
                     <DeleteIcon src={deleteIcon} alt="delete" onClick={deleteTweetHandler} />
                 )}
             </Container>

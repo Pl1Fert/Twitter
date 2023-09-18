@@ -47,6 +47,10 @@ export const Tweets = styled.p`
 export const Top = styled.div`
     padding-left: 20px;
     margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
 `;
 
 export const Description = styled.p`
@@ -61,5 +65,9 @@ export const TabName = styled.p`
 
     font-size: 20px;
 
+    cursor: pointer;
+`;
+
+export const BackIcon = styled.img`
     cursor: pointer;
 `;

@@ -1,6 +1,9 @@
 import { memo } from "react";
 import { useMatch } from "react-router-dom";
 
+import { useAppSelector } from "@/hooks";
+import { userSelector } from "@/store/selectors";
+
 import { NavBarItemProps } from "./navBarItem.interfaces";
 import { StyledLink } from "./navBarItem.styled";
 
@@ -9,10 +12,16 @@ export const NavBarItem = memo<NavBarItemProps>(({ link: { title, to, icon, acti
         path: to,
         end: to.length === 1,
     });
+    const { idInDb } = useAppSelector(userSelector);
+
+    let dest = to;
+    if (dest === "/profile") {
+        dest += `/${idInDb}`;
+    }
 
     return (
         <li>
-            <StyledLink to={to} $active={match}>
+            <StyledLink to={dest} $active={match}>
                 <img src={match ? activeIcon : icon} alt={title} />
                 {title}
             </StyledLink>

@@ -2,6 +2,7 @@ import { ITweet, IUser } from "@/interfaces";
 
 export interface SearchListProps {
     searchValue: string;
+    clearSearch: () => void;
 }
 
 export interface UserState {
