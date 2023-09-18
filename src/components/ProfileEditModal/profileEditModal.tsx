@@ -28,7 +28,7 @@ import { ProfileEditModalProps } from "./profileEditModal.interfaces";
 import { Center, ErorrsWrapper, Image, Label, Modal, Row } from "./profileEditModal.styled";
 
 export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => {
-    const { name, phone, email, birthDate, description, idInDb } = useAppSelector(userSelector);
+    const { name, phone, email, birthDate, description, id } = useAppSelector(userSelector);
     const {
         register,
         handleSubmit,
@@ -54,11 +54,11 @@ export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => 
             const auth = getAuth();
             const user = auth.currentUser;
 
-            if (!user || !idInDb) {
+            if (!user || !id) {
                 throw new Error(NotificationMessages.notSignedIn);
             }
 
-            const userRef = doc(db, DbCollections.users, idInDb);
+            const userRef = doc(db, DbCollections.users, id);
 
             if (email !== data.email) {
                 await updateEmail(auth.currentUser, data.email);

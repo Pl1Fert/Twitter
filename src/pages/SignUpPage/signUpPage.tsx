@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 import logo from "@/assets/images/twitter.svg";
 import { Button, Input, Select } from "@/components/UI";
@@ -70,17 +70,10 @@ const SignUpPage: FC = () => {
 
         try {
             const { user } = await createUserWithEmailAndPassword(auth, email, password);
-
-            await updateProfile(user, {
-                displayName: name,
-            });
-
             const { uid } = user;
             const token = await user.getIdToken();
 
-            const usersCollectionRef = collection(db, DbCollections.users);
-
-            const response = await addDoc(usersCollectionRef, {
+            await setDoc(doc(db, DbCollections.users, uid), {
                 name,
                 phone,
                 email,
@@ -96,7 +89,6 @@ const SignUpPage: FC = () => {
                     id: uid,
                     token: token || null,
                     birthDate,
-                    idInDb: response.id,
                     description: null,
                 })
             );

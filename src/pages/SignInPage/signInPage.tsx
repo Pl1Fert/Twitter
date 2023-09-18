@@ -67,7 +67,6 @@ const SignInPage: FC = () => {
                     id: uid,
                     token: token || null,
                     birthDate: (userData?.data.birthDate as string) || null,
-                    idInDb: userData?.id || null,
                     description: (userData?.data.description as string) || null,
                 })
             );

@@ -10,10 +10,10 @@ interface IProps {
 }
 
 export const CheckAuth = memo<IProps>(({ children }) => {
-    const { token, idInDb } = useAppSelector(userSelector);
+    const { token, id } = useAppSelector(userSelector);
 
     if (token) {
-        return <Navigate to={`${AppRoutes.PROFILE}/${idInDb}`} replace />;
+        return <Navigate to={`${AppRoutes.PROFILE}/${id}`} replace />;
     }
 
     return children || <Outlet />;

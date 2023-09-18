@@ -12,11 +12,11 @@ export const NavBarItem = memo<NavBarItemProps>(({ link: { title, to, icon, acti
         path: to,
         end: to.length === 1,
     });
-    const { idInDb } = useAppSelector(userSelector);
+    const { id } = useAppSelector(userSelector);
 
     let dest = to;
     if (dest === "/profile") {
-        dest += `/${idInDb}`;
+        dest += `/${id}`;
     }
 
     return (

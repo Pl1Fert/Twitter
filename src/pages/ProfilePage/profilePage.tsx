@@ -34,7 +34,7 @@ interface State {
 }
 
 const ProfilePage: FC = () => {
-    const { idInDb } = useAppSelector(userSelector);
+    const { id: myId } = useAppSelector(userSelector);
     const { id } = useParams();
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
     const [tweetsCount, setTweetsCount] = useState<number>(0);
@@ -69,7 +69,7 @@ const ProfilePage: FC = () => {
     return (
         <>
             <Top>
-                {id !== idInDb && <BackIcon src={backArrow} onClick={backClickHandler} />}
+                {id !== myId && <BackIcon src={backArrow} onClick={backClickHandler} />}
                 <div>
                     <Title>{user.name}</Title>
                     <Tweets>{tweetsCount} Tweets</Tweets>
