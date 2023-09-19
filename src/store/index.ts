@@ -12,19 +12,21 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import { notificationReducer } from "./slices/notificationSlice";
+import { sidebarReducer } from "./slices/sidebarSlice";
 import { themeReducer } from "./slices/themeSlice";
 import { userReducer } from "./slices/userSlice";
 
 const persistConfig = {
     key: "root",
     storage,
-    blacklist: ["notification"],
+    blacklist: ["notification", "sidebar"],
 };
 
 const rootReducer = combineReducers({
     theme: themeReducer,
     user: userReducer,
     notification: notificationReducer,
+    sidebar: sidebarReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

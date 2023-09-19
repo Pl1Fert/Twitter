@@ -4,9 +4,19 @@ export const BackgroundImage = styled.img`
     width: 100%;
 `;
 
-export const ProfileImage = styled.img`
+export const Avatar = styled.img`
     width: 120px;
     height: 120px;
+
+    @media screen and (max-width: 1160px) {
+        width: 90px;
+        height: 90px;
+    }
+
+    @media screen and (max-width: 550px) {
+        width: 60px;
+        height: 60px;
+    }
 `;
 
 export const Row = styled.div`
@@ -15,6 +25,10 @@ export const Row = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+
+    @media screen and (max-width: 550px) {
+        flex-direction: column;
+    }
 `;
 
 export const Content = styled.div`
@@ -27,17 +41,29 @@ export const Title = styled.p`
 
     font-weight: 600;
     font-size: 20px;
+
+    @media screen and (max-width: 550px) {
+        font-size: 18px;
+    }
 `;
 
 export const Name = styled.p`
     font-weight: 600;
     font-size: 24px;
+
+    @media screen and (max-width: 550px) {
+        font-size: 18px;
+    }
 `;
 
 export const Email = styled.p`
     margin-bottom: 15px;
 
     font-size: 16px;
+
+    @media screen and (max-width: 550px) {
+        font-size: 16px;
+    }
 `;
 
 export const Tweets = styled.p`
@@ -55,6 +81,12 @@ export const Top = styled.div`
 
 export const Description = styled.p`
     font-size: 20px;
+
+    @media screen and (max-width: 550px) {
+        margin-bottom: 20px;
+
+        font-size: 15px;
+    }
 `;
 
 export const TabName = styled.p`
@@ -66,6 +98,10 @@ export const TabName = styled.p`
     font-size: 20px;
 
     cursor: pointer;
+
+    @media screen and (max-width: 550px) {
+        font-size: 18px;
+    }
 `;
 
 export const BackIcon = styled.img`

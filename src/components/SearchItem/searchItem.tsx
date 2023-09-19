@@ -3,21 +3,30 @@ import { useNavigate } from "react-router-dom";
 
 import person from "@/assets/images/profile-photo.jpg";
 import { AppRoutes } from "@/constants";
+import { useAppDispatch } from "@/hooks";
+import { sidebarActions } from "@/store/slices/sidebarSlice";
 
 import { SearchItemProps } from "./searchItem.interfaces";
 import { Avatar, Content, ListItem } from "./searchItem.styled";
 
 export const SearchItem: FC<SearchItemProps> = ({ data, id, clearSearch }) => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const closeSidebar = (): void => {
+        dispatch(sidebarActions.closeRight());
+    };
 
     const tweetClickHandler = (): void => {
         navigate(`${AppRoutes.TWEET}/${id}`);
         clearSearch();
+        closeSidebar();
     };
 
     const profileClickHandler = (): void => {
         navigate(`${AppRoutes.PROFILE}/${id}`);
         clearSearch();
+        closeSidebar();
     };
 
     if ("createdAt" in data) {

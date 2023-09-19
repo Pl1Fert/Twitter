@@ -79,7 +79,7 @@ export const TweetBox: FC = () => {
                 type={ButtonType.button}
                 primary
                 content="Tweet"
-                width="25%"
+                width="30%"
                 disabled={isEmptyString(value)}
                 onClick={sendTweet}
             />

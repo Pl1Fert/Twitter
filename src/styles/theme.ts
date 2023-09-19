@@ -76,6 +76,7 @@ export const LightTheme: DefaultTheme = {
     },
     backgroundColors: {
         blue: "#1D9BF0",
+        sidebar: "#ffffff",
     },
 };
 
@@ -153,8 +154,11 @@ export const DarkTheme: DefaultTheme = {
         blue: "#1DA1F2",
         grey: "#666666",
         red: "#e7182e",
+        white: "#ffffff",
     },
     backgroundColors: {
         blue: "#1D9BF0",
+        light: "#eff3f4",
+        sidebar: "#092441",
     },
 };

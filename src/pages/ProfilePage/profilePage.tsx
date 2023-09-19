@@ -13,13 +13,13 @@ import { useAppSelector } from "@/hooks";
 import { userSelector } from "@/store/selectors";
 
 import {
+    Avatar,
     BackgroundImage,
     BackIcon,
     Content,
     Description,
     Email,
     Name,
-    ProfileImage,
     Row,
     TabName,
     Title,
@@ -79,7 +79,7 @@ const ProfilePage: FC = () => {
             <BackgroundImage src={background} alt="background" />
             <Row>
                 <Content>
-                    <ProfileImage src={person} alt="person" />
+                    <Avatar src={person} alt="person" />
                     <Name>{user.name}</Name>
                     <Email>{user.email}</Email>
                     <Description>{user.description}</Description>
@@ -88,7 +88,7 @@ const ProfilePage: FC = () => {
                     type={ButtonType.button}
                     outline
                     content="Edit Profile"
-                    width="20%"
+                    width="25%"
                     onClick={modalClickHandler}
                 />
             </Row>

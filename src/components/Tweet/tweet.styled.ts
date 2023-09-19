@@ -17,10 +17,24 @@ export const Header = styled.div`
     align-items: center;
     justify-content: flex-start;
     gap: 8px;
+
+    @media screen and (max-width: 1160px) {
+        flex-wrap: wrap;
+    }
+`;
+
+export const TweetCount = styled.p`
+    @media screen and (max-width: 550px) {
+        font-size: 14px;
+    }
 `;
 
 export const Text = styled.p`
     padding-top: 8px;
+
+    @media screen and (max-width: 550px) {
+        font-size: 16px;
+    }
 `;
 
 export const Footer = styled.div`
@@ -39,15 +53,38 @@ export const Content = styled.div`
 
 export const Name = styled.p`
     font-weight: 600;
+
+    @media screen and (max-width: 550px) {
+        font-size: 16px;
+    }
 `;
 
-export const Email = styled.p``;
+export const Email = styled.p`
+    @media screen and (max-width: 550px) {
+        font-size: 14px;
+    }
+`;
 
-export const Date = styled.p``;
+export const Date = styled.p`
+    font-size: 14px;
+
+    @media screen and (max-width: 1160px) {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 550px) {
+        font-size: 12px;
+    }
+`;
 
 export const Avatar = styled.img`
     width: 45px;
     height: 50px;
+
+    @media screen and (max-width: 550px) {
+        width: 35px;
+        height: 40px;
+    }
 `;
 
 export const LikeImage = styled.img`

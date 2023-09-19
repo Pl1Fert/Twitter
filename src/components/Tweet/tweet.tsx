@@ -26,6 +26,7 @@ import {
     LikeImage,
     Name,
     Text,
+    TweetCount,
 } from "./tweet.styled";
 
 export const Tweet = memo<TweetProps>(
@@ -119,7 +120,7 @@ export const Tweet = memo<TweetProps>(
                         ) : (
                             <LikeImage src={like} alt="like" onClick={clickLikeHandler} />
                         )}
-                        {likes || 0}
+                        <TweetCount>{likes || 0}</TweetCount>
                     </Footer>
                 </Content>
                 {!!fromUser && (

@@ -13,6 +13,10 @@ export const Title = styled.p`
 
     font-weight: 600;
     font-size: 20px;
+
+    @media screen and (max-width: 550px) {
+        font-size: 18px;
+    }
 `;
 
 export const ThemeToggler = styled.div`
@@ -25,6 +29,10 @@ export const ThemeToggler = styled.div`
 
     background-color: transparent;
     border-radius: 15px;
+
+    @media screen and (max-width: 550px) {
+        width: 40px;
+    }
 `;
 
 const RadioButton = styled.input`
@@ -43,6 +51,11 @@ const RadioButton = styled.input`
 
     &:checked {
         border-color: ${({ theme }) => theme.border};
+    }
+
+    @media screen and (max-width: 550px) {
+        width: 20px;
+        height: 20px;
     }
 `;
 

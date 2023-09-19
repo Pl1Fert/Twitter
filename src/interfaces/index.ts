@@ -63,3 +63,8 @@ export interface ITweet {
     createdAt: Timestamp;
     image: string | null;
 }
+
+export interface ISidebars {
+    isVisibleLeftSidebar: boolean;
+    isVisibleRightSidebar: boolean;
+}

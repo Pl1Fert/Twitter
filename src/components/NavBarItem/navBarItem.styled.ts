@@ -19,3 +19,5 @@ export const StyledLink = styled(Link)<{ $active: PathMatch<string> | null }>`
         background-color: ${({ theme }) => theme.links.backgroundColor.hover};
     }
 `;
+
+export const ListItem = styled.li``;

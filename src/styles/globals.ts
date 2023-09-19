@@ -11,7 +11,9 @@ export const GlobalStyles = createGlobalStyle`
 
     html,
     body {
-        height: 100%;
+        height: 100vh;
+        width: 100vw;
+        overflow-x: hidden;
     }
 
     body {

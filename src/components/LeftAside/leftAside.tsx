@@ -7,14 +7,17 @@ import { Button } from "@/components/UI";
 import { ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
 import { isFirebaseError } from "@/helpers";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { userSelector } from "@/store/selectors";
+import { sidebarSelector, userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
+import { sidebarActions } from "@/store/slices/sidebarSlice";
 import { userActions } from "@/store/slices/userSlice";
 
-import { Aside, Avatar, Row, SubTitle, Title } from "./leftAside.styled";
+import { Aside, Avatar, Burger, Row, Span, SubTitle, Title } from "./leftAside.styled";
 
 export const LeftAside: FC = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+    const { isVisibleLeftSidebar: isVisible } = useAppSelector(sidebarSelector);
     const { name, email } = useAppSelector(userSelector);
     const dispatch = useAppDispatch();
 
@@ -42,13 +45,23 @@ export const LeftAside: FC = () => {
         }
     };
 
+    const toggleVisibility = () => {
+        dispatch(sidebarActions.toggleLeft());
+    };
+
     const modalClickHandler = (): void => {
         setIsModalOpen((prev) => !prev);
+        dispatch(sidebarActions.closeLeft());
     };
 
     return (
         <>
-            <Aside>
+            <Burger $isVisible={isVisible} onClick={toggleVisibility}>
+                <Span className="first" />
+                <Span className="second" />
+                <Span className="third" />
+            </Burger>
+            <Aside $isVisible={isVisible}>
                 <NavBar />
                 <Button
                     type={ButtonType.button}

@@ -15,6 +15,7 @@ export const Container = styled.div`
 `;
 
 export const Ring = styled.div`
+    position: relative;
     width: 200px;
     height: 200px;
 

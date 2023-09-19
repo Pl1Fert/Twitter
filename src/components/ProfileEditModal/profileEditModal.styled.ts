@@ -20,6 +20,16 @@ export const Modal = styled.div`
     background-color: ${({ theme }) => theme.backgroundColor};
 
     transform: translate(-50%, -50%);
+
+    @media screen and (max-width: 1000px) {
+        padding-top: 30px;
+        width: 100%;
+    }
+
+    @media screen and (max-width: 780px) {
+        height: auto;
+        padding-bottom: 10px;
+    }
 `;
 
 export const Image = styled.img`
@@ -38,6 +48,15 @@ export const Row = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 15px;
+
+    @media screen and (max-width: 780px) {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    @media screen and (max-width: 650px) {
+        flex-direction: column;
+    }
 `;
 
 export const ErorrsWrapper = styled.div`
@@ -62,8 +81,22 @@ export const Center = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 780px) {
+        &:first-of-type {
+            justify-content: flex-start;
+        }
+    }
 `;
 
 export const Label = styled.label`
     color: ${({ theme }) => theme.textColor};
+
+    @media screen and (max-width: 780px) {
+        width: 40%;
+    }
+
+    @media screen and (max-width: 650px) {
+        width: 100%;
+    }
 `;

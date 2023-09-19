@@ -1,11 +1,12 @@
 import { memo } from "react";
 import { useMatch } from "react-router-dom";
 
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { userSelector } from "@/store/selectors";
+import { sidebarActions } from "@/store/slices/sidebarSlice";
 
 import { NavBarItemProps } from "./navBarItem.interfaces";
-import { StyledLink } from "./navBarItem.styled";
+import { ListItem, StyledLink } from "./navBarItem.styled";
 
 export const NavBarItem = memo<NavBarItemProps>(({ link: { title, to, icon, activeIcon } }) => {
     const match = useMatch({
@@ -13,18 +14,23 @@ export const NavBarItem = memo<NavBarItemProps>(({ link: { title, to, icon, acti
         end: to.length === 1,
     });
     const { id } = useAppSelector(userSelector);
+    const dispatch = useAppDispatch();
 
     let dest = to;
     if (dest === "/profile") {
         dest += `/${id}`;
     }
 
+    const closeSidebar = (): void => {
+        dispatch(sidebarActions.closeLeft());
+    };
+
     return (
-        <li>
+        <ListItem onClick={closeSidebar}>
             <StyledLink to={dest} $active={match}>
                 <img src={match ? activeIcon : icon} alt={title} />
                 {title}
             </StyledLink>
-        </li>
+        </ListItem>
     );
 });

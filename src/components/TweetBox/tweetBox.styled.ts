@@ -7,6 +7,12 @@ export const Container = styled.div`
 
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 700px) {
+        padding: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 `;
 
 export const TextArea = styled.textarea`
@@ -30,12 +36,24 @@ export const TextArea = styled.textarea`
         font-size: 18px;
 
         color: ${({ theme }) => theme.input.placeholder.primary};
+
+        @media screen and (max-width: 550px) {
+            font-size: 16px;
+        }
+    }
+
+    @media screen and (max-width: 550px) {
+        font-size: 16px;
     }
 `;
 
 export const Avatar = styled.img`
     width: 50px;
     height: 50px;
+
+    @media screen and (max-width: 550px) {
+        display: none;
+    }
 `;
 
 export const FileInput = styled.input`
