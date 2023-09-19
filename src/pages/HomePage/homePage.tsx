@@ -42,20 +42,9 @@ const HomePage: FC = () => {
 
     const onGoogleClick = async (): Promise<void> => {
         try {
-            const { displayName, phoneNumber, email, uid, token } =
-                await UserService.signUpWithGoogle();
+            const data = await UserService.signUpWithGoogle();
 
-            dispatch(
-                userActions.setUser({
-                    name: displayName,
-                    phone: phoneNumber,
-                    email,
-                    id: uid,
-                    token: token || null,
-                    birthDate: null,
-                    description: null,
-                })
-            );
+            dispatch(userActions.setUser(data));
 
             dispatch(
                 notificationActions.addNotification({
