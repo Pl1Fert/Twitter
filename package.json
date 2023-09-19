@@ -9,7 +9,9 @@
         "lint": "eslint \"src/**/*.{ts,tsx}\"",
         "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
         "preview": "vite preview",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "cypress": "cypress run",
+        "cy:e2e": "start-server-and-test dev http://localhost:5173 cypress"
     },
     "dependencies": {
         "@hookform/resolvers": "^3.3.1",
@@ -39,6 +41,7 @@
         "@typescript-eslint/eslint-plugin": "^6.0.0",
         "@typescript-eslint/parser": "^6.0.0",
         "@vitejs/plugin-react": "^4.0.3",
+        "cypress": "^13.2.0",
         "eslint": "^8.45.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-config-airbnb-typescript": "^17.1.0",
@@ -54,6 +57,7 @@
         "lint-staged": "^14.0.1",
         "path": "^0.12.7",
         "prettier": "^3.0.3",
+        "start-server-and-test": "^2.0.0",
         "typescript": "^5.0.2",
         "vite": "^4.4.5"
     },
