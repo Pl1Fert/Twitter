@@ -8,7 +8,7 @@ import activeLike from "@/assets/icons/like-fill.svg";
 import person from "@/assets/images/profile-photo.jpg";
 import { DbCollections, NotificationMessages, NotificationTypes } from "@/constants";
 import { db, storage } from "@/firebase";
-import { isFirebaseError } from "@/helpers";
+import { isFirebaseError, isLiked } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { notificationActions } from "@/store/slices/notificationSlice";
 
@@ -30,8 +30,8 @@ import {
 } from "./tweet.styled";
 
 export const Tweet = memo<TweetProps>(
-    ({ tweet: { name, email, text, likes, createdAt, image }, id, fromUser }) => {
-        const [liked, setLiked] = useState<boolean>(false);
+    ({ tweet: { name, email, text, likes, createdAt, image, likedByUsers }, id, fromUser }) => {
+        const [liked, setLiked] = useState<boolean>(() => isLiked(likedByUsers, email));
         const [imageUrl, setImageUrl] = useState<string>("");
         const dispatch = useAppDispatch();
 
@@ -42,12 +42,14 @@ export const Tweet = memo<TweetProps>(
                 if (liked) {
                     await updateDoc(tweetRef, {
                         likes: likes - 1,
+                        likedByUsers: likedByUsers.filter((user) => user !== email),
                     });
 
                     setLiked(false);
                 } else {
                     await updateDoc(tweetRef, {
                         likes: likes + 1,
+                        likedByUsers: [...likedByUsers, email],
                     });
 
                     setLiked(true);

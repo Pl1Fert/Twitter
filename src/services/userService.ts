@@ -7,12 +7,23 @@ import {
     updateEmail,
     updatePassword,
 } from "firebase/auth";
-import { collection, doc, getDocs, setDoc, updateDoc } from "firebase/firestore";
+import {
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    limit,
+    query,
+    setDoc,
+    updateDoc,
+    where,
+} from "firebase/firestore";
 
 import { DbCollections, NotificationMessages } from "@/constants";
 import { db } from "@/firebase";
-import { validateEmail } from "@/helpers";
-import { IProfileEditFields, ISignInFormFields } from "@/interfaces";
+import { validateEmail, validatePhone } from "@/helpers";
+import { IProfileEditFields, ISignInFormFields, IUser } from "@/interfaces";
+import { TweetService } from "@/services";
 
 const updateUserInfo = async (
     data: IProfileEditFields,
@@ -41,9 +52,11 @@ const updateUserInfo = async (
         birthDate: data.birthDate,
         description: data.description,
     });
+
+    await TweetService.updateTweets(data.name, data.email);
 };
 
-const signUpWithGoogle = async () => {
+const signUpWithGoogle = async (): Promise<IUser> => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);
@@ -52,21 +65,57 @@ const signUpWithGoogle = async () => {
     const { user } = result;
     const { displayName, phoneNumber, email, uid } = user;
 
-    await setDoc(doc(db, DbCollections.users, uid), {
+    const docRef = doc(db, DbCollections.users, uid);
+    const docSnap = await getDoc(docRef);
+
+    const returnData: IUser = {
+        id: null,
+        name: null,
+        email: null,
+        token: null,
+        phone: null,
+        birthDate: null,
+        description: null,
+    };
+
+    if (docSnap.exists()) {
+        const data = docSnap.data() as IUser;
+        return { ...data, token: token || null } as IUser;
+    }
+
+    await setDoc(docRef, {
         name: displayName,
         phone: phoneNumber,
         email,
         id: uid,
     });
 
-    return { token, displayName, phoneNumber, email, uid };
+    return {
+        ...returnData,
+        id: uid,
+        name: displayName,
+        phone: phoneNumber,
+        email,
+        token: token || null,
+    } as IUser;
 };
 
 const signIn = async (inputData: ISignInFormFields) => {
     const auth = getAuth();
     const { phoneOrEmail, password } = inputData;
+    let emailFromDb = "";
 
-    const email = validateEmail(phoneOrEmail) ? phoneOrEmail : "";
+    const phone = validatePhone(phoneOrEmail) ? phoneOrEmail : null;
+    if (phone) {
+        const q = query(collection(db, DbCollections.users), where("phone", "==", phone), limit(1));
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach((doc) => {
+            emailFromDb = doc.data().email as string;
+        });
+    }
+
+    const email = validateEmail(phoneOrEmail) ? phoneOrEmail : emailFromDb;
     const { user } = await signInWithEmailAndPassword(auth, email, password);
 
     const { uid } = user;

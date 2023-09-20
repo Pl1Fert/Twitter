@@ -62,6 +62,7 @@ export interface ITweet {
     likes: number;
     createdAt: Timestamp;
     image: string | null;
+    likedByUsers: string[];
 }
 
 export interface ISidebars {
