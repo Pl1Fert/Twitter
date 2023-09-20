@@ -17,6 +17,20 @@ describe("signUp test", () => {
         cy.get("button").should("be.disabled");
     });
 
+    it("validate phone", () => {
+        cy.get("button").should("be.disabled");
+
+        cy.get("input[name='phone']")
+            .type("testgmail.com{enter}")
+            .should("have.value", "testgmail.com");
+
+        cy.get("input[name='password']").focus();
+
+        cy.contains("Phone is invalid");
+
+        cy.get("button").should("be.disabled");
+    });
+
     it("signUp", () => {
         cy.get("button").should("be.disabled");
 

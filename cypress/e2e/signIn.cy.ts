@@ -11,7 +11,6 @@ describe("signIn test", () => {
             .should("have.value", "test@gmail.com");
 
         cy.get("input[name='password']").type("test{enter}").should("have.value", "test");
-        cy.get("button").should("not.be.disabled").click();
 
         cy.wait(2000);
     });

@@ -30,7 +30,7 @@ describe("theme test", () => {
     it("theme should change onclick", () => {
         const user: IUser = {
             name: "Rusel Alexey",
-            phone: "+375297502132",
+            phone: "+375297502133",
             email: "alexeyrusel@gmail.com",
             id: "Um5ToU0Zm2c0zheOEsSCDwlLYhf1",
             token: "ya29.a0AfB_byBO__4h00qfBvGyYhP9QN6ihwbieRFzSfjC17fiU7Q3vGl68ETlQTyw_WBxt4UnmWVVJEJk1qiqplFKfayat8NJvJCY251jH6QF4SMrGt11QJGeRhs7LWk5f2Fm_31Vy4QiuT-mvl4ytxEukdEW9tCs02Us4fcaCgYKATcSARISFQGOcNnC1zIw350ulrM98knML8e9Gg0170",

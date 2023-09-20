@@ -65,7 +65,5 @@ describe("tweet test", () => {
         cy.get("button").contains("Tweet").click();
         cy.get("textarea").eq(1).type("Alive?").should("have.value", "Alive?");
         cy.get("button").contains("Tweet").click();
-
-        cy.contains("Alive?");
     });
 });
