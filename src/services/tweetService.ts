@@ -33,6 +33,7 @@ const sendTweet = async (
         likes: 0,
         createdAt: new Date(),
         image: imageName,
+        likedByUsers: [],
     });
 };
 
