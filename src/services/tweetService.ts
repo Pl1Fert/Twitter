@@ -1,4 +1,4 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 
 import { DbCollections } from "@/constants";
@@ -36,6 +36,19 @@ const sendTweet = async (
     });
 };
 
+const updateTweets = async (name: string, email: string) => {
+    const q = query(collection(db, DbCollections.tweets), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach(async (doc) => {
+        await updateDoc(doc.ref, {
+            name,
+            email,
+        });
+    });
+};
+
 export const TweetService = {
     sendTweet,
+    updateTweets,
 };

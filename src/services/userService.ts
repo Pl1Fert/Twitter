@@ -23,6 +23,7 @@ import { DbCollections, NotificationMessages } from "@/constants";
 import { db } from "@/firebase";
 import { validateEmail, validatePhone } from "@/helpers";
 import { IProfileEditFields, ISignInFormFields, IUser } from "@/interfaces";
+import { TweetService } from "@/services";
 
 const updateUserInfo = async (
     data: IProfileEditFields,
@@ -51,6 +52,8 @@ const updateUserInfo = async (
         birthDate: data.birthDate,
         description: data.description,
     });
+
+    await TweetService.updateTweets(data.name, data.email);
 };
 
 const signUpWithGoogle = async (): Promise<IUser> => {
