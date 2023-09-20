@@ -7,11 +7,21 @@ import {
     updateEmail,
     updatePassword,
 } from "firebase/auth";
-import { collection, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
+import {
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    limit,
+    query,
+    setDoc,
+    updateDoc,
+    where,
+} from "firebase/firestore";
 
 import { DbCollections, NotificationMessages } from "@/constants";
 import { db } from "@/firebase";
-import { validateEmail } from "@/helpers";
+import { validateEmail, validatePhone } from "@/helpers";
 import { IProfileEditFields, ISignInFormFields, IUser } from "@/interfaces";
 
 const updateUserInfo = async (
@@ -90,8 +100,19 @@ const signUpWithGoogle = async (): Promise<IUser> => {
 const signIn = async (inputData: ISignInFormFields) => {
     const auth = getAuth();
     const { phoneOrEmail, password } = inputData;
+    let emailFromDb = "";
 
-    const email = validateEmail(phoneOrEmail) ? phoneOrEmail : "";
+    const phone = validatePhone(phoneOrEmail) ? phoneOrEmail : null;
+    if (phone) {
+        const q = query(collection(db, DbCollections.users), where("phone", "==", phone), limit(1));
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach((doc) => {
+            emailFromDb = doc.data().email as string;
+        });
+    }
+
+    const email = validateEmail(phoneOrEmail) ? phoneOrEmail : emailFromDb;
     const { user } = await signInWithEmailAndPassword(auth, email, password);
 
     const { uid } = user;

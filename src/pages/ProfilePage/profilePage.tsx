@@ -84,13 +84,15 @@ const ProfilePage: FC = () => {
                     <Email>{user.email}</Email>
                     <Description>{user.description}</Description>
                 </Content>
-                <Button
-                    type={ButtonType.button}
-                    outline
-                    content="Edit Profile"
-                    width="25%"
-                    onClick={modalClickHandler}
-                />
+                {id === myId && (
+                    <Button
+                        type={ButtonType.button}
+                        outline
+                        content="Edit Profile"
+                        width="25%"
+                        onClick={modalClickHandler}
+                    />
+                )}
             </Row>
             <TweetBox />
             <TabName>Tweets</TabName>
