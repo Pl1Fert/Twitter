@@ -5,7 +5,7 @@ import { deleteObject, getDownloadURL, ref } from "firebase/storage";
 import deleteIcon from "@/assets/icons/cross.svg";
 import like from "@/assets/icons/like.svg";
 import activeLike from "@/assets/icons/like-fill.svg";
-import person from "@/assets/images/profile-photo.jpg";
+import person from "@/assets/images/avatar.png";
 import { DbCollections, NotificationMessages, NotificationTypes } from "@/constants";
 import { db, storage } from "@/firebase";
 import { isFirebaseError, isLiked } from "@/helpers";

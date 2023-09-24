@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import googleIcon from "@/assets/icons/google-icon.svg";
 import picture from "@/assets/images/big-picture.png";
 import logo from "@/assets/images/twitter.svg";
-import { Button } from "@/components/UI";
 import {
     AppRoutes,
     ButtonType,
@@ -17,6 +16,7 @@ import { useAppDispatch } from "@/hooks";
 import { UserService } from "@/services";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
+import { Button } from "@/UI";
 
 import {
     ButtonsColumn,

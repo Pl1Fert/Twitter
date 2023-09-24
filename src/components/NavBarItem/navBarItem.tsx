@@ -16,10 +16,7 @@ export const NavBarItem = memo<NavBarItemProps>(({ link: { title, to, icon, acti
     const { id } = useAppSelector(userSelector);
     const dispatch = useAppDispatch();
 
-    let dest = to;
-    if (dest === "/profile") {
-        dest += `/${id}`;
-    }
+    const dest = to === "/profile" ? `${to}/${id}` : to;
 
     const closeSidebar = (): void => {
         dispatch(sidebarActions.closeLeft());

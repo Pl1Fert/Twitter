@@ -47,6 +47,8 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Inputs = styled.div`
+    margin-bottom: 20px;
+
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -63,16 +65,4 @@ export const Logo = styled.img`
 
         margin-bottom: 20px;
     }
-`;
-
-export const ErorrsWrapper = styled.div`
-    margin-bottom: 25px;
-
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-
-    font-size: 12px;
-
-    color: ${({ theme }) => theme.fontColors.red};
 `;

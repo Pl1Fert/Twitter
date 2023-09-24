@@ -15,7 +15,7 @@ export const Section = styled.section`
 `;
 
 export const Title = styled.h1`
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 
     font-size: 42px;
 
@@ -51,13 +51,13 @@ export const Inputs = styled.div`
 
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 `;
 
 export const Logo = styled.img`
     width: 50px;
     height: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 
     @media (max-width: 500px) {
         width: 40px;

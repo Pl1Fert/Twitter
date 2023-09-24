@@ -34,10 +34,10 @@ const TweetPage: FC = () => {
     }, []);
 
     return (
-        <div>
+        <>
             <BackIcon src={backArrow} alt="back" onClick={backClickHandler} />
             {id && tweet && <Tweet id={id} tweet={tweet} />}
-        </div>
+        </>
     );
 };
 

@@ -13,18 +13,7 @@ export const ListItem = styled.li<{ $type: NotificationTypes }>`
     justify-content: space-between;
     gap: 15px;
 
-    border-color: ${({ $type, theme }) => {
-        switch ($type) {
-            case "error":
-                return theme.notification.border.error;
-            case "success":
-                return theme.notification.border.success;
-            case "warning":
-                return theme.notification.border.warning;
-            default:
-                return "transparent";
-        }
-    }};
+    border-color: ${({ $type, theme }) => theme.notification.border[$type] ?? "transparent"};
     background-color: ${({ theme }) => theme.notification.backgroundColor.primary};
     color: ${({ theme }) => theme.notification.color.primary};
     box-shadow: 0 0 5px ${({ theme }) => theme.notification.shadow.primary};

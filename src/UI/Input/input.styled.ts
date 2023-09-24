@@ -27,3 +27,9 @@ export const StyledInput = styled.input<{ $width?: string }>`
         color: ${({ theme }) => theme.input.placeholder.primary};
     }
 `;
+
+export const ErrorMessage = styled.p`
+    font-size: 12px;
+
+    color: ${({ theme }) => theme.fontColors.red};
+`;

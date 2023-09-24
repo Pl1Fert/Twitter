@@ -11,7 +11,7 @@ export const NotificationItem = memo<NotificationItemProps>(
     ({ notification: { id, type, message } }) => {
         const dispatch = useAppDispatch();
 
-        const handleDismiss = () => {
+        const handleDismiss = (): void => {
             dispatch(notificationActions.dismissNotification(id));
         };
 

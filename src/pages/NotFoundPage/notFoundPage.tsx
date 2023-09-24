@@ -2,8 +2,8 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import logo from "@/assets/images/twitter.svg";
-import { Button } from "@/components/UI";
 import { AppRoutes, ButtonType } from "@/constants";
+import { Button } from "@/UI";
 
 import { Container, SubTitle, Text, Title, Wrapper } from "./notFoundPage.styled";
 

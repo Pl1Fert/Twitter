@@ -48,8 +48,8 @@ export const TextArea = styled.textarea`
 `;
 
 export const Avatar = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
 
     @media screen and (max-width: 550px) {
         display: none;

@@ -48,15 +48,17 @@ export const SearchList = memo<SearchListProps>(({ searchValue, clearSearch }) =
         );
     }, [location]);
 
-    return (
-        <List>
-            {userItems.length > 0
-                ? userItems.map(({ id, data }) => (
-                      <SearchItem id={id} data={data} key={id} clearSearch={clearSearch} />
-                  ))
-                : tweetItems.map(({ id, data }) => (
-                      <SearchItem id={id} data={data} key={id} clearSearch={clearSearch} />
-                  ))}
-        </List>
-    );
+    const renderList = (): JSX.Element[] => {
+        if (userItems.length > 0) {
+            return userItems.map(({ id, data }) => (
+                <SearchItem id={id} data={data} key={id} clearSearch={clearSearch} />
+            ));
+        }
+
+        return tweetItems.map(({ id, data }) => (
+            <SearchItem id={id} data={data} key={id} clearSearch={clearSearch} />
+        ));
+    };
+
+    return <List>{renderList()}</List>;
 });

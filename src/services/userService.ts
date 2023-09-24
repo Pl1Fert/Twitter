@@ -154,9 +154,15 @@ const signUp = async (
     return { uid, token };
 };
 
+export const signOut = async (): Promise<void> => {
+    const auth = getAuth();
+    await auth.signOut();
+};
+
 export const UserService = {
     updateUserInfo,
     signUpWithGoogle,
     signIn,
     signUp,
+    signOut,
 };

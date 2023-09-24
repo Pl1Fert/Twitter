@@ -79,7 +79,7 @@ export const Date = styled.p`
 
 export const Avatar = styled.img`
     width: 45px;
-    height: 50px;
+    height: 45px;
 
     @media screen and (max-width: 550px) {
         width: 35px;

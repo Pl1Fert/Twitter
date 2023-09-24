@@ -3,14 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 
 import backArrow from "@/assets/icons/left.svg";
+import person from "@/assets/images/avatar.png";
 import background from "@/assets/images/home-background.jpg";
-import person from "@/assets/images/profile-photo.jpg";
 import { Feed, ProfileEditModal, TweetBox } from "@/components";
-import { Button } from "@/components/UI";
 import { ButtonType, DbCollections } from "@/constants";
 import { db } from "@/firebase";
 import { useAppSelector } from "@/hooks";
 import { userSelector } from "@/store/selectors";
+import { Button } from "@/UI";
 
 import {
     Avatar,

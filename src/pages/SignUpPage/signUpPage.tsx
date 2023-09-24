@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import logo from "@/assets/images/twitter.svg";
-import { Button, Input, Select } from "@/components/UI";
 import {
     AppRoutes,
     ButtonType,
@@ -24,6 +23,7 @@ import { ISignUpFormFields } from "@/interfaces";
 import { UserService } from "@/services";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
+import { Button, Input, Select } from "@/UI";
 import { SignUpScheme } from "@/validators";
 
 import {
@@ -114,21 +114,28 @@ const SignUpPage: FC = () => {
                 <Title>Create an account</Title>
                 <form onSubmit={handleSubmit(onFormSubmit)}>
                     <Inputs>
-                        <Input placeholder="Name" {...register("name")} />
-                        <Input placeholder="Phone number" {...register("phone")} />
-                        <Input placeholder="Email" {...register("email")} />
+                        <Input
+                            placeholder="Name"
+                            {...register("name")}
+                            errorMessage={errors?.name?.message}
+                        />
+                        <Input
+                            placeholder="Phone number"
+                            {...register("phone")}
+                            errorMessage={errors?.phone?.message}
+                        />
+                        <Input
+                            placeholder="Email"
+                            {...register("email")}
+                            errorMessage={errors?.email?.message}
+                        />
                         <Input
                             type={InputType.password}
                             placeholder="Password"
                             {...register("password")}
+                            errorMessage={errors?.password?.message}
                         />
                     </Inputs>
-                    <ErorrsWrapper>
-                        {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
-                        {errors?.phone && <p>{errors?.phone?.message || "Error!"}</p>}
-                        {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
-                        {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
-                    </ErorrsWrapper>
                     <StyledLink to={AppRoutes.HOME}>Use Email</StyledLink>
                     <SubTitle>Date of birth</SubTitle>
                     <Text>
