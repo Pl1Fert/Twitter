@@ -12,5 +12,7 @@ jobs:
               run: yarn
             - name: Build
               run: yarn build
-            - name: Test
+            - name: Test E2E
               run: yarn cy:e2e
+            - name: Test Unit
+              run: yarn jest

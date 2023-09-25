@@ -81,7 +81,7 @@ const ProfilePage: FC = () => {
             <BackgroundImage src={background} alt="background" />
             <Row>
                 <Content>
-                    <Avatar src={person} alt="person" />
+                    <Avatar src={person} alt="person" loading="lazy" />
                     <Name>{user.name}</Name>
                     <Email>{user.email}</Email>
                     <Description>{user.description}</Description>

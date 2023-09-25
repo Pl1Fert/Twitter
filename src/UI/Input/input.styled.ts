@@ -7,7 +7,7 @@ export const StyledInput = styled.input<{ $width?: string }>`
 
     outline: none;
     font: inherit;
-    font-size: 18px;
+    font-size: ${({ theme }) => theme.fontSize.f18};
 
     color: ${({ theme }) => theme.input.textColor.primary};
     background-color: ${({ theme }) => theme.input.backgroundColor.primary};
@@ -22,14 +22,14 @@ export const StyledInput = styled.input<{ $width?: string }>`
 
     &::placeholder {
         font: inherit;
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
 
         color: ${({ theme }) => theme.input.placeholder.primary};
     }
 `;
 
 export const ErrorMessage = styled.p`
-    font-size: 12px;
+    font-size: ${({ theme }) => theme.fontSize.f12};
 
     color: ${({ theme }) => theme.fontColors.red};
 `;

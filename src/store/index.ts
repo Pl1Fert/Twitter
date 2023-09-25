@@ -45,3 +45,14 @@ export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+declare global {
+    interface Window {
+        Cypress?: unknown;
+        store?: typeof store;
+    }
+}
+
+if (typeof window !== "undefined" && window.Cypress) {
+    window.store = store;
+}

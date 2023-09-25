@@ -34,8 +34,8 @@ export const StyledButton = styled.button<{
     align-items: center;
     justify-content: center;
 
-    font-size: 20px;
-    font-weight: 500;
+    font-size: ${({ theme }) => theme.fontSize.f20};
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
 
     outline: none;
     border-radius: 40px;
@@ -53,14 +53,14 @@ export const StyledButton = styled.button<{
     }
 
     @media (max-width: 1150px) {
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
     }
 
     @media (max-width: 650px) {
-        font-size: 16px;
+        font-size: ${({ theme }) => theme.fontSize.f16};
     }
 
     @media (max-width: 500px) {
-        font-size: 14px;
+        font-size: ${({ theme }) => theme.fontSize.f14};
     }
 `;

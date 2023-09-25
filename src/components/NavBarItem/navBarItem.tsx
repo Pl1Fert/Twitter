@@ -6,7 +6,7 @@ import { userSelector } from "@/store/selectors";
 import { sidebarActions } from "@/store/slices/sidebarSlice";
 
 import { NavBarItemProps } from "./navBarItem.interfaces";
-import { ListItem, StyledLink } from "./navBarItem.styled";
+import { Icon, ListItem, StyledLink } from "./navBarItem.styled";
 
 export const NavBarItem = memo<NavBarItemProps>(({ link: { title, to, icon, activeIcon } }) => {
     const match = useMatch({
@@ -25,7 +25,7 @@ export const NavBarItem = memo<NavBarItemProps>(({ link: { title, to, icon, acti
     return (
         <ListItem onClick={closeSidebar}>
             <StyledLink to={dest} $active={match}>
-                <img src={match ? activeIcon : icon} alt={title} />
+                <Icon src={match ? activeIcon : icon} alt={title} />
                 {title}
             </StyledLink>
         </ListItem>

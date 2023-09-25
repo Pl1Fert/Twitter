@@ -7,7 +7,6 @@ export const StyledLink = styled(Link)<{ $active: PathMatch<string> | null }>`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 15px;
 
     font-weight: ${({ $active, theme }) =>
         $active ? theme.fontWeights.semiBold : theme.fontWeights.regular};
@@ -21,4 +20,9 @@ export const StyledLink = styled(Link)<{ $active: PathMatch<string> | null }>`
     }
 `;
 
-export const ListItem = styled.li``;
+export const ListItem = styled.li`
+    margin-bottom: 20px;
+`;
+export const Icon = styled.img`
+    margin-right: 15px;
+`;

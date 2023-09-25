@@ -20,7 +20,7 @@ export const Ring = styled.div`
     height: 200px;
 
     text-align: center;
-    font-size: 20px;
+    font-size: ${({ theme }) => theme.fontSize.f20};
     letter-spacing: 4px;
     text-transform: uppercase;
     line-height: 190px;

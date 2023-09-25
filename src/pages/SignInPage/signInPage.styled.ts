@@ -24,10 +24,10 @@ export const Wrapper = styled.div`
 export const Title = styled.h1`
     margin-bottom: 40px;
 
-    font-size: 42px;
+    font-size: ${({ theme }) => theme.fontSize.f42};
 
     @media (max-width: 500px) {
-        font-size: 35px;
+        font-size: ${({ theme }) => theme.fontSize.f35};
     }
 `;
 

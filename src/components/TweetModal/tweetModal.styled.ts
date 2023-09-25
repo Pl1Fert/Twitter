@@ -46,7 +46,7 @@ export const TextArea = styled.textarea`
 
     outline: none;
     font: inherit;
-    font-size: 18px;
+    font-size: ${({ theme }) => theme.fontSize.f18};
 
     color: ${({ theme }) => theme.input.textColor.primary};
     background-color: transparent;
@@ -61,7 +61,7 @@ export const TextArea = styled.textarea`
 
     &::placeholder {
         font: inherit;
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
 
         color: ${({ theme }) => theme.input.placeholder.primary};
     }

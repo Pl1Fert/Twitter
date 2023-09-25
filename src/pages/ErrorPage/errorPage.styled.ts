@@ -14,5 +14,5 @@ export const Section = styled.section`
 export const Title = styled.h1`
     margin-top: 20px;
 
-    font-size: 40px;
+    font-size: ${({ theme }) => theme.fontSize.f42};
 `;

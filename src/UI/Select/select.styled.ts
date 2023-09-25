@@ -8,7 +8,7 @@ export const StyledSelect = styled.select<{ $width?: string }>`
     padding: 20px;
 
     font: inherit;
-    font-size: 15px;
+    font-size: ${({ theme }) => theme.fontSize.f14};
 
     border-radius: 6px;
     outline: none;

@@ -17,11 +17,11 @@ export const SearchBar = styled.input`
     color: ${({ theme }) => theme.input.textColor.primary};
 
     font: inherit;
-    font-size: 18px;
+    font-size: ${({ theme }) => theme.fontSize.f18};
 
     &::placeholder {
         font: inherit;
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
 
         color: ${({ theme }) => theme.input.placeholder.primary};
     }
@@ -43,7 +43,7 @@ export const Title = styled.p`
     padding: 20px 0;
     color: ${({ theme }) => theme.textColor};
 
-    font-size: 20px;
+    font-size: ${({ theme }) => theme.fontSize.f20};
 `;
 
 export const Span = styled.span`
@@ -126,4 +126,14 @@ export const Aside = styled.aside<{ $isVisible?: boolean }>`
     }
 
     transition: right 0.4s linear;
+`;
+
+export const CloseOutside = styled.div<{ $isVisible?: boolean }>`
+    display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 9;
 `;

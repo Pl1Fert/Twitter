@@ -1,164 +1,207 @@
 import { DefaultTheme } from "styled-components";
 
+import { Colors } from "@/theme/colors";
+import { FontSizes, FontWeights } from "@/theme/fonts";
+
 export const LightTheme: DefaultTheme = {
-    backgroundColor: "#ffffff",
-    textColor: "#000000",
-    shadowColor: "#808080",
-    border: "#E4EAED",
+    backgroundColor: Colors.white,
+    textColor: Colors.black,
+    shadowColor: Colors.grey,
+    border: Colors.lightGrey,
     button: {
         backgroundColor: {
-            primary: "#1D9BF0",
-            hover: "#187cba",
-            disabled: "#67B4E3",
-            secondary: "#B3B8BB",
+            primary: Colors.blue,
+            hover: Colors.darkBlue,
+            disabled: Colors.lightBlue,
         },
         textColor: {
-            primary: "#ffffff",
-            outline: "#000000",
+            primary: Colors.white,
+            outline: Colors.black,
         },
         border: {
-            primary: "#E4EAED",
-            hover: "#000000",
+            primary: Colors.lightGrey,
+            hover: Colors.black,
         },
     },
     input: {
         backgroundColor: {
-            primary: "transparent",
-            search: "#eff3f4",
+            primary: Colors.transparent,
+            search: Colors.veryLightGrey,
         },
         textColor: {
-            primary: "#000000",
+            primary: Colors.black,
         },
         border: {
-            primary: "#E4EAED",
-            focused: "#000000",
+            primary: Colors.lightGrey,
+            focused: Colors.black,
         },
-        placeholder: { primary: "#666666" },
+        placeholder: {
+            primary: Colors.darkGrey,
+        },
     },
     select: {
         backgroundColor: {
-            primary: "#ffffff",
+            primary: Colors.white,
         },
         textColor: {
-            primary: "#000000",
-            disabled: "#666666",
+            primary: Colors.black,
+            disabled: Colors.darkGrey,
         },
         border: {
-            primary: "#E4EAED",
-            focused: "#000000",
+            primary: Colors.lightGrey,
+            focused: Colors.black,
         },
     },
     notification: {
         border: {
-            error: "#e7182e",
-            success: "#16cd4a",
-            warning: "#d8ae17",
+            error: Colors.red,
+            success: Colors.green,
+            warning: Colors.yellow,
         },
         color: {
-            primary: "#000000",
+            primary: Colors.black,
         },
         backgroundColor: {
-            primary: "#ffffff",
+            primary: Colors.white,
         },
         shadow: {
-            primary: "#808080",
+            primary: Colors.grey,
         },
     },
     links: {
         backgroundColor: {
-            hover: "#eff3f490",
+            hover: Colors.veryLightGrey,
         },
     },
     fontColors: {
-        blue: "#1DA1F2",
-        grey: "#666666",
-        red: "#e7182e",
+        blue: Colors.blue,
+        grey: Colors.darkGrey,
+        red: Colors.red,
     },
     backgroundColors: {
-        blue: "#1D9BF0",
-        sidebar: "#ffffff",
+        blue: Colors.blue,
+        sidebar: Colors.white,
+    },
+    fontWeights: {
+        regular: FontWeights.regular,
+        semiBold: FontWeights.semiBold,
+        medium: FontWeights.medium,
+        bold: FontWeights.bold,
+    },
+    fontSize: {
+        f64: FontSizes.f64,
+        f42: FontSizes.f42,
+        f35: FontSizes.f35,
+        f24: FontSizes.f24,
+        f20: FontSizes.f20,
+        f18: FontSizes.f18,
+        f16: FontSizes.f16,
+        f15: FontSizes.f15,
+        f14: FontSizes.f14,
+        f12: FontSizes.f12,
     },
 };
 
 export const DarkTheme: DefaultTheme = {
-    backgroundColor: "#092441",
-    textColor: "#ffffff",
-    shadowColor: "#808080",
-    border: "#E4EAED",
+    backgroundColor: Colors.veryDarkBlue,
+    textColor: Colors.white,
+    shadowColor: Colors.grey,
+    border: Colors.lightGrey,
     button: {
         backgroundColor: {
-            primary: "#1D9BF0",
-            hover: "#187cba",
-            disabled: "#67B4E3",
-            secondary: "#B3B8BB",
+            primary: Colors.blue,
+            hover: Colors.darkBlue,
+            disabled: Colors.lightBlue,
         },
         textColor: {
-            primary: "#ffffff",
-            outline: "#ffffff",
+            primary: Colors.white,
+            outline: Colors.white,
         },
         border: {
-            primary: "#E4EAED",
-            hover: "#1D9BF0",
+            primary: Colors.lightGrey,
+            hover: Colors.blue,
         },
     },
     input: {
         backgroundColor: {
-            primary: "#4D90D9",
-            search: "#4D90D9",
+            primary: Colors.middleBlue,
+            search: Colors.middleBlue,
         },
         textColor: {
-            primary: "#ffffff",
+            primary: Colors.white,
         },
         border: {
-            primary: "#E4EAED",
-            focused: "#000000",
+            primary: Colors.lightGrey,
+            focused: Colors.black,
         },
-        placeholder: { primary: "#666666" },
+        placeholder: {
+            primary: Colors.darkGrey,
+        },
     },
     select: {
         backgroundColor: {
-            primary: "#ffffff",
+            primary: Colors.white,
         },
         textColor: {
-            primary: "#ffffff",
-            disabled: "#666666",
+            primary: Colors.white,
+            disabled: Colors.darkGrey,
         },
         border: {
-            primary: "#E4EAED",
-            focused: "#1D9BF0",
-            hover: "#1D9BF0",
+            primary: Colors.lightGrey,
+            focused: Colors.blue,
+            hover: Colors.blue,
         },
     },
     notification: {
         border: {
-            error: "#e7182e",
-            success: "#16cd4a",
-            warning: "#d8ae17",
+            error: Colors.red,
+            success: Colors.green,
+            warning: Colors.yellow,
         },
         color: {
-            primary: "#ffffff",
+            primary: Colors.white,
         },
         backgroundColor: {
-            primary: "#092441",
+            primary: Colors.veryDarkBlue,
         },
         shadow: {
-            primary: "#808080",
+            primary: Colors.grey,
         },
     },
     links: {
         backgroundColor: {
-            hover: "#8eb2db",
+            hover: Colors.veryLightBlue,
         },
     },
     fontColors: {
-        blue: "#1DA1F2",
-        grey: "#666666",
-        red: "#e7182e",
-        white: "#ffffff",
+        blue: Colors.blue,
+        grey: Colors.darkGrey,
+        red: Colors.red,
+        white: Colors.white,
     },
     backgroundColors: {
-        blue: "#1D9BF0",
-        light: "#eff3f4",
-        sidebar: "#092441",
+        blue: Colors.blue,
+        light: Colors.veryLightGrey,
+        sidebar: Colors.veryDarkBlue,
+    },
+    fontWeights: {
+        regular: FontWeights.regular,
+        semiBold: FontWeights.semiBold,
+        medium: FontWeights.medium,
+        bold: FontWeights.bold,
+    },
+    fontSize: {
+        f64: FontSizes.f64,
+        f42: FontSizes.f42,
+        f35: FontSizes.f35,
+        f32: FontSizes.f32,
+        f24: FontSizes.f24,
+        f20: FontSizes.f20,
+        f18: FontSizes.f18,
+        f16: FontSizes.f16,
+        f15: FontSizes.f15,
+        f14: FontSizes.f14,
+        f12: FontSizes.f12,
+        f10: FontSizes.f10,
     },
 };

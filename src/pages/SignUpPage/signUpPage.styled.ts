@@ -17,10 +17,10 @@ export const Section = styled.section`
 export const Title = styled.h1`
     margin-bottom: 30px;
 
-    font-size: 42px;
+    font-size: ${({ theme }) => theme.fontSize.f42};
 
     @media (max-width: 500px) {
-        font-size: 35px;
+        font-size: ${({ theme }) => theme.fontSize.f35};
     }
 `;
 
@@ -35,7 +35,7 @@ export const StyledLink = styled(Link)`
     max-width: fit-content;
     border-bottom: 1px solid transparent;
 
-    font-size: 15px;
+    font-size: ${({ theme }) => theme.fontSize.f14};
 
     color: ${({ theme }) => theme.fontColors.blue};
 
@@ -70,13 +70,13 @@ export const Logo = styled.img`
 export const SubTitle = styled.h2`
     margin-top: 15px;
 
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fontSize.f16};
 `;
 
 export const Text = styled.p`
     margin: 20px 0;
 
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fontSize.f14};
     line-height: 24px;
 `;
 
@@ -93,7 +93,7 @@ export const ErorrsWrapper = styled.div`
     justify-content: flex-start;
     gap: 10px;
 
-    font-size: 12px;
+    font-size: ${({ theme }) => theme.fontSize.f12};
 
     color: ${({ theme }) => theme.fontColors.red};
 `;

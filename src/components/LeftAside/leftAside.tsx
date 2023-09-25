@@ -12,7 +12,16 @@ import { sidebarActions } from "@/store/slices/sidebarSlice";
 import { userActions } from "@/store/slices/userSlice";
 import { Button } from "@/UI";
 
-import { Aside, Avatar, Burger, Row, Span, SubTitle, Title } from "./leftAside.styled";
+import {
+    Aside,
+    Avatar,
+    Burger,
+    CloseOutside,
+    Row,
+    Span,
+    SubTitle,
+    Title,
+} from "./leftAside.styled";
 
 export const LeftAside: FC = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -43,7 +52,7 @@ export const LeftAside: FC = () => {
         }
     };
 
-    const toggleVisibility = () => {
+    const toggleVisibility = (): void => {
         dispatch(sidebarActions.toggleLeft());
     };
 
@@ -81,6 +90,7 @@ export const LeftAside: FC = () => {
                     onClick={logOutHandler}
                 />
             </Aside>
+            <CloseOutside onClick={toggleVisibility} $isVisible={isVisible} />
             {isModalOpen && <TweetModal closeModal={modalClickHandler} />}
         </>
     );
