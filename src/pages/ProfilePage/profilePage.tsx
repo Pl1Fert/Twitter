@@ -70,7 +70,9 @@ const ProfilePage: FC = () => {
     return (
         <>
             <Top>
-                {id !== myId && <BackIcon src={backArrow} onClick={backClickHandler} />}
+                {id !== myId && (
+                    <BackIcon src={backArrow} onClick={backClickHandler} loading="lazy" />
+                )}
                 <div>
                     <Title>{user.name}</Title>
                     <Tweets>{tweetsCount} Tweets</Tweets>

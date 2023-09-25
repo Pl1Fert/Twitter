@@ -28,19 +28,16 @@ export const Feed = memo<FeedProps>(({ fromUser = "", setTweetsCount }) => {
         );
     }, []);
 
-    useEffect(() => {
-        if (setTweetsCount) {
-            setTweetsCount(tweets.length);
-        }
-    }, [tweets, setTweetsCount]);
-
     const renderTweets = (): JSX.Element[] => {
         if (fromUser) {
-            return tweets
-                .filter((item) => item.tweet.email === fromUser)
-                .map(({ id, tweet }) => (
-                    <Tweet key={id} tweet={tweet} id={id} fromUser={fromUser} />
-                ));
+            const userTweets = tweets.filter((item) => item.tweet.email === fromUser);
+            if (setTweetsCount) {
+                setTweetsCount(userTweets.length);
+            }
+
+            return userTweets.map(({ id, tweet }) => (
+                <Tweet key={id} tweet={tweet} id={id} fromUser={fromUser} />
+            ));
         }
 
         return tweets.map(({ id, tweet }) => (

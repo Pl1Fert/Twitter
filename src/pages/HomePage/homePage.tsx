@@ -69,9 +69,9 @@ const HomePage: FC = () => {
     return (
         <Wrapper>
             <Row>
-                <Image src={picture} alt="art" />
+                <Image src={picture} alt="art" loading="lazy" />
                 <Column>
-                    <Logo src={logo} alt="logo" />
+                    <Logo src={logo} alt="logo" loading="lazy" />
                     <Title>Happening now</Title>
                     <Subtitle>Join Twitter today</Subtitle>
                     <ButtonsColumn>

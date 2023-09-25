@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Section = styled.section`
     max-width: 600px;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 40px;
 
     display: flex;
     flex-direction: column;

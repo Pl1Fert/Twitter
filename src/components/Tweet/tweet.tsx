@@ -103,7 +103,7 @@ export const Tweet = memo<TweetProps>(
 
         return (
             <Container>
-                <Avatar src={person} alt="person" />
+                <Avatar src={person} alt="person" loading="lazy" />
                 <Content>
                     <Header>
                         <Name>{name}</Name>
@@ -111,17 +111,14 @@ export const Tweet = memo<TweetProps>(
                         <Date>{createdAt.toDate().toLocaleString()}</Date>
                     </Header>
                     <Text>{text}</Text>
-                    {!!imageUrl && <Image src={imageUrl} />}
+                    {!!imageUrl && <Image src={imageUrl} loading="lazy" />}
                     <Footer>
-                        {liked ? (
-                            <LikeImage
-                                src={activeLike}
-                                alt="activeLike"
-                                onClick={clickLikeHandler}
-                            />
-                        ) : (
-                            <LikeImage src={like} alt="like" onClick={clickLikeHandler} />
-                        )}
+                        <LikeImage
+                            src={liked ? activeLike : like}
+                            alt="activeLike"
+                            onClick={clickLikeHandler}
+                            loading="lazy"
+                        />
                         <TweetCount>{likes || 0}</TweetCount>
                     </Footer>
                 </Content>

@@ -67,11 +67,11 @@ export const TweetBox: FC = () => {
 
     return (
         <Container>
-            <Avatar src={person} alt="person" />
+            <Avatar src={person} alt="person" loading="lazy" />
             <Column>
                 <TextArea placeholder="What's happening" value={value} onChange={onChangeHandler} />
                 <Label htmlFor="upload-photo">
-                    <UploadIcon src={uploadIcon} alt="upload" />
+                    <UploadIcon src={uploadIcon} alt="upload" loading="lazy" />
                     <FileInput type="file" id="upload-photo" onChange={inputFileChangeHandler} />
                 </Label>
             </Column>

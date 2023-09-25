@@ -35,7 +35,7 @@ const TweetPage: FC = () => {
 
     return (
         <>
-            <BackIcon src={backArrow} alt="back" onClick={backClickHandler} />
+            <BackIcon src={backArrow} alt="back" onClick={backClickHandler} loading="lazy" />
             {id && tweet && <Tweet id={id} tweet={tweet} />}
         </>
     );
