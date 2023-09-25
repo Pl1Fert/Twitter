@@ -37,8 +37,8 @@ export const Row = styled.div`
 `;
 
 export const Title = styled.p`
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+    font-size: 16px;
 
     color: ${({ theme }) => theme.textColor};
 `;

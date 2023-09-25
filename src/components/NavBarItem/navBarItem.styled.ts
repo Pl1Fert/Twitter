@@ -9,7 +9,8 @@ export const StyledLink = styled(Link)<{ $active: PathMatch<string> | null }>`
     justify-content: flex-start;
     gap: 15px;
 
-    font-weight: ${({ $active }) => ($active ? "600" : "400")};
+    font-weight: ${({ $active, theme }) =>
+        $active ? theme.fontWeights.semiBold : theme.fontWeights.regular};
 
     border-radius: 8px;
 

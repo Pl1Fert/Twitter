@@ -52,7 +52,7 @@ export const Content = styled.div`
 `;
 
 export const Name = styled.p`
-    font-weight: 600;
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 
     @media screen and (max-width: 550px) {
         font-size: 16px;
