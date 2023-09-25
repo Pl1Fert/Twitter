@@ -1,11 +1,10 @@
-import { memo } from "react";
+import { memo, SyntheticEvent } from "react";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { Form } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import closeIcon from "@/assets/icons/cross.svg";
-import { Button, Input } from "@/components/UI";
 import { ButtonType, InputType, NotificationMessages, NotificationTypes } from "@/constants";
 import { isFirebaseError, isSomethingChanged } from "@/helpers";
 import { useAppDispatch, useAppSelector } from "@/hooks";
@@ -14,10 +13,11 @@ import { UserService } from "@/services";
 import { userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
+import { Button, Input } from "@/UI";
 import { ProfileEditScheme } from "@/validators/profileEditScheme";
 
 import { ProfileEditModalProps } from "./profileEditModal.interfaces";
-import { Center, ErorrsWrapper, Image, Label, Modal, Row } from "./profileEditModal.styled";
+import { Center, Container, Image, Label, Modal, Row } from "./profileEditModal.styled";
 
 export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => {
     const {
@@ -69,96 +69,101 @@ export const ProfileEditModal = memo<ProfileEditModalProps>(({ closeModal }) => 
         }
     };
 
+    const closeOutside = (e: SyntheticEvent): void => {
+        if (e.currentTarget === e.target) {
+            closeModal();
+        }
+    };
+
     return createPortal(
-        <Modal id="profileEditModal">
-            <Form onSubmit={handleSubmit(submitHandler)}>
-                <Row>
-                    <Label>
-                        Name:{" "}
-                        <Input placeholder="Name" {...register("name")} defaultValue={name ?? ""} />
-                    </Label>
-                    <Label>
-                        Email:{" "}
-                        <Input
-                            placeholder="Email"
-                            {...register("email")}
-                            defaultValue={email ?? ""}
+        <Container id="profileEditModal" onClick={closeOutside}>
+            <Modal>
+                <Form onSubmit={handleSubmit(submitHandler)}>
+                    <Row>
+                        <Label>
+                            Name:{" "}
+                            <Input
+                                placeholder="Name"
+                                {...register("name")}
+                                defaultValue={name ?? ""}
+                                errorMessage={errors?.name?.message}
+                            />
+                        </Label>
+                        <Label>
+                            Email:{" "}
+                            <Input
+                                placeholder="Email"
+                                {...register("email")}
+                                defaultValue={email ?? ""}
+                                errorMessage={errors?.email?.message}
+                            />
+                        </Label>
+                        <Label>
+                            Phone:{" "}
+                            <Input
+                                placeholder="Phone"
+                                {...register("phone")}
+                                defaultValue={phone ?? ""}
+                                errorMessage={errors?.phone?.message}
+                            />
+                        </Label>
+                    </Row>
+                    <Row>
+                        <Label>
+                            BirthDate:{" "}
+                            <Input
+                                placeholder="dd/Month/yyyy"
+                                {...register("birthDate")}
+                                defaultValue={birthDate ?? ""}
+                                errorMessage={errors?.birthDate?.message}
+                            />
+                        </Label>
+                    </Row>
+                    <Row>
+                        <Label>
+                            New Password:{" "}
+                            <Input
+                                placeholder="Password"
+                                type={InputType.password}
+                                autoComplete="new-password"
+                                {...register("newPassword")}
+                                errorMessage={errors?.newPassword?.message}
+                            />
+                        </Label>
+                        <Label>
+                            Confirm Password:{" "}
+                            <Input
+                                placeholder="Password"
+                                type={InputType.password}
+                                autoComplete="new-password"
+                                {...register("confirmPassword")}
+                                errorMessage={errors?.confirmPassword?.message}
+                            />
+                        </Label>
+                    </Row>
+                    <Center>
+                        <Label>
+                            Description:
+                            <Input
+                                placeholder="Description"
+                                {...register("description")}
+                                defaultValue={description ?? ""}
+                            />
+                        </Label>
+                    </Center>
+                    <Center>
+                        <Button
+                            type={ButtonType.submit}
+                            primary
+                            content="Save"
+                            width="30%"
+                            disabled={!isDirty || !isValid || isSubmitting}
                         />
-                    </Label>
-                    <Label>
-                        Phone:{" "}
-                        <Input
-                            placeholder="Phone"
-                            {...register("phone")}
-                            defaultValue={phone ?? ""}
-                        />
-                    </Label>
-                </Row>
-                <ErorrsWrapper>
-                    {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
-                    {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
-                </ErorrsWrapper>
-                <Row>
-                    <Label>
-                        BirthDate:{" "}
-                        <Input
-                            placeholder="dd/Month/yyyy"
-                            {...register("birthDate")}
-                            defaultValue={birthDate ?? ""}
-                        />
-                    </Label>
-                </Row>
-                <ErorrsWrapper>
-                    {errors?.birthDate && <p>{errors?.birthDate?.message || "Error!"}</p>}
-                </ErorrsWrapper>
-                <Row>
-                    <Label>
-                        New Password:{" "}
-                        <Input
-                            placeholder="Password"
-                            type={InputType.password}
-                            autoComplete="new-password"
-                            {...register("newPassword")}
-                        />
-                    </Label>
-                    <Label>
-                        Confirm Password:{" "}
-                        <Input
-                            placeholder="Password"
-                            type={InputType.password}
-                            autoComplete="new-password"
-                            {...register("confirmPassword")}
-                        />
-                    </Label>
-                </Row>
-                <ErorrsWrapper>
-                    {errors?.newPassword && <p>{errors?.newPassword?.message || "Error!"}</p>}
-                    {errors?.confirmPassword && (
-                        <p>{errors?.confirmPassword?.message || "Error!"}</p>
-                    )}
-                </ErorrsWrapper>
-                <Center>
-                    <Label>
-                        Description:
-                        <Input
-                            placeholder="Description"
-                            {...register("description")}
-                            defaultValue={description ?? ""}
-                        />
-                    </Label>
-                </Center>
-                <Center>
-                    <Button
-                        type={ButtonType.submit}
-                        primary
-                        content="Save"
-                        width="30%"
-                        disabled={!isDirty || !isValid || isSubmitting}
-                    />
-                </Center>
-            </Form>
-            <Image src={closeIcon} alt="closeIcon" onClick={closeModal} />
-        </Modal>,
+                    </Center>
+                </Form>
+                <Image src={closeIcon} alt="closeIcon" onClick={closeModal} />
+            </Modal>
+        </Container>,
         document.body
     );
 });

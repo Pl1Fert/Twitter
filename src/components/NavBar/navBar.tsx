@@ -8,7 +8,7 @@ import { List, Logo, Nav } from "./navBar.styled";
 
 export const NavBar: FC = () => (
     <Nav>
-        <Logo src={logo} alt="logo" />
+        <Logo src={logo} alt="logo" loading="lazy" />
         <List>
             {NAV_LINKS.map((link) => (
                 <NavBarItem key={link.id} link={link} />

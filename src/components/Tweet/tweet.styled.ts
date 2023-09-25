@@ -9,14 +9,12 @@ export const Container = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 10px;
 `;
 
 export const Header = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 8px;
 
     @media screen and (max-width: 1160px) {
         flex-wrap: wrap;
@@ -25,7 +23,7 @@ export const Header = styled.div`
 
 export const TweetCount = styled.p`
     @media screen and (max-width: 550px) {
-        font-size: 14px;
+        font-size: ${({ theme }) => theme.fontSize.f14};
     }
 `;
 
@@ -33,7 +31,7 @@ export const Text = styled.p`
     padding-top: 8px;
 
     @media screen and (max-width: 550px) {
-        font-size: 16px;
+        font-size: ${({ theme }) => theme.fontSize.f16};
     }
 `;
 
@@ -43,7 +41,6 @@ export const Footer = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
 `;
 
 export const Content = styled.div`
@@ -52,34 +49,39 @@ export const Content = styled.div`
 `;
 
 export const Name = styled.p`
-    font-weight: 600;
+    margin-right: 8px;
+
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 
     @media screen and (max-width: 550px) {
-        font-size: 16px;
+        font-size: ${({ theme }) => theme.fontSize.f16};
     }
 `;
 
 export const Email = styled.p`
+    margin-right: 8px;
+
     @media screen and (max-width: 550px) {
-        font-size: 14px;
+        font-size: ${({ theme }) => theme.fontSize.f14};
     }
 `;
 
 export const Date = styled.p`
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fontSize.f14};
 
     @media screen and (max-width: 1160px) {
         width: 100%;
     }
 
     @media screen and (max-width: 550px) {
-        font-size: 12px;
+        font-size: ${({ theme }) => theme.fontSize.f12};
     }
 `;
 
 export const Avatar = styled.img`
     width: 45px;
-    height: 50px;
+    height: 45px;
+    margin-right: 15px;
 
     @media screen and (max-width: 550px) {
         width: 35px;
@@ -88,6 +90,8 @@ export const Avatar = styled.img`
 `;
 
 export const LikeImage = styled.img`
+    margin-right: 10px;
+
     cursor: pointer;
 `;
 

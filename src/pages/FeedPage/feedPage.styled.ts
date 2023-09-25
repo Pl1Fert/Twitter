@@ -11,11 +11,11 @@ export const Header = styled.header`
 export const Title = styled.p`
     margin-bottom: 5px;
 
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+    font-size: ${({ theme }) => theme.fontSize.f20};
 
     @media screen and (max-width: 550px) {
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
     }
 `;
 

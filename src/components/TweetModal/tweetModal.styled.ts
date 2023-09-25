@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
-export const Modal = styled.div`
+export const Container = styled.div`
     position: fixed;
-    left: 50%;
-    top: 50%;
-    z-index: 50;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const Modal = styled.div`
+    position: relative;
 
     width: 500px;
     height: 500px;
@@ -18,8 +24,6 @@ export const Modal = styled.div`
     box-shadow: 0 0 5px ${({ theme }) => theme.shadowColor};
     border-radius: 6px;
     background-color: ${({ theme }) => theme.backgroundColor};
-
-    transform: translate(-50%, -50%);
 `;
 
 export const Image = styled.img`
@@ -42,7 +46,7 @@ export const TextArea = styled.textarea`
 
     outline: none;
     font: inherit;
-    font-size: 18px;
+    font-size: ${({ theme }) => theme.fontSize.f18};
 
     color: ${({ theme }) => theme.input.textColor.primary};
     background-color: transparent;
@@ -57,7 +61,7 @@ export const TextArea = styled.textarea`
 
     &::placeholder {
         font: inherit;
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
 
         color: ${({ theme }) => theme.input.placeholder.primary};
     }

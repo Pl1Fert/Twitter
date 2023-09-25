@@ -39,35 +39,31 @@ export const Content = styled.div`
 export const Title = styled.p`
     margin-bottom: 5px;
 
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+    font-size: ${({ theme }) => theme.fontSize.f20};
 
     @media screen and (max-width: 550px) {
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
     }
 `;
 
 export const Name = styled.p`
-    font-weight: 600;
-    font-size: 24px;
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+    font-size: ${({ theme }) => theme.fontSize.f24};
 
     @media screen and (max-width: 550px) {
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
     }
 `;
 
 export const Email = styled.p`
     margin-bottom: 15px;
 
-    font-size: 16px;
-
-    @media screen and (max-width: 550px) {
-        font-size: 16px;
-    }
+    font-size: ${({ theme }) => theme.fontSize.f16};
 `;
 
 export const Tweets = styled.p`
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fontSize.f14};
 `;
 
 export const Top = styled.div`
@@ -76,16 +72,15 @@ export const Top = styled.div`
 
     display: flex;
     align-items: center;
-    gap: 15px;
 `;
 
 export const Description = styled.p`
-    font-size: 20px;
+    font-size: ${({ theme }) => theme.fontSize.f20};
 
     @media screen and (max-width: 550px) {
         margin-bottom: 20px;
 
-        font-size: 15px;
+        font-size: ${({ theme }) => theme.fontSize.f14};
     }
 `;
 
@@ -95,15 +90,17 @@ export const TabName = styled.p`
     margin-bottom: 15px;
     border-bottom: 1px solid ${({ theme }) => theme.border};
 
-    font-size: 20px;
+    font-size: ${({ theme }) => theme.fontSize.f20};
 
     cursor: pointer;
 
     @media screen and (max-width: 550px) {
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
     }
 `;
 
 export const BackIcon = styled.img`
+    margin-right: 15px;
+
     cursor: pointer;
 `;

@@ -1,18 +1,27 @@
 import { FC, useState } from "react";
-import { getAuth } from "firebase/auth";
 
-import profilePhoto from "@/assets/images/profile-photo.jpg";
+import profilePhoto from "@/assets/images/avatar.png";
 import { NavBar, TweetModal } from "@/components";
-import { Button } from "@/components/UI";
 import { ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
 import { isFirebaseError } from "@/helpers";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { UserService } from "@/services";
 import { sidebarSelector, userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { sidebarActions } from "@/store/slices/sidebarSlice";
 import { userActions } from "@/store/slices/userSlice";
+import { Button } from "@/UI";
 
-import { Aside, Avatar, Burger, Row, Span, SubTitle, Title } from "./leftAside.styled";
+import {
+    Aside,
+    Avatar,
+    Burger,
+    CloseOutside,
+    Row,
+    Span,
+    SubTitle,
+    Title,
+} from "./leftAside.styled";
 
 export const LeftAside: FC = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -22,10 +31,8 @@ export const LeftAside: FC = () => {
     const dispatch = useAppDispatch();
 
     const logOutHandler = async (): Promise<void> => {
-        const auth = getAuth();
-
         try {
-            await auth.signOut();
+            await UserService.signOut();
             dispatch(userActions.deleteUser());
             dispatch(
                 notificationActions.addNotification({
@@ -45,7 +52,7 @@ export const LeftAside: FC = () => {
         }
     };
 
-    const toggleVisibility = () => {
+    const toggleVisibility = (): void => {
         dispatch(sidebarActions.toggleLeft());
     };
 
@@ -83,6 +90,7 @@ export const LeftAside: FC = () => {
                     onClick={logOutHandler}
                 />
             </Aside>
+            <CloseOutside onClick={toggleVisibility} $isVisible={isVisible} />
             {isModalOpen && <TweetModal closeModal={modalClickHandler} />}
         </>
     );

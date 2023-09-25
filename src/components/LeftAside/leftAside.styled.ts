@@ -29,7 +29,6 @@ export const Row = styled.div`
 
     display: flex;
     align-items: center;
-    gap: 30px;
 
     @media screen and (max-width: 750px) {
         flex-direction: column;
@@ -37,21 +36,23 @@ export const Row = styled.div`
 `;
 
 export const Title = styled.p`
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+    font-size: ${({ theme }) => theme.fontSize.f16};
 
     color: ${({ theme }) => theme.textColor};
 `;
 
 export const SubTitle = styled.p`
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fontSize.f14};
 
     color: ${({ theme }) => theme.textColor};
 `;
 
 export const Avatar = styled.img`
-    width: 50px;
-    height: 50px;
+    margin-right: 30px;
+
+    width: 45px;
+    height: 45px;
 
     @media screen and (max-width: 750px) {
         display: none;
@@ -119,4 +120,14 @@ export const Burger = styled.div<{ $isVisible?: boolean }>`
     @media screen and (max-width: 750px) {
         display: block;
     }
+`;
+
+export const CloseOutside = styled.div<{ $isVisible?: boolean }>`
+    display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 9;
 `;

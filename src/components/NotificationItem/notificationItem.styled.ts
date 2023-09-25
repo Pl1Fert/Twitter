@@ -7,30 +7,19 @@ export const ListItem = styled.li<{ $type: NotificationTypes }>`
     width: fit-content;
     padding: 20px;
     border-bottom: 2px solid;
+    margin-bottom: 20px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
 
-    border-color: ${({ $type, theme }) => {
-        switch ($type) {
-            case "error":
-                return theme.notification.border.error;
-            case "success":
-                return theme.notification.border.success;
-            case "warning":
-                return theme.notification.border.warning;
-            default:
-                return "transparent";
-        }
-    }};
+    border-color: ${({ $type, theme }) => theme.notification.border[$type] ?? "transparent"};
     background-color: ${({ theme }) => theme.notification.backgroundColor.primary};
     color: ${({ theme }) => theme.notification.color.primary};
     box-shadow: 0 0 5px ${({ theme }) => theme.notification.shadow.primary};
     border-radius: 8px;
 
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fontSize.f16};
 `;
 
 export const CloseButton = styled.img`
@@ -38,4 +27,8 @@ export const CloseButton = styled.img`
     height: 20px;
 
     cursor: pointer;
+`;
+
+export const Message = styled.p`
+    padding-right: 15px;
 `;

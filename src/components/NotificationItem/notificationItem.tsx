@@ -5,13 +5,13 @@ import { useAppDispatch } from "@/hooks";
 import { notificationActions } from "@/store/slices/notificationSlice";
 
 import { NotificationItemProps } from "./notificationItem.interfaces";
-import { CloseButton, ListItem } from "./notificationItem.styled";
+import { CloseButton, ListItem, Message } from "./notificationItem.styled";
 
 export const NotificationItem = memo<NotificationItemProps>(
     ({ notification: { id, type, message } }) => {
         const dispatch = useAppDispatch();
 
-        const handleDismiss = () => {
+        const handleDismiss = (): void => {
             dispatch(notificationActions.dismissNotification(id));
         };
 
@@ -27,7 +27,7 @@ export const NotificationItem = memo<NotificationItemProps>(
 
         return (
             <ListItem $type={type}>
-                {message}
+                <Message>{message}</Message>
                 <CloseButton src={cross} alt="cross" onClick={handleDismiss} />
             </ListItem>
         );

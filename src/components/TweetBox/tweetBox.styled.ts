@@ -22,7 +22,7 @@ export const TextArea = styled.textarea`
 
     outline: none;
     font: inherit;
-    font-size: 18px;
+    font-size: ${({ theme }) => theme.fontSize.f18};
 
     color: ${({ theme }) => theme.input.textColor.primary};
     background-color: transparent;
@@ -33,23 +33,23 @@ export const TextArea = styled.textarea`
 
     &::placeholder {
         font: inherit;
-        font-size: 18px;
+        font-size: ${({ theme }) => theme.fontSize.f18};
 
         color: ${({ theme }) => theme.input.placeholder.primary};
 
         @media screen and (max-width: 550px) {
-            font-size: 16px;
+            font-size: ${({ theme }) => theme.fontSize.f16};
         }
     }
 
     @media screen and (max-width: 550px) {
-        font-size: 16px;
+        font-size: ${({ theme }) => theme.fontSize.f16};
     }
 `;
 
 export const Avatar = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
 
     @media screen and (max-width: 550px) {
         display: none;

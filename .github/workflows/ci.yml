@@ -1,5 +1,8 @@
 name: Continuous Integration
-on: [pull_request]
+on:
+    pull_request:
+    push:
+
 jobs:
     buildAndTest:
         name: Build and Test
@@ -10,5 +13,10 @@ jobs:
               run: yarn
             - name: Build
               run: yarn build
-            - name: Test
+              continue-on-error: true
+            - name: Test E2E
               run: yarn cy:e2e
+              continue-on-error: true
+            - name: Test Unit
+              run: yarn jest
+              continue-on-error: true

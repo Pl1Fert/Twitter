@@ -4,8 +4,8 @@ import { ThemeProvider } from "styled-components";
 import { LoadingSpinner, NotificationList } from "@/components";
 import { MainRouter } from "@/routers";
 import { themeSelector } from "@/store/selectors";
-import { GlobalStyles } from "@/styles/globals";
-import { DarkTheme, LightTheme } from "@/styles/theme";
+import { GlobalStyles } from "@/theme/globals";
+import { DarkTheme, LightTheme } from "@/theme/theme";
 
 import { useAppSelector } from "./hooks";
 

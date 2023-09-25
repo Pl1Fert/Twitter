@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const ListItem = styled.li`
     padding: 5px;
+    margin-bottom: 10px;
 
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
 
     border-radius: 8px;
 
@@ -27,4 +27,5 @@ export const Content = styled.div`
 export const Avatar = styled.img`
     width: 40px;
     height: 40px;
+    margin-right: 10px;
 `;

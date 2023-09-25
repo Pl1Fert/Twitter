@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import logo from "@/assets/images/twitter.svg";
-import { Button, Input } from "@/components/UI";
 import {
     AppRoutes,
     ButtonType,
@@ -17,17 +16,10 @@ import { ISignInFormFields } from "@/interfaces";
 import { UserService } from "@/services";
 import { notificationActions } from "@/store/slices/notificationSlice";
 import { userActions } from "@/store/slices/userSlice";
+import { Button, Input } from "@/UI";
 import { SignInScheme } from "@/validators";
 
-import {
-    ErorrsWrapper,
-    Inputs,
-    Logo,
-    Section,
-    StyledLink,
-    Title,
-    Wrapper,
-} from "./signInPage.styled";
+import { Inputs, Logo, Section, StyledLink, Title, Wrapper } from "./signInPage.styled";
 
 const SignInPage: FC = () => {
     const {
@@ -86,17 +78,15 @@ const SignInPage: FC = () => {
                         <Input
                             placeholder="Phone number, email address"
                             {...register("phoneOrEmail")}
+                            errorMessage={errors?.phoneOrEmail?.message}
                         />
                         <Input
                             type={InputType.password}
                             placeholder="Password"
                             {...register("password")}
+                            errorMessage={errors?.password?.message}
                         />
                     </Inputs>
-                    <ErorrsWrapper>
-                        {errors?.phoneOrEmail && <p>{errors?.phoneOrEmail?.message || "Error!"}</p>}
-                        {errors?.password && <p>{errors?.password?.message || "Error!"}</p>}
-                    </ErorrsWrapper>
                     <Button
                         type={ButtonType.submit}
                         primary

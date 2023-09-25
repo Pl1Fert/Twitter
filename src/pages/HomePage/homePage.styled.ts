@@ -42,28 +42,28 @@ export const Column = styled.div`
 export const Title = styled.h1`
     margin-bottom: 40px;
 
-    font-size: 64px;
+    font-size: ${({ theme }) => theme.fontSize.f64};
 
     @media (max-width: 1150px) {
-        font-size: 44px;
+        font-size: ${({ theme }) => theme.fontSize.f42};
     }
 
     @media (max-width: 500px) {
-        font-size: 35px;
+        font-size: ${({ theme }) => theme.fontSize.f35};
     }
 `;
 
 export const Subtitle = styled.h2`
     margin-bottom: 30px;
 
-    font-size: 32px;
+    font-size: ${({ theme }) => theme.fontSize.f32};
 
     @media (max-width: 1150px) {
-        font-size: 24px;
+        font-size: ${({ theme }) => theme.fontSize.f24};
     }
 
     @media (max-width: 500px) {
-        font-size: 20px;
+        font-size: ${({ theme }) => theme.fontSize.f20};
     }
 `;
 
@@ -106,7 +106,7 @@ export const Text = styled.p`
     max-width: 70%;
     margin-bottom: 20px;
 
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.fontSize.f14};
 
     @media (max-width: 1050px) {
         text-align: center;
@@ -138,7 +138,6 @@ export const List = styled.ul`
     padding-left: 4%;
 
     display: flex;
-    gap: 12px;
     align-items: center;
     justify-content: center;
 
@@ -150,13 +149,14 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-    font-size: 13px;
+    margin-right: 12px;
+    font-size: ${({ theme }) => theme.fontSize.f12};
 
     color: ${({ theme }) => theme.textColor};
 
     cursor: default;
 
     @media (max-width: 1200px) {
-        font-size: 10px;
+        font-size: ${({ theme }) => theme.fontSize.f10};
     }
 `;

@@ -5,7 +5,7 @@ import { deleteObject, getDownloadURL, ref } from "firebase/storage";
 import deleteIcon from "@/assets/icons/cross.svg";
 import like from "@/assets/icons/like.svg";
 import activeLike from "@/assets/icons/like-fill.svg";
-import person from "@/assets/images/profile-photo.jpg";
+import person from "@/assets/images/avatar.png";
 import { DbCollections, NotificationMessages, NotificationTypes } from "@/constants";
 import { db, storage } from "@/firebase";
 import { isFirebaseError, isLiked } from "@/helpers";
@@ -103,7 +103,7 @@ export const Tweet = memo<TweetProps>(
 
         return (
             <Container>
-                <Avatar src={person} alt="person" />
+                <Avatar src={person} alt="person" loading="lazy" />
                 <Content>
                     <Header>
                         <Name>{name}</Name>
@@ -111,17 +111,14 @@ export const Tweet = memo<TweetProps>(
                         <Date>{createdAt.toDate().toLocaleString()}</Date>
                     </Header>
                     <Text>{text}</Text>
-                    {!!imageUrl && <Image src={imageUrl} />}
+                    {!!imageUrl && <Image src={imageUrl} loading="lazy" />}
                     <Footer>
-                        {liked ? (
-                            <LikeImage
-                                src={activeLike}
-                                alt="activeLike"
-                                onClick={clickLikeHandler}
-                            />
-                        ) : (
-                            <LikeImage src={like} alt="like" onClick={clickLikeHandler} />
-                        )}
+                        <LikeImage
+                            src={liked ? activeLike : like}
+                            alt="activeLike"
+                            onClick={clickLikeHandler}
+                            loading="lazy"
+                        />
                         <TweetCount>{likes || 0}</TweetCount>
                     </Footer>
                 </Content>

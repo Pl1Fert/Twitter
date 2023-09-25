@@ -3,14 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 
 import backArrow from "@/assets/icons/left.svg";
+import person from "@/assets/images/avatar.png";
 import background from "@/assets/images/home-background.jpg";
-import person from "@/assets/images/profile-photo.jpg";
 import { Feed, ProfileEditModal, TweetBox } from "@/components";
-import { Button } from "@/components/UI";
 import { ButtonType, DbCollections } from "@/constants";
 import { db } from "@/firebase";
 import { useAppSelector } from "@/hooks";
 import { userSelector } from "@/store/selectors";
+import { Button } from "@/UI";
 
 import {
     Avatar,
@@ -70,7 +70,9 @@ const ProfilePage: FC = () => {
     return (
         <>
             <Top>
-                {id !== myId && <BackIcon src={backArrow} onClick={backClickHandler} />}
+                {id !== myId && (
+                    <BackIcon src={backArrow} onClick={backClickHandler} loading="lazy" />
+                )}
                 <div>
                     <Title>{user.name}</Title>
                     <Tweets>{tweetsCount} Tweets</Tweets>
@@ -79,7 +81,7 @@ const ProfilePage: FC = () => {
             <BackgroundImage src={background} alt="background" />
             <Row>
                 <Content>
-                    <Avatar src={person} alt="person" />
+                    <Avatar src={person} alt="person" loading="lazy" />
                     <Name>{user.name}</Name>
                     <Email>{user.email}</Email>
                     <Description>{user.description}</Description>

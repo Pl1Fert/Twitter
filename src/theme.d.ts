@@ -65,5 +65,11 @@ declare module "styled-components" {
         backgroundColors: {
             [key: string]: string;
         };
+        fontWeights: {
+            [key: string]: string;
+        };
+        fontSize: {
+            [key: string]: string;
+        };
     }
 }

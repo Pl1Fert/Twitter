@@ -1,14 +1,14 @@
 import { FC, SyntheticEvent, useState } from "react";
 
 import uploadIcon from "@/assets/icons/upload-image.svg";
-import person from "@/assets/images/profile-photo.jpg";
-import { Button } from "@/components/UI";
+import person from "@/assets/images/avatar.png";
 import { ButtonType, NotificationMessages, NotificationTypes } from "@/constants";
 import { isEmptyString, isFirebaseError } from "@/helpers";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { TweetService } from "@/services";
 import { userSelector } from "@/store/selectors";
 import { notificationActions } from "@/store/slices/notificationSlice";
+import { Button } from "@/UI";
 
 import {
     Avatar,
@@ -67,11 +67,11 @@ export const TweetBox: FC = () => {
 
     return (
         <Container>
-            <Avatar src={person} alt="person" />
+            <Avatar src={person} alt="person" loading="lazy" />
             <Column>
                 <TextArea placeholder="What's happening" value={value} onChange={onChangeHandler} />
                 <Label htmlFor="upload-photo">
-                    <UploadIcon src={uploadIcon} alt="upload" />
+                    <UploadIcon src={uploadIcon} alt="upload" loading="lazy" />
                     <FileInput type="file" id="upload-photo" onChange={inputFileChangeHandler} />
                 </Label>
             </Column>

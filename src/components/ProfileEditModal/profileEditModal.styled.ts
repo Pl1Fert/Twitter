@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
-export const Modal = styled.div`
+export const Container = styled.div`
     position: fixed;
-    left: 50%;
-    top: 50%;
-    z-index: 50;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const Modal = styled.div`
+    position: relative;
 
     width: 1000px;
     height: 500px;
@@ -18,8 +24,6 @@ export const Modal = styled.div`
     box-shadow: 0 0 5px ${({ theme }) => theme.shadowColor};
     border-radius: 6px;
     background-color: ${({ theme }) => theme.backgroundColor};
-
-    transform: translate(-50%, -50%);
 
     @media screen and (max-width: 1000px) {
         padding-top: 30px;
@@ -44,6 +48,8 @@ export const Image = styled.img`
 `;
 
 export const Row = styled.div`
+    margin-bottom: 25px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -58,19 +64,6 @@ export const Row = styled.div`
         flex-direction: column;
     }
 `;
-
-export const ErorrsWrapper = styled.div`
-    margin-bottom: 25px;
-
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-
-    font-size: 12px;
-
-    color: ${({ theme }) => theme.fontColors.red};
-`;
-
 export const Form = styled.form`
     width: 100%;
 `;

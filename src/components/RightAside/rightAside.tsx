@@ -6,7 +6,16 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { sidebarSelector } from "@/store/selectors";
 import { sidebarActions } from "@/store/slices/sidebarSlice";
 
-import { Aside, Burger, Container, Icon, SearchBar, Span, Title } from "./rightAside.styled";
+import {
+    Aside,
+    Burger,
+    CloseOutside,
+    Container,
+    Icon,
+    SearchBar,
+    Span,
+    Title,
+} from "./rightAside.styled";
 
 export const RightAside: FC = () => {
     const [searchValue, setSearchValue] = useState<string>("");
@@ -50,6 +59,7 @@ export const RightAside: FC = () => {
                     </>
                 )}
             </Aside>
+            <CloseOutside onClick={toggleVisibility} $isVisible={isVisible} />
         </>
     );
 };

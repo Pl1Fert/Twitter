@@ -27,7 +27,7 @@ export const Title = styled.h1`
     margin-bottom: 10px;
     margin-top: 20px;
 
-    font-size: 65px;
+    font-size: ${({ theme }) => theme.fontSize.f64};
 `;
 
 export const SubTitle = styled.h2`

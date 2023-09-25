@@ -1,5 +1,6 @@
 /node_modules
-yarn.lock
+/cypress
 /dist
+yarn.lock
 vite.config.ts
 cypress.config.ts

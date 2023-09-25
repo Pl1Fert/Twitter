@@ -5,10 +5,10 @@ export const Nav = styled.nav`
 
     display: flex;
     flex-direction: column;
-    gap: 40px;
 `;
 
 export const Logo = styled.img`
+    margin-bottom: 35px;
     width: 40px;
     height: 30px;
 `;
@@ -18,5 +18,4 @@ export const List = styled.ul`
 
     display: flex;
     flex-direction: column;
-    gap: 20px;
 `;
